@@ -1,0 +1,47 @@
+version: '3.3'
+
+networks:
+    ie04-network:
+      name: ie04-network
+      driver: bridge
+      external: false
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.27.0.0/24
+
+services:
+  node:
+    build: ./node
+    container_name: node
+    tty: true
+    volumes:
+      - ./node:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql
+    networks:
+      ie04-network:
+        ipv4_address: 172.27.0.3
+
+  mysql:
+    build: ./mysql/
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      TZ: 'Asia/Tokyo'
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+     - 13306:3306
+    volumes:
+    # - ./mysql/db/data:/var/lib/mysql
+    # - ./mysql/db/conf.d:/etc/mysql/conf.d
+    - ./mysql/db/sql:/docker-entrypoint-initdb.d
+    networks:
+      ie04-network:
+        ipv4_address: 172.27.0.2
