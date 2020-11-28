@@ -1,0 +1,120 @@
+body{
+    width: 1440px;
+    height: 1378px;
+}
+
+.waku{
+    margin: 10px auto;
+    position: absolute;
+    width: 1200px;
+    height: 1155px;
+    left: 20%;
+    top: 10%;
+
+    background: #DCCCB2;
+    border: 50px solid #562811;
+    box-sizing: border-box;
+}
+
+.filter{
+    float: left;
+    margin-top:50px;
+
+}
+
+.place{
+    float:left;
+    width: 216px;
+    height: 28px;
+    
+    margin-right:20px;
+}
+
+.place select{
+    width: 216px;
+    height: 28px;
+}
+
+.kind{
+    float:left;
+    width: 96px;
+    height: 28px;
+    margin-right:20px;
+}
+
+.kind select{
+    width: 96px;
+    height: 28px;
+}
+
+.deadline{
+    float: left;
+    width: 216px;
+    height: 28px;
+    margin-right:20px;
+    
+}
+
+.deadline select{
+    width: 216px;
+    height: 28px;
+}
+
+.search{
+    float: right;
+    width: 297px;
+    height: 50px;
+    margin-right:20px;
+
+    position: absolute;
+    left:750px;
+    
+}
+
+.search input{
+    
+    width: 297px;
+    height: 30px;
+    border:none;
+    border-radius:10px;
+    box-shadow: none;
+    padding: 2px 8px;
+
+}
+
+
+.navi{
+    float: left;
+    width: 600px;
+    height: 82px;
+    position: absolute;
+    left: 32%;
+    top: 980px;
+
+
+
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 75px;
+
+}
+
+.QuestTable{
+    position:absolute;
+    top:70px;
+}
+.table{
+    width: 1050px;
+    height: 134px;
+    
+    
+
+    margin : 3em 0 1.5em ;
+    padding : 1em 1.5em ;
+    line-height : 1.8 ;
+    border : solid 2px #333 ;
+
+}
