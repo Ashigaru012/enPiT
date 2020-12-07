@@ -6,7 +6,19 @@ body{
 header{
     height:10%;
     width:100%;
+    display:flex;
     background-color:EE7836;
+}
+
+header h1{
+font-family: Archivo Black;
+font-style: normal;
+font-weight: normal;
+font-size: 100px;
+line-height: 39px;
+text-align: center;
+
+color: #FFFFFF;
 }
 
 div#map{
@@ -16,7 +28,19 @@ div#map{
 }
 
 nav{
+    display:flex;
     height:10%;
     width:100%;
     background-color:EE7836;
+}
+
+nav li{
+    text-align: center;
+    width: 25%;
+    color: #FFFFFF
+}
+
+.fas{
+    font-size:100px;
+    color:FFFFFF;
 }
