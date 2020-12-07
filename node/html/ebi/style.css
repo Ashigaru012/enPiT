@@ -1,0 +1,22 @@
+body{
+    width:100%;
+    height:100vh;
+    background-color:red;
+}
+header{
+    height:10%;
+    width:100%;
+    background-color:EE7836;
+}
+
+div#map{
+    height:80%;
+    background-color:white;
+
+}
+
+nav{
+    height:10%;
+    width:100%;
+    background-color:EE7836;
+}
