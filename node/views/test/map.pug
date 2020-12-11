@@ -1,0 +1,81 @@
+extends ../layout
+
+block append link
+    style(type="text/css").
+        #map-view-wrapper
+        {
+            width: 747px;
+            height: 852px;
+            background: yellow;
+        }
+        #map-field
+        {
+            width: 100%;
+            height: 100%;
+        }
+
+block content
+  #main-container
+    h1 map test page #{addr}
+
+    #map-view-wrapper
+        canvas(id="map-field")
+
+
+  script(src="https://cdn.geolonia.com/community-geocoder.js")
+  script.
+    window.onload = ()=>
+    {
+        const addr = '#{addr}';
+        //console.log(addr);
+
+        // canvas準備
+        const canvas = document.querySelector("#map-field");  
+        const ctx = canvas.getContext("2d");
+
+        const wrapper = document.querySelector("#map-view-wrapper");
+        canvas.width = wrapper.clientWidth;
+        canvas.height = wrapper.clientHeight;
+
+        // 画像読み込み
+        const mapImg = new Image();
+        mapImg.src = "/images/map-test.png";  // 画像のURLを指定
+        mapImg.onload = () => 
+        {
+            //console.log(canvas.width + " " + canvas.height + " " + mapImg.width + " " + mapImg.height);
+            // get the scale
+            const scale = Math.min(canvas.width / mapImg.width, canvas.height / mapImg.height);
+            // get the top left position of the image
+            var x = (canvas.width / 2) - (mapImg.width / 2) * scale;
+            var y = (canvas.height / 2) - (mapImg.height / 2) * scale;
+            ctx.drawImage(mapImg, 0, 0, mapImg.width * scale, mapImg.height * scale);
+            
+            //クエリパラメータの住所から緯度、経度を取得
+            getLatLng(addr, (latlng) => 
+            {
+                //       緯度        経度
+                //左上 37.532418, 139.780538
+                //右下 37.416660, 139.907607
+                console.log(latlng);
+
+                const lat = latlng.lat;
+                const lng = latlng.lng;
+
+                const top = 37.532418, bottom = 37.416660;
+                const left = 139.780538, right = 139.907607;
+
+                const x = canvas.width * (lng - left) / (right - left);
+                const y = canvas.height * (lat - top) / (bottom - top);
+                console.log(x + " " + y);
+                
+                //円を描画
+                ctx.fillStyle = 'red';  // 塗りつぶしの色
+                // パスの開始
+                ctx.beginPath();
+                ctx.arc(x, y, 10, 0, 2 * Math.PI, false);
+                // 描画
+                ctx.fill();
+            })
+            
+        };
+    };

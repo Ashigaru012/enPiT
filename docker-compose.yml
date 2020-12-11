@@ -10,6 +10,9 @@ networks:
         config:
           - subnet: 172.27.0.0/24
 
+volumes:
+  ignore:
+
 services:
   node:
     build: ./node
@@ -17,6 +20,7 @@ services:
     tty: true
     volumes:
       - ./node:/app
+      - ignore:/app/node_modules
     ports:
       - 3000:3000
     depends_on:
