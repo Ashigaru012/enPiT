@@ -1,11 +1,15 @@
-extends ../layout
+extends ../layout/header-footer
 
 block append link
     style(type="text/css").
         #map-view-wrapper
         {
+            /*
             width: 747px;
             height: 852px;
+            */
+            width: 100%;
+            height: 100%;
             background: yellow;
         }
         #map-field
@@ -15,88 +19,93 @@ block append link
         }
 
 block content
-  #main-container
-    h1 map test page #{addr}
-
     #map-view-wrapper
         canvas(id="map-field")
 
 
-  script(src="https://cdn.geolonia.com/community-geocoder.js")
-  script.
-    window.onload = ()=>
-    {
-        const addr = '#{addr}';
-        //console.log(addr);
-
-        // canvas準備
-        const canvas = document.querySelector("#map-field");  
-        const ctx = canvas.getContext("2d");
-
-        const wrapper = document.querySelector("#map-view-wrapper");
-        canvas.width = wrapper.clientWidth;
-        canvas.height = wrapper.clientHeight;
-
-        // 画像読み込み
-        const mapImg = new Image();
-        mapImg.src = "/images/map-test.png";  // 画像のURLを指定
-        mapImg.onload = () => 
+    script(src="https://cdn.geolonia.com/community-geocoder.js")
+    script.
+        window.onload = ()=>
         {
-            //console.log(canvas.width + " " + canvas.height + " " + mapImg.width + " " + mapImg.height);
-            // get the scale
-            const scale = Math.min(canvas.width / mapImg.width, canvas.height / mapImg.height);
-            // get the top left position of the image
-            var x = (canvas.width / 2) - (mapImg.width / 2) * scale;
-            var y = (canvas.height / 2) - (mapImg.height / 2) * scale;
-            ctx.drawImage(mapImg, 0, 0, mapImg.width * scale, mapImg.height * scale);
-            
-            //クエリパラメータの住所から緯度、経度を取得
-            getLatLng(addr, (latlng) => 
-            {
-                //       緯度        経度
-                //左上 37.532418, 139.780538
-                //右下 37.416660, 139.907607
-                console.log(latlng);
+            const addr = '#{addr}';
+            //console.log(addr);
 
-                const lat = latlng.lat;
-                const lng = latlng.lng;
+            // canvas準備
+            const canvas = document.querySelector("#map-field");  
+            const ctx = canvas.getContext("2d");
 
-                const top = 37.532418, bottom = 37.416660;
-                const left = 139.780538, right = 139.907607;
+            const wrapper = document.querySelector("#map-view-wrapper");
+            canvas.width = wrapper.clientWidth;
+            canvas.height = wrapper.clientHeight;
 
-                const x = canvas.width * (lng - left) / (right - left);
-                const y = canvas.height * (lat - top) / (bottom - top);
-                console.log(x + " " + y);
-                
-                //円を描画
-                ctx.fillStyle = 'red';  // 塗りつぶしの色
-                // パスの開始
-                ctx.beginPath();
-                ctx.arc(x, y, 10, 0, 2 * Math.PI, false);
-                // 描画
-                ctx.fill();
-            })
+            console.log("キャンバスの領域\n" + canvas.width + " " + canvas.height);
+
+            // 画像読み込み
+            const mapImg = new Image();
+            mapImg.src = "/images/map-test.png";  // 画像のURLを指定
+            mapImg.onload = () => 
+            {   
+                //クエリパラメータの住所から緯度、経度を取得
+                getLatLng(addr, (latlng) => 
+                {
+                    //       緯度        経度
+                    //左上 37.532418, 139.780538
+                    //右下 37.416660, 139.907607
+                    console.log(latlng);
+
+                    const lat = latlng.lat;
+                    const lng = latlng.lng;
+
+                    const top = 37.532418, bottom = 37.416660;
+                    const left = 139.780538, right = 139.907607;
+
+                    const x = mapImg.width * (lng - left) / (right - left);
+                    const y = mapImg.height * (lat - top) / (bottom - top);
+                    console.log("ピンの座標\n" + x + " " + y);
+                    
+
+                    //マップを表示
+                    const aspect = canvas.height / canvas.width;
+                    const disp_width = 400, disp_height = disp_width * aspect;
+
+                    console.log("表示するマップのサイズ\n" + disp_width + " " + disp_height);
+                    
+                    //マップの中で表示する部分を計算
+                    const disp_l = x - disp_width / 2, disp_t = y - disp_height / 2, disp_r = disp_l + disp_width, disp_b = disp_t + disp_height;
+
+                    console.log(disp_l + " " + disp_t + " " + disp_r + " " + disp_b);
+                    ctx.drawImage(mapImg, disp_l, disp_t, disp_width, disp_height, 0, 0, canvas.width, canvas.height);
+
+                    //円を描画
+                    ctx.fillStyle = 'red';  // 塗りつぶしの色
+                    // パスの開始
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2, canvas.height / 2, 30, 0, 2 * Math.PI, false);
+                    //ctx.arc(canvas.width / 2, canvas.height / 2, 10, 0, 2 * Math.PI, false);
+                    // 描画
+                    ctx.fill();
+                })
+            };
         };
-    };
 
-    function test() {
-        navigator.geolocation.getCurrentPosition(test2);
-    }
-    function test2(position) 
-    {
-        var geo_text = "緯度:" + position.coords.latitude + "\n";
-        geo_text += "経度:" + position.coords.longitude + "\n";
-        geo_text += "高度:" + position.coords.altitude + "\n";
-        geo_text += "位置精度:" + position.coords.accuracy + "\n";
-        geo_text += "高度精度:" + position.coords.altitudeAccuracy  + "\n";
-        geo_text += "移動方向:" + position.coords.heading + "\n";
-        geo_text += "速度:" + position.coords.speed + "\n";
+        function test() {
+            navigator.geolocation.getCurrentPosition(test2);
+        }
+        function test2(position) 
+        {
+            //- var geo_text = "緯度:" + position.coords.latitude + "\n";
+            //- geo_text += "経度:" + position.coords.longitude + "\n";
+            //- geo_text += "高度:" + position.coords.altitude + "\n";
+            //- geo_text += "位置精度:" + position.coords.accuracy + "\n";
+            //- geo_text += "高度精度:" + position.coords.altitudeAccuracy  + "\n";
+            //- geo_text += "移動方向:" + position.coords.heading + "\n";
+            //- geo_text += "速度:" + position.coords.speed + "\n";
 
-        var date = new Date(position.timestamp);
+            //- var date = new Date(position.timestamp);
 
-        geo_text += "取得時刻:" + date.toLocaleString() + "\n";
+            //- geo_text += "取得時刻:" + date.toLocaleString() + "\n";
 
-        alert(geo_text);
-    }
+            //alert(geo_text);
+        }
 
-    test();
+        test();
