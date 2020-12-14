@@ -41,6 +41,7 @@ docker-compose exec node /bin/sh
 yarn run dev
 ```
 サーバーを起動したら `http://localhost:3000` からアクセス可能。<br>
+テスト用のページURLの例) `http://localhost:3000/test/map?addr=福島県大沼郡会津美里町観音北甲`<br>
 コンテナから出る時は、Ctl を押したまま P と Q を順番に押すか、次のコマンドを入力する
 ```
 exit
