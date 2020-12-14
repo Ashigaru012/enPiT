@@ -1,7 +1,7 @@
 body{
     width:100%;
     height:100vh;
-    background-color:red;
+	background:url("pic/background01.jpg");
 }
 header{
     height:10%;
@@ -26,6 +26,12 @@ div#map{
     background-color:white;
 
 }
+div#mypage{
+	text-align: center;
+    height:80%;
+	    width:100%;
+
+}
 
 nav{
     display:flex;
@@ -43,4 +49,92 @@ nav li{
 .fas{
     font-size:100px;
     color:FFFFFF;
+}
+
+div#mypage h2{
+	position: relative;
+	font-weight: bold;
+	width: 100%;
+	vertical-align: text-bottom;
+	font-family: Font Awesome 5 Free;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 60px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #000000;
+  text-shadow    : 
+       2px  2px 0px #ffffff,
+      -2px  2px 0px #ffffff,
+       2px -2px 0px #ffffff,
+      -2px -2px 0px #ffffff,
+       2px  0px 0px #ffffff,
+       0px  2px 0px #ffffff,
+      -2px  0px 0px #ffffff,
+       0px -2px 0px #ffffff;
+
+}
+
+i#good{
+
+	font-family: Font Awesome 5 Free;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 64px;
+	line-height: 74px;
+
+	color: #EE7836;
+
+  text-shadow    : 
+       2px  2px 0px #ffffff,
+      -2px  2px 0px #ffffff,
+       2px -2px 0px #ffffff,
+      -2px -2px 0px #ffffff,
+       2px  0px 0px #ffffff,
+       0px  2px 0px #ffffff,
+      -2px  0px 0px #ffffff,
+       0px -2px 0px #ffffff;  
+
+}
+p.iineCount{
+	margin-top: 0px;
+	position: relative;
+    width:100%;
+	vertical-align: top;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 100px;
+	line-height: 56px;
+	text-align: center;
+
+	color: #EE7836;
+  text-shadow    : 
+       2px  2px 0px #ffffff,
+      -2px  2px 0px #ffffff,
+       2px -2px 0px #ffffff,
+      -2px -2px 0px #ffffff,
+       2px  0px 0px #ffffff,
+       0px  2px 0px #ffffff,
+      -2px  0px 0px #ffffff,
+       0px -2px 0px #ffffff;  
+
+}
+div#mypagetitle{
+	text-align: center;
+	height:10%;
+}
+div#icon{
+	text-align: center;
+	height:20%;
+}
+div#iine{
+	text-align: center;
+	height:20%;
+}
+div#profile{
+	text-align: center;
+	height:40%;
 }
