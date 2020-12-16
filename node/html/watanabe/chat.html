@@ -3,50 +3,47 @@
         <meta charset="utf-8">
         <title>chat</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     </head>
 
     <body>
-        <!--header部分-->
+        
         <header>
-            へっだーの目安なのでここはcss等ガバです
+            <!--header部分-->
         </header>
 
         <div class="main">
-            <script  type="text/javascript">
-                let data = ["荷物運びを手伝って！","どうしよ、家にゴキブリが出たので助けて","雪かき手伝って"];//模擬データ
-                let n = 12;//スライス開始位置
+                <!--メッセージを入力し、送信する要素-->
+                <div class="msg_submit">
+                    <form action="" method="POST" name="form" id="form">
+                    <input type="text" name="input" class="input_field"  placeholder="  メッセージを入力">
+                    <!--デバック用(消してもOK)-->
+                    <!--<input type="hidden" name="flg" value="1"/>-->
+                     <i class="fas fa-paper-plane" onclick='document.getElementById("form").submit()'></i> 
+                    </form>
+                </div>
 
-                //データベースから取得したデータ分をforで回していく
-                for(let i = 0; i < data.length; i++){
-                    document.write("<div class='chat-title'>");
-                    document.write("<div class='data'>");
-                    document.write("2077/12/10");//ここで日付のデータを取得
-                    document.write("</div>");
-                    document.write("<div class='title'>");
+                <!--戻るボタン-->
+                <div class="return">
 
-                    //文字数がnまでなら普通に表示、もしそれ以上ならn文字目以降を"..."に置き換える処理
-                    if(data[i].length > n){
-                        //n文字目以降をスライス
-                        let target_str = data[i].slice(n);
-
-                        //スライスした文字列を"..."に置き換える
-                        data[i] = data[i].replace(target_str,"...");
-                    }
-                    document.write(data[i]);//ここでタイトルデータを取得
-                    document.write("</div>");
-                    document.write("</div>");
-                }
-            </script>
-
-            
-        </div>
+                </div>
+                
+                <!--位置情報を相手に送るボタン-->
+                <div class="pin">
+                    <!--ここのバック実装お願いします...-->
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                 
+                <!--いいねボタン-->
+                <div class="good">
+                    <!--いいねボタンのバック実装お願いします...-->
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+        </div>       
         
 
-
-        <!--footer部分-->
-
         <footer>
-            ここも目安用に作った
+            <!--footer部分-->
         </footer>
     </body>
 </html>
