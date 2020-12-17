@@ -18,28 +18,32 @@ header{
 .chat-title{
     
     margin-top:30px;
-    margin-left:13%;
-    height:150px;
-    width:700px;
+    margin-left:3%;
+    height:80px;
+    width:400px;
+    zoom:230%;
+
 
 
     
     background: #FFFFFF;
-    border: 3px solid #EE7836;
+    border: 3.5px solid #EE7836;
     box-sizing: border-box;
     border-radius: 26px;
 }
 
 .data{
+    font-size: 22px;
     margin-left:20px;
     
-    font-size:40px;
+    
 }
 
 .title{
-    font-size: 50px;
+    font-size:25px;
+    text-align: center;
     margin-left:20px;
-    margin-top:5px;
+    margin-top:1px;
 }
 
 footer{
@@ -73,18 +77,46 @@ footer{
     top:1296px;
 }
 
+.msg_title{
+    height:40px;
+    width:450px;
+    zoom:180%;
+    font-size:30px;
+    text-align: center;
+    
+    position: absolute;
+    left:80px;
+    top:120px;
+
+
+    
+    background: #FFFFFF;
+    border: 3.5px #EE7836 solid;   /* 枠線を引く */
+    border-radius: 20px;      /* 角丸の指定 */
+
+}
+
+
+
 .pin i{
     font-size:100px;
     color:#EE7836;
-    position: relative;
-    top:1170px;
+    position: absolute;
+    top:1430px;
     left:40px;
 }
 
 .good i{
     font-size:200px;
     color:#EE7836;
-    position: relative;
-    top:850px;
+    position: absolute;
+    top:1250px;
     left:750px;
+}
+
+.return i{
+    font-size:100px;
+    position: absolute;
+    top:200px;
+    left:20px;
 }
