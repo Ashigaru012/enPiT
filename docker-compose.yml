@@ -34,7 +34,7 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test_database
+      MYSQL_DATABASE: taskul_db
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       TZ: 'Asia/Tokyo'

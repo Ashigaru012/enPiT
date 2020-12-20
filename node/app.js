@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users');
 const ajaxRouter = require('./routes/ajax'); 
 const databaseRouter = require('./routes/test-database');
 const mapTestRouter = require('./routes/test/map');
+const map2TestRouter = require('./routes/test/map2');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/ajax', ajaxRouter);
 app.use('/test-database', databaseRouter);
 app.use('/test/map', mapTestRouter);
+app.use('/test/map2', map2TestRouter);
 
 
 app.use(express.static('public'));
