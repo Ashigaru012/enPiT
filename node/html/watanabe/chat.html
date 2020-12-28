@@ -16,16 +16,21 @@
                 <!--メッセージを入力し、送信する要素-->
                 <div class="msg_submit">
                     <form action="" method="POST" name="form" id="form">
-                    <input type="text" name="input" class="input_field"  placeholder="  メッセージを入力">
+                    <textarea  cols="10" name="input" id="input_field"  placeholder=" メッセージを入力"></textarea>
+
                     <!--デバック用(消してもOK)-->
                     <!--<input type="hidden" name="flg" value="1"/>-->
-                     <i class="fas fa-paper-plane" onclick='document.getElementById("form").submit()'></i> 
+
+                    
+                     <i type="submit" class="fas fa-paper-plane" onclick='document.getElementById("form").submit()'></i> 
                     </form>
                 </div>
 
                 <script>
                     /*-----デバック用データ-----*/
                     let title = "荷運びを手伝って！";
+                    let aite ={UserA:"よろしくお願いします。"};
+                    let jibun ={UserB:"ありがとうございます。"};
 
                     /*-----ここまで-----*/
 
@@ -35,10 +40,74 @@
                     
                     document.write("</div>");        
                 </script>
+   
+                <div id="chat">
+                    <!--ここに動的に要素を追加-->
+                </div>
+                
+                <script>
+                    //現在自分のチャットを見てるユーザーがuser1
+                    const User = "user1";
+                    let i = 1;
+                    let data;
+
+                    //要素を追加する関数
+                    let event = function() { 
+                        //デバッグ用
+                        console.log("読み込んだ" + i + "回目です");
+                        i = i + 1;
+                    
+                        //JSONを読み込む(これはWebsocketとまだ接続してないのでここではjsonのデータを変数にぶち込んで使いました)
+                        data = {key: "message",
+                                        value: {
+                                        user: "user1",
+                                        message: "自分のトークです"
+                                    }
+                                };
+                            
+
+                        //id名chatのdivを習得
+                        let parent = document.getElementById('chat');
+
+                        //div要素を作成
+                        let objD = document.createElement('div');
+                        //送信元が自分か相手かでクラス名を変更
+                        if(data.value.user === User){
+                            //クラス名をrightに
+                            objD.className = 'right';
+                            //テキスト内容
+                            objD.innerHTML = data.value.message;
+
+                        }
+                        else{
+                            //クラス名をleftに
+                            objD.className = 'left';
+                            //テキスト内容
+                            objD.innerHTML = data.value.message;
+                    }
+                
+
+                        //要素を追加
+                        parent.appendChild(objD);
+                };
+
+
+                    //WebSocket接続(JSファイルがないので割愛)
+                
+                    
+                    //送信ボタンを押す度に呼ばれます(機能したけど機能しない...)
+                    window.addEventListener('click',event);
+                       
+                    
+                    
+
+                </script>
 
                 <!--戻るボタン-->
                 <div class="return">
+                    <a href="chat-title.html">
                     <i class="fas fa-reply"></i>
+                    </a>
                 </div>
                 
                 <!--位置情報を相手に送るボタン-->
