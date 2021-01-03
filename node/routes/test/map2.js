@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../../my_modules/mydb');
 const axios = require('axios');
 
-/* GET home page. */
+/*  */
 router.get('/', function(req, res, next) 
 {
     // lat : 緯度, lng : 経度
@@ -14,6 +14,8 @@ router.get('/', function(req, res, next)
     const anntenas = [];
     db.query('SELECT * FROM antenna_test', (error, results) => 
     {
+        if(error) throw error;
+
         for(let anntena of results)
         {
             anntenas.push({lat: anntena.lat, lng: anntena.lng});

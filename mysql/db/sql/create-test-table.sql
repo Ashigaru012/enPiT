@@ -1,8 +1,8 @@
 ---- drop ----
-DROP TABLE IF EXISTS `taskul-db`.`test_table`;
+DROP TABLE IF EXISTS `taskul_db`.`test_table`;
 
 ---- create ----
-create table IF not exists `taskul-db`.`test_table`
+create table IF not exists `taskul_db`.`test_table`
 (
  `id`               INT(20) AUTO_INCREMENT,
  `name`             VARCHAR(20) NOT NULL,

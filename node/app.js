@@ -4,14 +4,19 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+var app = express();
+var http = require('http');
+app.server = http.createServer(app);
+
+const ws = require('express-ws')(app, app.server);
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const ajaxRouter = require('./routes/ajax'); 
 const databaseRouter = require('./routes/test-database');
 const mapTestRouter = require('./routes/test/map');
 const map2TestRouter = require('./routes/test/map2');
-
-var app = express();
+const chatTestRouter = require('./routes/test/chat');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +34,7 @@ app.use('/ajax', ajaxRouter);
 app.use('/test-database', databaseRouter);
 app.use('/test/map', mapTestRouter);
 app.use('/test/map2', map2TestRouter);
+app.use('/test/chat', chatTestRouter);
 
 
 app.use(express.static('public'));
