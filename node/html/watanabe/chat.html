@@ -22,15 +22,14 @@
                     <!--<input type="hidden" name="flg" value="1"/>-->
 
                     
-                     <i type="submit" class="fas fa-paper-plane" onclick='document.getElementById("form").submit()'></i> 
+                     <i name="btn" type="submit" class="fas fa-paper-plane" onclick='document.getElementById("form").submit()'></i> 
                     </form>
                 </div>
 
                 <script>
                     /*-----デバック用データ-----*/
                     let title = "荷運びを手伝って！";
-                    let aite ={UserA:"よろしくお願いします。"};
-                    let jibun ={UserB:"ありがとうございます。"};
+
 
                     /*-----ここまで-----*/
 
@@ -42,17 +41,20 @@
                 </script>
    
                 <div id="chat">
-                    <!--ここに動的に要素を追加-->
+                    <!--ここに下記のscriptで動的に要素を追加-->
                 </div>
-                
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
                 <script>
                     //現在自分のチャットを見てるユーザーがuser1
-                    const User = "user1";
+                    let User = "user1";
                     let i = 1;
                     let data;
+                    let msgArea;
+                    let socket = io.connect("http://localhost:3000");
 
                     //要素を追加する関数
-                    let event = function() { 
+                    let event = function(e) { 
+                        e.preventDefault();
                         //デバッグ用
                         console.log("読み込んだ" + i + "回目です");
                         i = i + 1;
@@ -60,7 +62,7 @@
                         //JSONを読み込む(これはWebsocketとまだ接続してないのでここではjsonのデータを変数にぶち込んで使いました)
                         data = {key: "message",
                                         value: {
-                                        user: "user1",
+                                        user: "user2",
                                         message: "自分のトークです"
                                     }
                                 };
@@ -84,7 +86,7 @@
                             objD.className = 'left';
                             //テキスト内容
                             objD.innerHTML = data.value.message;
-                    }
+                        }
                 
 
                         //要素を追加
@@ -96,7 +98,7 @@
                 
                     
                     //送信ボタンを押す度に呼ばれます(機能したけど機能しない...)
-                    window.addEventListener('click',event);
+                    form.addEventListener('click',event,false);
                        
                     
                     
