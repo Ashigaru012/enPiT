@@ -22,14 +22,13 @@
                     <!--<input type="hidden" name="flg" value="1"/>-->
 
                     
-                     <i name="btn" type="submit" class="fas fa-paper-plane" onclick='document.getElementById("form").submit()'></i> 
+                     <i  class="fas fa-paper-plane" onclick='snd_msg()'></i> 
                     </form>
                 </div>
 
                 <script>
                     /*-----デバック用データ-----*/
                     let title = "荷運びを手伝って！";
-
 
                     /*-----ここまで-----*/
 
@@ -41,24 +40,49 @@
                 </script>
    
                 <div id="chat">
-                    <!--ここに下記のscriptで動的に要素を追加-->
+                    <!--ここに下記のscriptで動的に要素を追加される-->
                 </div>
+
                 <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
                 <script>
                     //現在自分のチャットを見てるユーザーがuser1
-                    let User = "user1";
+                    
                     let i = 1;
                     let data;
                     let msgArea;
-                    let socket = io.connect("http://localhost:3000");
+
+                    /*****websocketサーバの定義*****/
+                    //websocketの接続先URL
+                    let url = "";
+
+                    //websocketオブジェクト
+                    let ws = null;
+
+                    //ユーザー名
+                    let User = "user1";
+
+                    //websocket接続
+                    ws = new WebSocket(url);
+
+                    //メッセージを送信する関数
+                    function snd_msg(){
+                        //websocket接続(保険、もしバグってたらここが原因)
+                        ws = new WebSocket(url);
+
+                        let msg = document.getElementById('input_field').value;
+                        let data = {user:User,text:msg};
+
+                        //websocketでサーバーに送信
+                        ws.send(JSON.stringify(data));
+                    };
 
                     //要素を追加する関数
-                    let event = function(e) { 
-                        e.preventDefault();
+                    let event = function() { 
+                        //e.preventDefault();
                         //デバッグ用
                         console.log("読み込んだ" + i + "回目です");
                         i = i + 1;
-                    
+                        
                         //JSONを読み込む(これはWebsocketとまだ接続してないのでここではjsonのデータを変数にぶち込んで使いました)
                         data = {key: "message",
                                         value: {
@@ -66,6 +90,11 @@
                                         message: "自分のトークです"
                                     }
                                 };
+
+                        //websocketでメッセージを受け取った時の処理
+                        ws.onmessage = function(msg){
+                            data = JSON.parse(msg.data);
+                        }
                             
 
                         //id名chatのdivを習得
@@ -87,21 +116,12 @@
                             //テキスト内容
                             objD.innerHTML = data.value.message;
                         }
-                
-
                         //要素を追加
-                        parent.appendChild(objD);
+                        parent.appendChild(objD);         
                 };
-
-
-                    //WebSocket接続(JSファイルがないので割愛)
-                
-                    
-                    //送信ボタンを押す度に呼ばれます(機能したけど機能しない...)
-                    form.addEventListener('click',event,false);
-                       
-                    
-                    
+                              
+                    //ページが切り替わる度に呼ばれます(テストしてないので動くか知らないです)
+                    form.addEventListener('load',event,false);
 
                 </script>
 
@@ -114,13 +134,13 @@
                 
                 <!--位置情報を相手に送るボタン-->
                 <div class="pin">
-                    <!--ここのバック実装お願いします...-->
+                    
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                  
                 <!--いいねボタン-->
                 <div class="good">
-                    <!--いいねボタンのバック実装お願いします...-->
+                    
                     <i class="fas fa-thumbs-up"></i>
                 </div>
         </div>       
