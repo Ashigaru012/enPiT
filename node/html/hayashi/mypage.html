@@ -11,7 +11,8 @@
 			<button><i class="fas fa-bell"></i></button> <h1>Taskul</h1>
 		</header>
 <!--マイページ本体-->
-		<h2>マイページ</h2>
+<div id="mypage">
+		<div id="mypagetitle"><h2>マイページ</h2></div>
 	<!--アイコン-->
 		<div id="icon">
 			<img class="iconimg" src="" alt="icon">
@@ -20,16 +21,27 @@
 	<!--いいね数-->
 		<div id="iine">
 			<h2>総いいね数</h2>
-			<p class="iineCount">5000 <i class="fas fa-thumbs-up"></i></p>
+			<p class="iineCount">5000 <i class="fas fa-thumbs-up" id="good"></i></p>
 		</div>
 	<!--プロフィール-->
 		<div id="profile">
-			<p class="prof">ニックネーム:</p>
-			<>
-			<p class="prof">アンテナの距離:</p>
-			<p class="prof">ひとこと:</p>
+		<form>
+			<div class="prof">
+				<label class="proflabel">ニックネーム:</label>
+				<input type="text" name="username" id="username">
+			</div>
+			<div class="prof">
+				<label class="proflabel">アンテナの距離:</label>
+				<input type="text" name="distance" id="distance">
+			</div>
+			<div class="prof">
+				<label class="proflabel">ひとこと:</label>
+				<textarea name="comment" rows="2" cols="40"></textarea>
+			</div>
+		<input type="submit" value="変更を保存">
+		</form>
 		</div>
-	
+	</div>
 
 <!--下メニュー-->
 		<nav>

@@ -1,0 +1,38 @@
+extends ../layout/header-footer
+
+block append link
+
+block content
+    p web-socket test page
+    input(id="input-field" type="text")
+    input(id="submit-btn" type="submit") 
+    div.messages
+
+    script.
+        const HOST = location.origin.replace(/^http/, 'ws') + '/test/chat';
+        const ws = new WebSocket(HOST);
+
+        const input_field = document.querySelector('#input-field');
+        const submit_btn = document.querySelector('#submit-btn');
+        const messages = document.querySelector('.messages');
+
+        submit_btn.addEventListener("click", () =>
+        {
+            const text = input_field.value;
+            const json = JSON.stringify({user_id: 1, number: 1, message: text});
+            console.log("send: " + json);
+            ws.send(json);
+            input_field.value = '';
+            input_field.focus();
+        });
+
+        ws.onmessage = msg => 
+        {
+            console.log("receive: " + msg.data);
+            const res = JSON.parse(msg.data);
+            
+            const p = document.createElement('p');
+            p.textContent = res.message;
+
+            messages.appendChild(p);
+        };

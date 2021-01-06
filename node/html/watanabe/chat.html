@@ -3,50 +3,151 @@
         <meta charset="utf-8">
         <title>chat</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     </head>
 
     <body>
-        <!--header部分-->
+        
         <header>
-            へっだーの目安なのでここはcss等ガバです
+            <!--header部分-->
         </header>
 
         <div class="main">
-            <script  type="text/javascript">
-                let data = ["荷物運びを手伝って！","どうしよ、家にゴキブリが出たので助けて","雪かき手伝って"];//模擬データ
-                let n = 12;//スライス開始位置
+                <!--メッセージを入力し、送信する要素-->
+                <div class="msg_submit">
+                    <form action="" method="POST" name="form" id="form">
+                    <textarea  cols="10" name="input" id="input_field"  placeholder=" メッセージを入力"></textarea>
 
-                //データベースから取得したデータ分をforで回していく
-                for(let i = 0; i < data.length; i++){
-                    document.write("<div class='chat-title'>");
-                    document.write("<div class='data'>");
-                    document.write("2077/12/10");//ここで日付のデータを取得
-                    document.write("</div>");
-                    document.write("<div class='title'>");
+                    <!--デバック用(消してもOK)-->
+                    <!--<input type="hidden" name="flg" value="1"/>-->
 
-                    //文字数がnまでなら普通に表示、もしそれ以上ならn文字目以降を"..."に置き換える処理
-                    if(data[i].length > n){
-                        //n文字目以降をスライス
-                        let target_str = data[i].slice(n);
+                    
+                     <i  class="fas fa-paper-plane" onclick='snd_msg()'></i> 
+                    </form>
+                </div>
 
-                        //スライスした文字列を"..."に置き換える
-                        data[i] = data[i].replace(target_str,"...");
-                    }
-                    document.write(data[i]);//ここでタイトルデータを取得
-                    document.write("</div>");
-                    document.write("</div>");
-                }
-            </script>
+                <script>
+                    /*-----デバック用データ-----*/
+                    let title = "荷運びを手伝って！";
 
-            
-        </div>
+                    /*-----ここまで-----*/
+
+                    document.write("<div class='msg_title'>");
+                    
+                    document.write(title);
+                    
+                    document.write("</div>");        
+                </script>
+   
+                <div id="chat">
+                    <!--ここに下記のscriptで動的に要素を追加される-->
+                </div>
+
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+                <script>
+                    //現在自分のチャットを見てるユーザーがuser1
+                    
+                    let i = 1;
+                    let data;
+                    let msgArea;
+
+                    /*****websocketサーバの定義*****/
+                    //websocketの接続先URL
+                    let url = "ws://localhost:3000/test/chat";
+
+                    //websocketオブジェクト
+                    let ws = null;
+
+                    //ユーザー名
+                    let User = "user1";
+
+                    //websocket接続
+                    ws = new WebSocket(url);
+
+                    //メッセージを送信する関数
+                    function snd_msg(){
+                        //websocket接続(保険、もしバグってたらここが原因)
+                        ws = new WebSocket(url);
+
+                        let msg = document.getElementById('input_field').value;
+                        let data = {user:User,text:msg};
+
+                        //websocketでサーバーに送信
+                        ws.send(JSON.stringify(data));
+                    };
+
+                    //要素を追加する関数
+                    let event = function() { 
+                        //e.preventDefault();
+                        //デバッグ用
+                        console.log("読み込んだ" + i + "回目です");
+                        i = i + 1;
+                        
+                        //JSONを読み込む(これはWebsocketとまだ接続してないのでここではjsonのデータを変数にぶち込んで使いました)
+                        data = {key: "message",
+                                        value: {
+                                        user: "user2",
+                                        message: "自分のトークです"
+                                    }
+                                };
+
+                        //websocketでメッセージを受け取った時の処理
+                        ws.onmessage = function(msg){
+                            data = JSON.parse(msg.data);
+                        }
+                            
+
+                        //id名chatのdivを習得
+                        let parent = document.getElementById('chat');
+
+                        //div要素を作成
+                        let objD = document.createElement('div');
+                        //送信元が自分か相手かでクラス名を変更
+                        if(data.value.user === User){
+                            //クラス名をrightに
+                            objD.className = 'right';
+                            //テキスト内容
+                            objD.innerHTML = data.value.message;
+
+                        }
+                        else{
+                            //クラス名をleftに
+                            objD.className = 'left';
+                            //テキスト内容
+                            objD.innerHTML = data.value.message;
+                        }
+                        //要素を追加
+                        parent.appendChild(objD);         
+                };
+                              
+                    //ページが切り替わる度に呼ばれます(テストしてないので動くか知らないです)
+                    form.addEventListener('load',event,false);
+
+                </script>
+
+                <!--戻るボタン-->
+                <div class="return">
+                    <a href="chat-title.html">
+                    <i class="fas fa-reply"></i>
+                    </a>
+                </div>
+                
+                <!--位置情報を相手に送るボタン-->
+                <div class="pin">
+                    
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                 
+                <!--いいねボタン-->
+                <div class="good">
+                    
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+        </div>       
         
 
-
-        <!--footer部分-->
-
         <footer>
-            ここも目安用に作った
+            <!--footer部分-->
         </footer>
     </body>
 </html>

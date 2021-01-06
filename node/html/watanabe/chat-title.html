@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>chat-title</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        
+        <header>
+            <!--header部分-->
+        </header>
+
+        <div class="main">
+            <script  type="text/javascript">
+
+                //模擬データ
+                let data = ["荷物運びを手伝って！","どうしよ、家にゴキブリが出たので助けて","雪かき手伝って"];
+                
+
+                //スライス開始位置
+                let n = 12;
+
+                //データベースから取得したデータ分をforで回していく
+                for(let i = 0; i < data.length; i++){
+                    document.write("<div class='chat-title'>");
+                    document.write("<div class='data'>");
+                    document.write("2077/12/10");//ここで日付のデータを取得
+                    document.write("</div>");
+                    document.write("<div class='title'>");
+
+                    //文字数がnまでなら普通に表示、もしそれ以上ならn文字目以降を"..."に置き換える処理
+                    if(data[i].length > n){
+                        //n文字目以降をスライス
+                        let target_str = data[i].slice(n);
+
+                        //スライスした文字列の部分を"..."に置き換える
+                        data[i] = data[i].replace(target_str,"...");
+                    }
+                    document.write(data[i]);//ここでタイトルデータを取得
+                    document.write("</div>");
+                    document.write("</div>");
+                }
+            </script>
+
+            
+        </div>       
+        
+
+        <footer>
+            <!--footer部分-->
+        </footer>
+    </body>
+</html>

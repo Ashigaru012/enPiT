@@ -61,3 +61,16 @@ quit
 ```
 docker-compose down
 ```
+
+URL一覧<br>
+マップ表示テスト<br>
+`http://localhost:3000/test/map?{パラメータ}`<br>
+例) `http://localhost:3000/test/map?addr=福島県大沼郡会津美里町瀬戸町甲`
+<br>
+
+Google Static Maps API を使用したマップ表示テスト<br>
+`http://localhost:3000/test/map2?{パラメータ}`<br>
+例) `http://localhost:3000/test/map2?center=37.461618,139.839123`<br>
+
+チャットテスト<br>
+`http://localhost:3000/test/chat`
