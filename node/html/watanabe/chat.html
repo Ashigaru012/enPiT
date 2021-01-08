@@ -43,7 +43,7 @@
                     <!--ここに下記のscriptで動的に要素を追加される-->
                 </div>
 
-                <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+                
                 <script>
                     //現在自分のチャットを見てるユーザーがuser1
                     
@@ -53,7 +53,8 @@
 
                     /*****websocketサーバの定義*****/
                     //websocketの接続先URL
-                    let url = "ws://localhost:3000/test/chat";
+                    //let url = "ws://localhost:3000/test/chat";
+                    let url = "ws://127.0.0.1:5001";
 
                     //websocketオブジェクト
                     let ws = null;
@@ -61,13 +62,13 @@
                     //ユーザー名
                     let User = "user1";
 
-                    //websocket接続
+                    //websocket接続(test.jsを実行させて接続テストしました)
                     ws = new WebSocket(url);
 
                     //メッセージを送信する関数
                     function snd_msg(){
-                        //websocket接続(保険、もしバグってたらここが原因)
-                        ws = new WebSocket(url);
+                        //websocket接続(ここをコメントアウトしないとバグるので、削除予定)
+                        //ws = new WebSocket(url);
 
                         let msg = document.getElementById('input_field').value;
                         let data = {user:User,text:msg};
@@ -76,6 +77,13 @@
                         ws.send(JSON.stringify(data));
                     };
 
+                        //websocketでメッセージを受け取った時の処理
+                        ws.onmessage = function(msg){
+                            data = JSON.parse(msg.data);
+                            User = "user2"
+                            
+                        }
+
                     //要素を追加する関数
                     let event = function() { 
                         //e.preventDefault();
@@ -83,45 +91,51 @@
                         console.log("読み込んだ" + i + "回目です");
                         i = i + 1;
                         
-                        //JSONを読み込む(これはWebsocketとまだ接続してないのでここではjsonのデータを変数にぶち込んで使いました)
-                        data = {key: "message",
+                        //JSONを読み込む(websocketと接続できたので、何もなければ削除予定です)
+                        /*data = {key: "message",
                                         value: {
                                         user: "user2",
                                         message: "自分のトークです"
                                     }
-                                };
+                                };*/
 
-                        //websocketでメッセージを受け取った時の処理
-                        ws.onmessage = function(msg){
-                            data = JSON.parse(msg.data);
-                        }
+
+
                             
-
+                        console.log(data);
                         //id名chatのdivを習得
                         let parent = document.getElementById('chat');
 
                         //div要素を作成
                         let objD = document.createElement('div');
+
+                        //data.textに含まれる改行コードを改行タグに変換
+                        (data.text).replace(/\n/g, '<br>');
+
                         //送信元が自分か相手かでクラス名を変更
-                        if(data.value.user === User){
+                        if(data.user === User){
                             //クラス名をrightに
                             objD.className = 'right';
-                            //テキスト内容
-                            objD.innerHTML = data.value.message;
+
+                            //画像を表示させるdivを追加
+                            objD.innerHTML = "<div class='image_right'></div>" + "<div class ='text_right'>" + data.text + "</div>";
+
+                           
 
                         }
                         else{
                             //クラス名をleftに
                             objD.className = 'left';
-                            //テキスト内容
-                            objD.innerHTML = data.value.message;
+                            
+                            //画像を表示させるdivを追加
+                            objD.innerHTML = "<div class='image_left'></div>" + "<div class ='text_left'>" + data.text + "</div>";
                         }
-                        //要素を追加
-                        parent.appendChild(objD);         
+                         //要素を追加
+                        parent.appendChild(objD);        
                 };
                               
-                    //ページが切り替わる度に呼ばれます(テストしてないので動くか知らないです)
-                    form.addEventListener('load',event,false);
+                    //メッセージを受け取る度に呼ばれます(テストして動いたが、今後何か問題が出てくるかも)
+                    ws.addEventListener('message',event);
 
                 </script>
 

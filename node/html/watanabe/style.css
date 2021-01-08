@@ -148,19 +148,27 @@ footer{
     border-radius: 20px;      /* 角丸の指定 */
 }
 
-.oneself{
-    float: right;
-}
+
 
 .right{
-    float: right;
-    /*color:white;*/
+    margin-right: 80px;
+    margin-left:750px;
+    margin-top:80px;
+    font-size: 40px;
+    background-color: #EE7836;
+    border: 5.0px white;
+    border-radius: 20px; 
+    color:white;
 }
 
 .left{
+    width: 500px;
     margin-top:80px;
     margin-left:30px;
     font-size: 40px;
+    background:white;
+    border: 3.5px #EE7836 solid;
+    border-radius: 20px; 
 }
 
 .msg_submit input{
