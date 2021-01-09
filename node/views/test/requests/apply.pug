@@ -1,0 +1,37 @@
+html
+    head
+        meta(charset="utf-8")
+        title apply-test
+
+        style(type="text/css").
+
+
+    body
+        h application view page<br>
+        
+        p タイトル: #{request.title}
+        p 依頼者id: #{request.user_id}
+        p 現在の応募人数: #{request.num_applicants} / #{request.max_applicants} 人
+
+        .apply-btn-wrapper
+            button(type="button") 応募
+
+        script(src="https://unpkg.com/axios/dist/axios.min.js")
+        script.
+            const apply_btn = document.querySelector(".apply-btn-wrapper > button");
+            
+            apply_btn.addEventListener("click", () =>
+            {
+                const apply = {
+                    id: null,
+                    request_id: #{request.id},
+                    user_id: 1
+                };
+
+                console.log(apply);
+
+                axios.post(`http://localhost:3000/test/requests/${apply.request_id}/applicants`, apply).then(res => 
+                {
+                    window.location.href = res.data.url;
+                });
+            });

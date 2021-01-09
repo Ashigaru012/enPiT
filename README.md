@@ -75,3 +75,6 @@ Google Static Maps API を使用したマップ表示テスト<br>
 チャットテスト<br>
 `http://localhost:3000/test/chat`<br>
 `http://localhost:3000/test/chat2`<br>
+
+依頼、請け負いテスト<br>
+`http://localhost:3000/test/requests`<br>

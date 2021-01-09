@@ -1,0 +1,46 @@
+html
+    head
+        meta(charset="utf-8")
+        title requests-test
+
+        style(type="text/css").
+            .request-btn
+            {
+                width: fit-content;
+                height: fit-content;
+            }
+
+            .requests-container
+            {
+                width: 100%;
+            }
+
+            .request-item
+            {
+                margin: 10px;
+                border: 3.5px #EE7836 solid;   /* 枠線を引く */
+            }
+
+            .request-item p
+            {
+                margin: 0;
+                padding: 0;
+            }
+
+
+    body
+        h requests view page<br>
+
+        a(href="http://localhost:3000/test/requests/create") 依頼をする
+            
+            
+        .requests-container
+            each item in requests
+                a(href=`http://localhost:3000/test/requests/${item.id}/apply`)
+                    .request-item
+                        p タイトル: #{item.title}
+                        p 依頼者id: #{item.user_id}
+                        p 募集人数: #{item.max_applicants} 人
+
+
+        script.

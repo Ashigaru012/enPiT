@@ -45,18 +45,5 @@ insert into `chat_messages` values(null, 1, 1, 3, "テストユーザ１によ�
 insert into `chat_messages` values(null, 1, 2, 4, "テストユーザ２によるメッセージです");
 insert into `chat_messages` values(null, 1, 2, 5, "テストユーザ２によるメッセージです");
 
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`users`;
-
----- create ----
-create table IF not exists `taskul_db`.`users`
-(
- `id` INT AUTO_INCREMENT PRIMARY KEY,
- `name` TEXT
-);
-
-insert into `users` values(null, "テストユーザ１");
-insert into `users` values(null, "テストユーザ２");
-
 
 

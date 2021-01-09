@@ -1,0 +1,43 @@
+html
+    head
+        meta(charset="utf-8")
+        title create-test
+
+        style(type="text/css").
+
+
+    body
+        h creation view page<br>
+
+        p タイトル
+        textarea#title-txtarea
+
+        p 募集人数
+        textarea#applicants-txtarea
+
+        .complete-btn-wrapper
+            button(type="button") 完了
+
+        script(src="https://unpkg.com/axios/dist/axios.min.js")
+        script.
+            const complete_btn = document.querySelector(".complete-btn-wrapper > button");
+
+            complete_btn.addEventListener("click", () =>
+            {
+                const title = document.querySelector("#title-txtarea").value;
+                const max_applicants = Number(document.querySelector("#applicants-txtarea").value);
+
+                const request = {
+                    id: null,
+                    user_id: 1,
+                    title: title,
+                    max_applicants: max_applicants,
+                    is_waiting: 1,
+                    is_finished: 0
+                };
+
+                axios.post('http://localhost:3000/test/requests', request).then(res => 
+                {
+                    window.location.href = res.data.url;
+                });
+            });
