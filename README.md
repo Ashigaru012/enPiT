@@ -73,4 +73,5 @@ Google Static Maps API を使用したマップ表示テスト<br>
 例) `http://localhost:3000/test/map2?center=37.461618,139.839123`<br>
 
 チャットテスト<br>
-`http://localhost:3000/test/chat`
+`http://localhost:3000/test/chat`<br>
+`http://localhost:3000/test/chat2`<br>

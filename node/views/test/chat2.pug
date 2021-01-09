@@ -1,0 +1,116 @@
+extends ../layout/header-footer
+
+block append head
+    meta(charset='utf-8')
+    title chat
+
+block append link
+    link(rel='stylesheet' href='/stylesheets/test/chat2-style.css')
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt' crossorigin='anonymous')
+
+block content
+    .main
+        #title_wrapper
+            // 戻るボタン
+            .return
+                a(href='chat-title.html')
+                    i.fas.fa-reply
+            .msg_title
+
+
+        #chat
+            // ここに下記のscriptで動的に要素を追加される
+
+        
+        .input-form-wrapper
+            // いいねボタン
+            .good
+                i.fas.fa-thumbs-up
+                
+            .submit-btn-wrapper
+                // 位置情報を相手に送るボタン
+                .pin
+                    i.fas.fa-map-marker-alt
+
+                // メッセージを入力し、送信する要素
+                .msg_submit
+                    form#form(action='' method='POST' name='form')
+                        textarea#input_field(cols='10' name='input' placeholder=' メッセージを入力')
+                        // デバック用(消してもOK)
+                        // <input type="hidden" name="flg" value="1"/>
+                        i.fas.fa-paper-plane(onclick='snd_msg()')
+
+
+
+            
+        script.
+            let title = "荷運びを手伝って！";
+            const obj_title = document.querySelector(".msg_title");
+            obj_title.innerHTML = title;
+
+            //現在自分のチャットを見てるユーザーがuser1
+            let i = 1;
+            let data;
+            let msgArea;
+
+            //websocketの接続先URL
+            //const url = "ws://127.0.0.1:5001";
+            //const url = "ws://localhost:3000/test/chat";
+            const HOST = location.origin.replace(/^http/, 'ws') + '/test/chat2';
+
+            //websocketオブジェクト
+            const ws = new WebSocket(HOST);
+            
+            //ユーザー名
+            const user_id = 1;
+
+            //メッセージを送信する関数
+            const snd_msg = () =>
+            {
+                let msg = document.getElementById('input_field').value;
+                let data = { user_id: user_id, i, message: msg };
+
+                //websocketでサーバーに送信
+                ws.send(JSON.stringify(data));
+            };
+
+            //websocketでメッセージを受け取った時の処理
+            ws.onmessage = (msg) => 
+            {
+                data = JSON.parse(msg.data);
+
+                //e.preventDefault();
+                //デバッグ用
+                console.log("読み込んだ" + i + "回目です");
+                i = i + 1;
+                
+                console.log(data);
+                
+                //id名chatのdivを習得
+                let parent = document.getElementById('chat');
+                
+                //div要素を作成
+                let objD = document.createElement('div');
+                
+                //data.textに含まれる改行コードを改行タグに変換
+                data.message.replace(/\\n/g, '<br>');
+                
+                //送信元が自分か相手かでクラス名を変更
+                if(data.user_id === user_id)
+                {
+                    //クラス名をrightに
+                    objD.className = 'right';
+                    //画像を表示させるdivを追加
+                    objD.innerHTML = "<div class='image_right'></div>" + "<div class ='text_right'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                }
+                else
+                {
+                    //クラス名をleftに
+                    objD.className = 'left';
+                    //画像を表示させるdivを追加
+                    objD.innerHTML = "<div class='image_left'></div>" + "<div class ='text_left'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                }
+
+                //要素を追加
+                parent.appendChild(objD);
+            }
