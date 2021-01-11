@@ -16,6 +16,7 @@ const ajaxRouter = require('./routes/ajax');
 const databaseRouter = require('./routes/test-database');
 const mapTestRouter = require('./routes/test/map');
 const map2TestRouter = require('./routes/test/map2');
+const map3TestRouter = require('./routes/test/map3');
 const chatTestRouter = require('./routes/test/chat');
 const chat2TestRouter = require('./routes/test/chat2');
 const requestsTestRouter = require('./routes/test/requests');
@@ -36,6 +37,7 @@ app.use('/ajax', ajaxRouter);
 app.use('/test-database', databaseRouter);
 app.use('/test/map', mapTestRouter);
 app.use('/test/map2', map2TestRouter);
+app.use('/test/map3', map3TestRouter);
 app.use('/test/chat', chatTestRouter);
 app.use('/test/chat2', chat2TestRouter);
 app.use('/test/requests', requestsTestRouter);
@@ -53,6 +55,11 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  if(req.ws)
+  {
+    console.error("ERROR from WS route - ", err);
+  }
 
   // render the error page
   res.status(err.status || 500);
