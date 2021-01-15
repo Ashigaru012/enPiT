@@ -1,8 +1,8 @@
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`chat_rooms`;
+# drop
+drop table if exists `taskul_db`.`chat_rooms`;
 
----- create ----
-create table IF not exists `taskul_db`.`chat_rooms`
+# create
+create table if not exists `taskul_db`.`chat_rooms`
 (
  `id` INT AUTO_INCREMENT PRIMARY KEY,
  `name` TEXT,
@@ -12,11 +12,11 @@ create table IF not exists `taskul_db`.`chat_rooms`
 
 insert into `chat_rooms` values(null, "test room", 5);
 
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`chat_members`;
+# drop
+drop table if exists `taskul_db`.`chat_members`;
 
----- create ----
-create table IF not exists `taskul_db`.`chat_members`
+# create
+create table if not exists `taskul_db`.`chat_members`
 (
  `id` INT AUTO_INCREMENT PRIMARY KEY,
  `room_id` INT,
@@ -26,11 +26,11 @@ create table IF not exists `taskul_db`.`chat_members`
 insert into `chat_members` values(null, 1, 1);
 insert into `chat_members` values(null, 1, 2);
 
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`chat_messages`;
+# drop
+drop table if exists `taskul_db`.`chat_messages`;
 
----- create ----
-create table IF not exists `taskul_db`.`chat_messages`
+# create
+create table if not exists `taskul_db`.`chat_messages`
 (
  `id` INT AUTO_INCREMENT PRIMARY KEY,
  `room_id` INT,

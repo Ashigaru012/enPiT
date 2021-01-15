@@ -1,9 +1,9 @@
 
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`users`;
+# drop
+drop table if exists `taskul_db`.`users`;
 
----- create ----
-create table IF not exists `taskul_db`.`users`
+# create
+create table if not exists `taskul_db`.`users`
 (
  `id` INT AUTO_INCREMENT PRIMARY KEY,
  `name` TEXT

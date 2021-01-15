@@ -1,13 +1,12 @@
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`antenna_test`;
+# drop
+drop table if exists `taskul_db`.`antenna_test`;
 
----- create ----
-create table IF not exists `taskul_db`.`antenna_test`
+# create 
+create table if not exists `taskul_db`.`antenna_test`
 (
- `id`               INT(20) AUTO_INCREMENT,
+ `id`               INT(20) AUTO_INCREMENT PRIMARY KEY,
  `lat`              FLOAT NOT NULL,
- `lng`              FLOAT NOT NULL,
- PRIMARY KEY (`id`)
+ `lng`              FLOAT NOT NULL
 );
 
 

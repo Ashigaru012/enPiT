@@ -1,10 +1,10 @@
 
----- 依頼テーブル ----
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`requests_test`;
+# 依頼テーブル
+# drop
+drop table if exists `taskul_db`.`requests_test`;
 
----- create ----
-create table IF not exists `taskul_db`.`requests_test`
+# create
+create table if not exists `taskul_db`.`requests_test`
 (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT,          -- 依頼者のid --
@@ -22,12 +22,12 @@ insert into requests_test values(null, 1, "テスト用依頼３", 2, true, fals
 
 
 
----- 依頼に対する応募者のテーブル ----
----- drop ----
-DROP TABLE IF EXISTS `taskul_db`.`applicants_test`;
+# 依頼に対する応募者のテーブル
+# drop
+drop table if exists `taskul_db`.`applicants_test`;
 
----- create ----
-create table IF not exists `taskul_db`.`applicants_test`
+# create
+create table if not exists `taskul_db`.`applicants_test`
 (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `request_id` INT,  -- 依頼のid --
