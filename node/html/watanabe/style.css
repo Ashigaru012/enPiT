@@ -59,6 +59,7 @@ footer{
     height:50px;
     width:480px;
     zoom:165%;
+    padding: 5px 5px;
     position: relative;
     left:94px;
     /*top:860px;*/
@@ -187,9 +188,9 @@ footer{
 }
 
 .left{
-    /*width: 500px;*/
+    width: 800px;
     margin-top:80px;
-    margin-left:30px;
+    margin-left:10px;
     display: inline-block;
     display: flex;
     
@@ -204,6 +205,7 @@ footer{
 }
 
 .text_left{
+    width: 800px;
     font-size: 40px;
     white-space: pre-wrap;
     margin-left: 20px;

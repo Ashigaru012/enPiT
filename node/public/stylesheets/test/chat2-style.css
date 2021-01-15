@@ -68,6 +68,7 @@ header{
     position: absolute;
     top:20px;
     left:20px;
+    color:black;
 }
 
 .return a{
@@ -118,6 +119,13 @@ footer{
     margin-right: 70;
     font-size: 100px;
     color:#EE7836;
+    text-shadow: 
+     2px  2px 0px white,
+     2px  0px 0px white,
+     0px  2px 0px white,
+    -2px -2px 0px white,
+    -2px -0px 0px white,
+    -0px -2px 0px white;
 }
 
 .submit-btn-wrapper
@@ -204,6 +212,7 @@ footer{
 {
     width: 100%;
     font-size: 40px;
+    
 }
 
 .left
@@ -219,10 +228,13 @@ footer{
     width:fit-content;
     margin: 0 10 60 auto;
     background-color: #EE7836;
-    border: 5.0px white;
+    border: 4.5px white solid;
     border-radius: 20px; 
+    border-bottom-right-radius: 0px;
+    white-space: pre-wrap;
+    
     color:white;
-    text-align: right;
+    
 }
 
 .text_left
@@ -234,6 +246,7 @@ footer{
     background: white;
     border: 3.5px #EE7836 solid;
     border-radius: 20px; 
+    border-bottom-left-radius: 0px;
     color:black;
 }
 

@@ -17,8 +17,8 @@ block content
                     i.fas.fa-reply
             .msg_title
 
-
-        #chat
+        div(style='width:100%;height:70%;overflow:auto;')
+            #chat
             // ここに下記のscriptで動的に要素を追加される
 
         
@@ -55,7 +55,7 @@ block content
 
             //websocketの接続先URL
             //const url = "ws://127.0.0.1:5001";
-            //const url = "ws://localhost:3000/test/chat";
+            const url = "ws://localhost:3000/test/chat";
             const HOST = location.origin.replace(/^http/, 'ws') + '/test/chat2';
 
             //websocketオブジェクト
@@ -100,17 +100,23 @@ block content
                 {
                     //クラス名をrightに
                     objD.className = 'right';
-                    //画像を表示させるdivを追加
-                    objD.innerHTML = "<div class='image_right'></div>" + "<div class ='text_right'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                    //子要素を追加(ユーザー画像いる？っていう案がでたので代わりに日付のっけるためのクラスに変えときます)
+                    objD.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
                 }
                 else
                 {
                     //クラス名をleftに
                     objD.className = 'left';
-                    //画像を表示させるdivを追加
-                    objD.innerHTML = "<div class='image_left'></div>" + "<div class ='text_left'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                    //子要素を追加
+                    objD.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
                 }
 
                 //要素を追加
                 parent.appendChild(objD);
+
+                //常に下にスクロール
+                document.getElementById('chat').scrollIntoView(false);
+
             }
+
+            
