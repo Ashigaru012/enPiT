@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>マップ</title>
+        <link rel="stylesheet" href="destyle.css">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <button><i class="fas fa-bell"></i></button> <h1>Taskul</h1>
+        </header>
+
+        <div class="main">
+            <div class="title">
+                <h2><i class="fas fa-bullhorn"></i>タスケを呼ぶ</h2>
+            </div>
+
+            <div class="task_detail_form">
+                <div class="items">
+                    <label>タイトル：</label>
+                        <input type="text" name="title" size="40" class="ellipse forms">
+                </div>
+                <div class="items">
+                    <label>募集人数：</label>   
+                        <select name="recruiting_count" class="ellipse selects">
+                        <option value="1">1人</option>
+                        <option value="2">2人</option>
+                        <option value="3">3人</option>
+                        <option value="4">4人</option>
+                        </select>
+                </div>
+                <div class="items">
+                    <label>予想所要時間：</label>
+                        <select name="duration" class="ellipse selects">
+                        <option value="5">5分</option>
+                        <option value="10">10分</option>
+                        <option value="30">30分</option>
+                        <option value="45">45分</option>
+                        <option value="60">60分</option>
+                        </select>
+                </div>
+            </div>
+            <button>
+                送信
+                ※範囲内のアンテナに一斉送信されます
+            </button>
+
+        </div>
+
+        <nav>
+            <li>
+                <a href="">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <br><span>マップ</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fas fa-comments"></i>
+                    <br><span>チャット</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fas fa-crown"></i>
+                    <br><span>ランキング</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fas fa-user-alt"></i>
+                    <br><span>マイページ</span>
+                </a>
+            </li>
+        </nav>
+                    
+    </body>
+</html>
