@@ -2,6 +2,8 @@ body{
     width:100%;
     height:100vh;
 	background:url("pic/background01.jpg");
+	background-color:rgba(255,255,255,0.5);
+	background-blend-mode:lighten;
 }
 header{
     height:10%;
@@ -59,7 +61,7 @@ div#mypage h2{
 	font-family: Font Awesome 5 Free;
 	font-style: normal;
 	font-weight: 900;
-	font-size: 60px;
+	font-size: 54px;
 	/* identical to box height */
 
 	text-align: center;
@@ -98,6 +100,23 @@ i#good{
        0px -2px 0px #ffffff;  
 
 }
+
+i#iconcam{
+	position: relative;
+	width: 32px;
+	height: 27px;
+	left: 209px;
+	top: 197px;
+
+	font-family: Font Awesome 5 Free;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #000000;
+}
+
 p.iineCount{
 	margin-top: 0px;
 	position: relative;
@@ -119,7 +138,7 @@ p.iineCount{
        2px  0px 0px #ffffff,
        0px  2px 0px #ffffff,
       -2px  0px 0px #ffffff,
-       0px -2px 0px #ffffff;  
+       0px -2px 0px #ffffff;
 
 }
 div#mypagetitle{
@@ -130,6 +149,15 @@ div#icon{
 	text-align: center;
 	height:20%;
 }
+img.iconimg{
+	width:200px;
+	height:200px;
+	object-fit:cover;
+	border-radius:50%;
+	border:4px solid #000000
+}
+}
+
 div#iine{
 	text-align: center;
 	height:20%;
