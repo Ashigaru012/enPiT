@@ -59,6 +59,13 @@ block append link
             box-sizing: border-box;
         }
         
+        #entry-icon i
+        {
+            margin-left: 20px;
+            line-height: 140px;
+            color: #EE7836;   
+        }
+        
         #entry-popup-wrapper
         {
             width: 100%;
@@ -86,6 +93,7 @@ block append link
         {
             margin: auto;
         }
+
 
         .entry-btn-wrapper
         {
@@ -228,6 +236,7 @@ block content
 
         #entry-btn
             #entry-icon
+                i.fas.fa-edit
 
     #entry-popup-wrapper
         #entry-wrapper
@@ -468,6 +477,8 @@ block content
                         user_id: #{user_id}
                     })); 
                 }
+
+                entry_popup_background.style.visibility ="hidden";
 
                 ++btn_cnt;
             });

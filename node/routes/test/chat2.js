@@ -12,7 +12,7 @@ router.get('/:room_id/:user_id', function(req, res, next)
     {
         map_link: `http://localhost:3000/test/map3/${user_id}`,
         chat_link: `http://localhost:3000/test/rooms/${user_id}`,
-        ranking_link: "#",
+        ranking_link: `http://localhost:3000/test/ranking/weekly/${user_id}`,
         mypage_link: "#"
     };
 

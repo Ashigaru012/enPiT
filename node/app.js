@@ -22,6 +22,7 @@ const chat2TestRouter = require('./routes/test/chat2');
 const roomsTestRouter = require('./routes/test/rooms');
 const requestsTestRouter = require('./routes/test/requests');
 const requestTestRouter = require('./routes/test/request');
+const rankingTestRouter = require('./routes/test/ranking');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +46,7 @@ app.use('/test/chat2', chat2TestRouter);
 app.use('/test/rooms', roomsTestRouter);
 app.use('/test/requests', requestsTestRouter);
 app.use('/test/request', requestTestRouter);
+app.use('/test/ranking', rankingTestRouter);
 
 
 app.use(express.static('public'));
