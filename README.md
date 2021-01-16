@@ -82,3 +82,9 @@ Google Static Maps API を使用したマップ表示テスト<br>
 
 依頼、請け負いテスト<br>
 `http://localhost:3000/test/requests`<br>
+
+フェーズ３デモ用URL<br>
+`http://localhost:3000/test/map3/1`<br>
+`http://localhost:3000/test/map3/2`
+
+現状では、マップにアンテナを立てる。リアルタイムでアンテナを取得する。依頼をする。リアルタイムで付近の依頼を取得する。チャットする。機能があります。
