@@ -1,0 +1,255 @@
+header{
+    height:10%;
+    width:100%;
+    background-color:EE7836;
+}
+
+footer{
+    width:100%;
+    height:10%;
+    display:flex;
+    background-color: #EE7836;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+
+main{
+    position: relative;
+    width:100%;
+    height:90%;
+    background-size:270% 110%;
+    
+    
+    
+    /*min-height: 100vh;*/
+    
+}
+
+ul{
+    margin:0;
+    padding: 0;
+}
+
+ul.para li{
+    margin-right: 3;
+    
+    padding: 0 35;
+} 
+
+li{
+    list-style: none;
+}
+
+.tab{
+    width: 100%;
+    height: 160px;
+    margin-top: 12px;
+}
+
+
+
+
+.tab li{
+    float: left;
+    font-size: 77px;
+    font-weight: 900;
+    
+    border: 7px solid #EE7836;
+    border-radius: 40px; 
+    
+
+    background-color: white;
+
+}
+
+.tab li a{
+    color:#EE7836;
+    text-decoration: none;
+}
+
+.title{
+    text-align: center;
+    margin-top: 20px;
+    height: 100px;
+}
+
+.title p{
+    font-size: 70px;
+    font-weight: 900;
+    margin-top: 11px;
+    color:white;
+    -webkit-text-stroke-width: 3.5px;
+    -webkit-text-stroke-color: #EE7836;
+    -webkit-text-fill-color: white;
+    position: relative;
+    bottom: 40px;
+    left:20px;
+    z-index:10000
+}
+
+.title span{
+    font-size: 100px;
+}
+
+.title svg{
+    width: 100%;
+    position: relative;
+    bottom: 380px;
+    
+}
+
+.RankTable{
+    width: 100%;
+    height: 1000px;
+    margin-top: 70px;
+    position: relative;
+    z-index: 100;
+}
+
+.container{
+    height: 170px;
+    width: 800px;
+    
+    margin:30 auto;
+    border: 7px solid #EE7836;
+    border-radius: 70px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: middle;
+    align-items: middle;
+    position: relative;
+    z-index: 100;
+}
+
+.number{
+    float: left;
+    font-size: 100px;
+    margin-left:40px;
+    position: relative;
+    bottom: 80px;
+}
+
+.image{
+
+    float: left;
+    margin:auto 10;
+}
+
+.username{
+    float: left;
+    font-size: 60px;
+    margin:auto 10;
+    font-weight: 900;
+}
+
+.good{
+    font-size: 30px;
+    font-weight: 900;
+    margin-left:20px;
+    position: absolute;
+    top:100px;
+    left:650px;
+    float: right;
+}
+
+.good-num{
+    width: 264px;
+    height: 170px;
+    font-size: 30px;
+    font-weight: 900;
+    
+    text-align: right;
+    float:right;
+    position: relative;
+    top:100px;
+    left:50px;
+}
+
+.rank_1 .container{
+    background-color: #FDE8A0;
+}
+
+
+
+.rank_2 .container{
+    background-color: #DEDEDE;
+}
+
+.rank_3 .container{
+    background-color: #F0B8AB;
+}
+
+.rank_4 .container{
+    height: 120px;
+    width: 700px;
+    border-radius: 70px;
+    background-color: white;
+}
+
+.rank_4 .container .number{
+    font-size: 80px;
+    position: relative;
+    bottom: 80px;
+}
+
+.rank_4 .container .username{
+    font-size: 50px;   
+}
+
+.rank_4 .container .good{
+    position: relative;
+    top:60px;
+    left: 50px;
+}
+
+.rank_4 .container .good-num{
+    position: relative;
+    top:60px;
+    left: 60px;
+    
+}
+
+.rank_5 .container{
+    height: 120px;
+    width: 700px;
+    background-color: white;
+}
+
+.rank_5 .container .number{
+    font-size: 80px;
+    position: relative;
+    bottom: 80px;
+}
+
+
+.rank_5 .container .username{
+    font-size: 50px;   
+}
+
+.rank_5 .container .good{
+    position: relative;
+    top:60px;
+    left: 50px;
+}
+
+.rank_5 .container .good-num{
+    position: relative;
+    top:60px;
+    left: 60px;
+    
+}
+
+.rank_image{
+    width: 20%;
+    position: relative;
+    bottom: 380px;
+    left:560px;
+    
+}
+
+
+
+
+
