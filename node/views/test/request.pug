@@ -1,0 +1,172 @@
+extends ../layout/header-footer
+
+block append head
+    title request
+    
+block append link
+    style(type="text/css").
+        .map-icon
+        {
+            color: #44403E;
+        }
+
+        .main
+        {
+            height:80%;
+            background-color:white;
+        }
+
+        .task_detail_form
+        {
+            width: 90%;
+            margin: auto;
+        }
+
+        .title h2
+        {
+            font-weight: 900;
+            font-size: 60px;
+            padding: 80px 0;
+            margin:auto;
+            align-items: center;
+            text-align: center;
+            color: #EE7836;
+        }
+
+        .fa-bullhorn::before
+        {
+            color: #EE7836;
+        }
+
+        div.items
+        {
+            width: 100%;
+            margin: auto;
+        }
+
+        div.items label
+        {
+            font-weight: 900;
+            font-size: 55px;
+            margin: 30px;
+            color: #EE7836;
+            display: block;
+        }
+
+        .ellipse
+        {
+            height:6vh;
+            background: #FFFFFF;
+            border: 5px solid #EE7836;
+            box-sizing: border-box;
+            border-radius: 100px;
+        }
+        
+        .items .selects
+        {
+            width: 30%;
+        }
+        .forms
+        {
+            width: 100%;
+            padding-left: 30px;
+            font-size: 38px;
+        }
+        
+        select 
+        {
+            border: 1px;
+            font-size: 55px;
+            padding-left: 30px;
+            -moz-appearance: menulist;
+            -webkit-appearance: menulist;
+        }
+
+        .title .fas
+        {
+            font-size:100px;
+            color:FFFFFF;
+        }
+
+        #send-btn
+        {
+            background-color: #ee7836;
+            color: #fff;
+            border-radius: 20px;
+            text-align: center;
+            width: 50%;
+            /*height: 10vh;*/
+            font-weight: bold;
+            font-size: 25px;
+            margin: 10% 25%;
+            border: 0px none;
+        }
+
+        p.large
+        {
+            margin: 30px 0;
+            font-size: 55px;
+        }
+        p.large span
+        {
+            display: block;
+            font-size: 24px;
+        }
+
+
+block content
+    .main
+        .title
+            h2
+                i.fas.fa-bullhorn
+                | タスケを呼ぶ
+        .task_detail_form
+            .items
+                label タイトル：
+                input#title-input.ellipse.forms(type='text' name='title' size='40')
+            .items
+                label 募集人数：
+                select#applicants-input.ellipse.selects(name='recruiting_count')
+                    option(value='1') 1人
+                    option(value='2') 2人
+                    option(value='3') 3人
+                    option(value='4') 4人
+            .items
+                label 予想所要時間：
+                select.ellipse.selects(name='duration')
+                    option(value='5') 5分
+                    option(value='10') 10分
+                    option(value='30') 30分
+                    option(value='45') 45分
+                    option(value='60') 60分
+        .items
+            button#send-btn
+                p.large 送信
+                    span ※範囲内のアンテナに一斉送信されます
+
+    
+    script(src="https://unpkg.com/axios/dist/axios.min.js")
+    script.
+        const user_id = #{user_id};
+
+        const title_input = document.querySelector("#title-input");
+        const applicants_input = document.querySelector("#applicants-input");
+        
+        const send_btn = document.querySelector("#send-btn");
+
+        send_btn.addEventListener("click", () =>
+        {
+            const request = 
+            {
+                user_id: user_id,
+                title: title_input.value,
+                max_applicants: applicants_input.value,
+                is_waiting: true,
+                is_finished: false
+            };
+
+            axios.post('http://localhost:3000/test/request', request).then(res => 
+            {
+                window.location.href = res.data.url;
+            });
+        });

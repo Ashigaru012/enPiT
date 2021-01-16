@@ -5,12 +5,12 @@ drop table if exists `taskul_db`.`chat_rooms`;
 create table if not exists `taskul_db`.`chat_rooms`
 (
  `id` INT AUTO_INCREMENT PRIMARY KEY,
- `name` TEXT,
+ `title` TEXT,
  `messages_num` INT
 );
 
 
-insert into `chat_rooms` values(null, "test room", 5);
+insert into `chat_rooms` values(null, "荷運びを手伝って！", 5);
 
 # drop
 drop table if exists `taskul_db`.`chat_members`;

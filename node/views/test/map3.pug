@@ -5,8 +5,15 @@ block append head
     
 block append link
     style(type="text/css").
+        .entry-btn-wrapper > a, a:visited, a:active
+        {
+            color: inherit;
+            text-decoration: none;
+        }
+
         #map-view-wrapper
         {
+            position: relative;
             width: 100%;
             height: 100%;
             background: yellow;
@@ -34,6 +41,182 @@ block append link
             margin: 0;
         }
 
+        .map-icon
+        {
+            color: #44403E;
+        }
+
+        #entry-btn
+        {
+            position:absolute;
+            bottom: 40px;
+            right: 30px;
+            width: 180px;
+            height: 180px;
+            background: #FFFFFF;
+            border: 15px solid #EE7836;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+        
+        #entry-popup-wrapper
+        {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            box-sizing:border-box;
+            position:fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            visibility: hidden;
+        }
+
+        #entry-wrapper
+        {
+            display: flex;
+            width: 820px;
+            height: 630px;
+            border-radius: 40px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        #entry-btns-wrapper
+        {
+            margin: auto;
+        }
+
+        .entry-btn-wrapper
+        {
+            margin: 70px;
+        }
+
+        .entry-btn
+        {
+            width: 620px;
+            height: 200px;
+            margin: auto;
+            border-radius: 50px;
+            border-color: transparent;
+            background-color: #EE7836;
+            
+            text-align: center;
+            font-weight: 900;
+            font-size: 48px;
+            color: #FCFBFB;
+        }
+
+        #request-btn
+        {
+            line-height: 240px;
+        }
+
+        #requests-popup-wrapper
+        {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            box-sizing:border-box;
+            position:fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            visibility: hidden;
+        }
+        
+        #requests-wrapper
+        {
+            width: 820px;
+            height: 70%;
+            border-radius: 40px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        #requests-header p
+        {
+            height: 220px;
+            width: 100%;
+            line-height: 220px;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 100px;
+            font-weight: 300;
+            color: #EE7836;
+        }
+        #requests-header p span
+        {
+            margin: 0;
+            padding: 0;
+            font-weight: 900;
+        }
+        
+        #requests-header .fas
+        {
+            color: #EE7836;
+            margin-right: 20px;
+        }
+        
+        #requests-container
+        {
+            width: 100%;
+            height: 75%;
+            overflow:auto;
+        }
+
+        .request-item
+        {
+            width: 80%;
+            height: 220px;
+            margin: 40px auto;
+            background: white;
+            border: 5px #EE7836 solid;
+            border-radius: 60px; 
+            color: black;
+            display: flex;
+        }
+        
+        .request-item-title
+        {
+            flex-basis: 70%;
+            margin: auto;
+        }
+        
+        .request-item-title p
+        {
+            text-align: center; 
+            font-size: 40px;
+        }
+        
+        .request-item-entry
+        {
+            flex-basis: 30%;
+            display: flex;
+        }
+
+        .request-item-line
+        {
+            width: 5px;
+            height: 90%;
+            margin: auto 0;
+            background: #C4C4C4;
+        }
+
+        .request-item-entry-btn
+        {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            outline: 0;
+            border-radius: 0;
+            width: 100%;
+            font-size: 24px;
+            border: 0;
+            color: #EE7836;
+        }
+
 block content
     #map-view-wrapper
         #antenna_btn_wrapper
@@ -43,10 +226,36 @@ block content
             canvas(id="antenna-field" class="canvas")
         img(id="map-image")
 
+        #entry-btn
+            #entry-icon
+
+    #entry-popup-wrapper
+        #entry-wrapper
+            #entry-btns-wrapper
+                .entry-btn-wrapper
+                    button#antenna-btn.entry-btn 
+                        | アンテナを置く
+                .entry-btn-wrapper
+                    a#request-btn(href=`http://localhost:3000/test/request/${user_id}`)
+                        .entry-btn 
+                            i.fas.fa-bullhorn
+                            | タスケを呼ぶ
+
+    #requests-popup-wrapper
+        #requests-wrapper
+            #requests-header
+                p 
+                    i.fas.fa-bell
+                    | 近くの
+                    span Task
+            #requests-container
+
 
     script(src="https://unpkg.com/axios/dist/axios.min.js")
     script.
         console.log(#{lat} + " " + #{lng});
+
+        const req_container = document.querySelector("#requests-container");
 
         // canvas準備
         const canvas = document.querySelector("#map-field");
@@ -145,6 +354,39 @@ block content
             redraw();
         };
         
+        //ポップアップ系
+        const entry_popup_background = document.querySelector("#entry-popup-wrapper");
+        const entry_btn = document.querySelector("#entry-btn");
+        entry_btn.addEventListener("click", () =>
+        {
+            entry_popup_background.style.visibility ="visible";
+        });
+
+        entry_popup_background.addEventListener("click", e =>
+        {
+            const item = event.target;
+            if(item === entry_popup_background)
+            {
+                entry_popup_background.style.visibility ="hidden";
+            }
+        });
+
+        const req_popup_background = document.querySelector("#requests-popup-wrapper");
+        const notify_btn = document.querySelector("#notify-btn");
+        notify_btn.addEventListener("click", () =>
+        {
+            req_popup_background.style.visibility ="visible";
+        });
+
+        req_popup_background.addEventListener("click", e =>
+        {
+            const item = event.target;
+            if(item === req_popup_background)
+            {
+                req_popup_background.style.visibility ="hidden";
+            }
+        });
+        
         const HOST = location.origin.replace(/^http/, 'ws') + '/test/map3/web-sock';
         const ws = new WebSocket(HOST);
 
@@ -172,6 +414,20 @@ block content
 
                     redraw();
                 }
+                else if(event.key == "on_add_request")
+                {
+                    console.log("add request");
+
+
+                    const element = document.createElement('div');
+                    element.className = 'request-item';
+                    
+                    element.innerHTML = "<div class='request-item-title'><p>" + event.title + "</p></div>" + 
+                        "<div class ='request-item-entry'><div class='request-item-line'></div><button class='request-item-entry-btn'><p>タスケる！</p></button></div>";
+                    
+                    
+                    req_container.appendChild(element);
+                }
 
                 console.log("antennas: ", antennas);
             }
@@ -189,8 +445,7 @@ block content
                 lng: #{lng}
             }));
 
-            
-            const antenna_btn = document.querySelector("#antenna_btn");
+            const antenna_btn = document.querySelector("#antenna-btn");
 
             let btn_cnt = 0;
             antenna_btn.addEventListener("click", () => 

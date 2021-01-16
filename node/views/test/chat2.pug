@@ -8,12 +8,19 @@ block append link
     link(rel='stylesheet' href='/stylesheets/test/chat2-style.css')
     link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt' crossorigin='anonymous')
 
+    style(type="text/css").
+        .chat-icon
+        {
+            color: #44403E;
+        }
+        
+
 block content
     .main
         #title_wrapper
             // 戻るボタン
             .return
-                a(href='chat-title.html')
+                a(href=`http://localhost:3000/test/rooms/${user_id}`)
                     i.fas.fa-reply
             .msg_title
 
@@ -61,17 +68,28 @@ block content
             //websocketオブジェクト
             const ws = new WebSocket(HOST);
             
-            //ユーザー名
-            const user_id = 1;
+            const user_id = #{user_id};
+            const room_id = #{room_id};
 
             //メッセージを送信する関数
             const snd_msg = () =>
             {
                 let msg = document.getElementById('input_field').value;
-                let data = { user_id: user_id, i, message: msg };
+                let data = { key: "submit", room_id: room_id, user_id: user_id, number: i, message: msg };
 
+                document.getElementById('input_field').value = "";
                 //websocketでサーバーに送信
                 ws.send(JSON.stringify(data));
+            };
+            ws.onopen = event => 
+            {
+                const message = 
+                {
+                    key: "on_connected",
+                    room_id: #{room_id}
+                };
+
+                ws.send(JSON.stringify(message));
             };
 
             //websocketでメッセージを受け取った時の処理
@@ -96,7 +114,7 @@ block content
                 data.message.replace(/\\n/g, '<br>');
                 
                 //送信元が自分か相手かでクラス名を変更
-                if(data.user_id === user_id)
+                if(data.user_id == user_id)
                 {
                     //クラス名をrightに
                     objD.className = 'right';
