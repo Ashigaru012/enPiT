@@ -8,15 +8,20 @@ router.get('/:room_id/:user_id', function(req, res, next)
     const room_id = req.params.room_id;
     const user_id = req.params.user_id;
     
-    const footer_links = 
+    db.query('select * from chat_rooms where id=?', [room_id], (error, results) =>
     {
-        map_link: `http://localhost:3000/test/map3/${user_id}`,
-        chat_link: `http://localhost:3000/test/rooms/${user_id}`,
-        ranking_link: `http://localhost:3000/test/ranking/weekly/${user_id}`,
-        mypage_link: "#"
-    };
+        if(error) throw error;
 
-    res.render('test/chat2', {footer_links: footer_links, room_id: room_id, user_id: user_id});
+        const footer_links = 
+        {
+            map_link: `http://localhost:3000/test/map3/${user_id}`,
+            chat_link: `http://localhost:3000/test/rooms/${user_id}`,
+            ranking_link: `http://localhost:3000/test/ranking/weekly/${user_id}`,
+            mypage_link: "#"
+        };
+    
+        res.render('test/chat2', {footer_links: footer_links, room_title: results[0].title, room_id: room_id, user_id: user_id});
+    });
 });
 
 

@@ -22,7 +22,7 @@ block content
             .return
                 a(href=`http://localhost:3000/test/rooms/${user_id}`)
                     i.fas.fa-reply
-            .msg_title
+            .msg_title #{room_title}
 
         div(style='width:100%;height:70%;overflow:auto;')
             #chat
@@ -51,10 +51,6 @@ block content
 
             
         script.
-            let title = "荷運びを手伝って！";
-            const obj_title = document.querySelector(".msg_title");
-            obj_title.innerHTML = title;
-
             //現在自分のチャットを見てるユーザーがuser1
             let i = 1;
             let data;

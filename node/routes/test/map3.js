@@ -117,17 +117,48 @@ router.ws('/web-sock', (ws, req) =>
                         }));
                     }
 
-                    db.query('select * from requests_test2 where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?))', 
-                        [host.lat - range_lat, host.lat + range_lat, host.lng - range_lng, host.lng + range_lng], (error, results) => 
+                    db.query('select * from requests_test2 where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc', 
+                        [host.lat - range_lat, host.lat + range_lat, host.lng - range_lng, host.lng + range_lng, host.user_id], (error, results) => 
                     {
-                        for(const request of results)
+                        if(error) throw error;
+                        
+                        if(results.length)
                         {
-                            request.key = "on_add_request";
-                            if(host.user_id != request.user_id)
-                                ws.send(JSON.stringify(request));
+                            console.log(results[0]);
+                            let request_ids = results.map(v=>v.id);
+                            db.query('select * from applicants_test2 where user_id=? and request_id in(?) order by request_id asc', [host.user_id, request_ids], (error, results) => 
+                            {
+                                if(error) throw error;
+
+                                const remove_ids = results.map(v=>v.request_id);
+                                
+                                const ids = [];
+                                let cnt=0;
+                                for(const id of request_ids)
+                                {
+                                    if(id != remove_ids[cnt]) ids.push(id);
+                                    else ++cnt;
+                                }
+
+                                console.log("requests: ", ids);
+                                
+                                if(ids.length)
+                                {
+                                    db.query('select * from requests_test2 where id in(?)', [ids], (error, results) => 
+                                    {
+                                        if(error) throw error;
+                                        
+                                        for(const request of results)
+                                        {
+                                            request.key = "on_add_request";
+                                            if(host.user_id != request.user_id)
+                                                ws.send(JSON.stringify(request));
+                                        }
+                                    });
+                                }
+                            });
                         }
                     });
-
                 });
             });
         }
@@ -171,6 +202,33 @@ router.ws('/web-sock', (ws, req) =>
         else if(event.key == 'on_remove_antenna')
         {
             remove_antenna(event.user_id)
+        }
+        else if(event.key == 'on_accept')
+        {
+            db.query('insert into applicants_test2 set ?', {request_id: event.request_id, user_id: event.user_id}, (error, results) => 
+            {
+                if(error) throw error;
+
+                console.log(event.request_id);
+                db.query('select * from chat_rooms where request_id=?', [event.request_id], (error, results) => 
+                {
+                    if(error) throw error;
+
+                    console.log(results[0]);
+
+                    const room_id = results[0].id;
+                    db.query('insert into chat_members set ?', {room_id: room_id, user_id: event.user_id}, (error, results) => 
+                    {
+                        if(error) throw error;
+        
+                        ws.send(JSON.stringify({
+                            key: "on_accepted_request",
+                            request_id: event.request_id,
+                            url: `http://localhost:3000/test/chat2/${room_id}/${event.user_id}`
+                        }));
+                    });
+                });
+            });
         }
     });
   
@@ -224,8 +282,8 @@ const remove_antenna = (user_id, proc)=>
 
 const notify_request = (request) =>
 {
-    db.query('select * from users where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?))', 
-        [request.lat - range_lat, request.lat + range_lat, request.lng - range_lng, request.lng + range_lng], (error, results) => 
+    db.query('select * from users where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and id!=?', 
+        [request.lat - range_lat, request.lat + range_lat, request.lng - range_lng, request.lng + range_lng, request.user_id], (error, results) => 
     {
         if(error) throw error;
 

@@ -37,9 +37,28 @@ router.post("/", (req, res) =>
         {
             if(error) throw error;
 
-            requestRouter.notify_request(request);
+            request.id = results.insertId;
 
-            res.json({url: `http://localhost:3000/test/map3/${request.user_id}`});
+            db.query('insert into chat_rooms set ?', [{title: request.title, request_id: results.insertId, messages_num: 0}], (error, results) => 
+            {
+                if(error) throw error;
+
+                const room_id = results.insertId;
+                const user_id = request.user_id;
+
+                request.room_id = room_id;
+
+                db.query('insert into chat_members set ?', [{room_id: room_id, user_id: user_id}], (error, results) => 
+                {
+                    if(error) throw error;
+
+                    console.log("new request.\n", request);
+    
+                    requestRouter.notify_request(request);
+
+                    res.json({url: `http://localhost:3000/test/map3/${request.user_id}`});
+                });
+            });
         });
     });
 

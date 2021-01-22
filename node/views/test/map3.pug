@@ -430,12 +430,31 @@ block content
 
                     const element = document.createElement('div');
                     element.className = 'request-item';
+                    element.id = `request-item-${event.id}`;
                     
                     element.innerHTML = "<div class='request-item-title'><p>" + event.title + "</p></div>" + 
                         "<div class ='request-item-entry'><div class='request-item-line'></div><button class='request-item-entry-btn'><p>タスケる！</p></button></div>";
                     
-                    
+                    element.addEventListener("click", () =>
+                    {
+                        ws.send(JSON.stringify({
+                            key: "on_accept",
+                            user_id: #{user_id},
+                            request_id: event.id
+                        }));
+                    });
+
                     req_container.appendChild(element);
+                }
+                else if(event.key == "on_accepted_request")
+                {
+                    console.log("accepted : " + event.request_id);
+
+                    const element = document.querySelector(`#request-item-${event.request_id}`);
+                    
+                    req_container.removeChild(element);
+
+                    location.href = event.url;
                 }
 
                 console.log("antennas: ", antennas);
