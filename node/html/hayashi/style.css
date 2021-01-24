@@ -2,7 +2,7 @@ body{
     width:100%;
     height:100vh;
 	background:url("pic/background01.jpg");
-	background-color:rgba(255,255,255,0.5);
+	background-color:rgba(255,255,255,0.6);
 	background-blend-mode:lighten;
 }
 header{
@@ -150,8 +150,8 @@ div#icon{
 	height:20%;
 }
 img.iconimg{
-	width:200px;
-	height:200px;
+	width:150px;
+	height:150px;
 	object-fit:cover;
 	border-radius:50%;
 	border:4px solid #000000
@@ -165,4 +165,65 @@ div#iine{
 div#profile{
 	text-align: center;
 	height:40%;
+}
+
+.prof {
+	position: relative;
+	width: 500px;
+	margin: 20px 30% 20px 25%;
+}
+.prof input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: none;
+	border-bottom: 3px solid #1b2538;
+	background: transparent;
+}
+.prof textarea {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: none;
+	border-bottom: 3px solid #1b2538;
+	background: transparent;
+}
+.prof input[type='text']:focus {
+	border-bottom: 3px solid #EE7836;
+	outline: none;
+
+}
+.prof textarea:focus {
+	border-bottom: 3px solid #EE7836;
+	outline: none;
+}
+
+.prof{
+	display: flex;
+}
+
+input[type='submit'] {
+  display: inline-block;
+  border-radius: 5%;
+  font-size: 18pt;
+  text-align: center;
+  cursor: pointer;
+  padding: 12px 12px;
+  background: #EE7836;
+  color: #ffffff;
+  line-height: 1em;
+  transition: 0.3s;
+  border: 2px solid #EE7836;
+}
+input[type='submit']:hover {
+  color: #EE7836;     /* îwåiêF     */
+  background: #ffffff;     /* ï∂éöêF     */
 }
