@@ -1,22 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../my_modules/mydb');
-const requestRouter = require('./map3');
+const make_hf_links = require('../../my_modules/test/hf_link');
+const map3Router = require('./map3');
+const map4Router = require('./map4');
 
 /*  */
 router.get('/:id', function(req, res, next) 
 {
     const user_id = req.params.id;
 
-    const footer_links = 
-    {
-        map_link: `http://localhost:3000/test/map3/${user_id}`,
-        chat_link: `http://localhost:3000/test/rooms/${user_id}`,
-        ranking_link: "#",
-        mypage_link: "#"
-    };
-
-    res.render('test/request', {footer_links: footer_links, user_id: user_id});
+    res.render('test/request', {footer_links: make_hf_links, user_id: user_id});
 });
 
 
@@ -39,7 +33,7 @@ router.post("/", (req, res) =>
 
             request.id = results.insertId;
 
-            db.query('insert into chat_rooms set ?', [{title: request.title, request_id: results.insertId, messages_num: 0}], (error, results) => 
+            db.query('insert into chat_rooms set ?', [{title: request.title, request_id: results.insertId, host_id: request.user_id, messages_num: 0}], (error, results) => 
             {
                 if(error) throw error;
 
@@ -54,9 +48,10 @@ router.post("/", (req, res) =>
 
                     console.log("new request.\n", request);
     
-                    requestRouter.notify_request(request);
+                    map3Router.notify_request(request);
+                    map4Router.notify_request(request);
 
-                    res.json({url: `http://localhost:3000/test/map3/${request.user_id}`});
+                    res.json({url: `http://localhost:3000/test/map4/${request.user_id}`});
                 });
             });
         });

@@ -64,9 +64,11 @@ html
 
         #notify-btn-wrapper
         {
+            position: relative;
             width: 160px;
             height: 100%;
         }
+
 
         #notify-btn-wrapper button
         {
@@ -74,6 +76,18 @@ html
             border: 0px none;
             width: 100%;
             height: 100%;
+        }
+        
+        #notification-circle
+        {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            border-radius: 50%;
+            background-color: red;
+            width: 38px;
+            height: 38px;
+            visibility: hidden;   
         }
 
         #title-wrapper
@@ -105,6 +119,7 @@ html
                 #notify-btn-wrapper
                     button#notify-btn
                         i.fas.fa-bell
+                    #notification-circle
                 #title-wrapper
                     h1(id="title") Taskul
 

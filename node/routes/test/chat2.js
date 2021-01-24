@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../my_modules/mydb');
+const make_hf_links = require("../../my_modules/test/hf_link");
 
 /*  */
 router.get('/:room_id/:user_id', function(req, res, next) 
@@ -12,16 +13,54 @@ router.get('/:room_id/:user_id', function(req, res, next)
     {
         if(error) throw error;
 
-        const footer_links = 
+        const room_title = results[0].title;
+        const host_id = results[0].host_id;
+
+        db.query('select * from users where id=?', [user_id], (error, results) =>
         {
-            map_link: `http://localhost:3000/test/map3/${user_id}`,
-            chat_link: `http://localhost:3000/test/rooms/${user_id}`,
-            ranking_link: `http://localhost:3000/test/ranking/weekly/${user_id}`,
-            mypage_link: "#"
-        };
-    
-        res.render('test/chat2', {footer_links: footer_links, room_title: results[0].title, room_id: room_id, user_id: user_id});
+            if(error) throw error;
+
+            const user = results[0];
+        
+            res.render('test/chat2', {footer_links: make_hf_links(user_id), room_title: room_title, room_id: room_id, user_id: user_id, host_id: host_id, user: user});
+        });
     });
+});
+
+
+router.post('/good', function(req, res, next) 
+{
+    const good = req.body;
+
+    console.log(good);
+    
+    if(good.host_id == good.user_id)
+    {
+        db.query('select * from chat_members where room_id=? and user_id!=?', [good.room_id, good.host_id], (error, results) => 
+        {
+            if(error) throw error;
+
+            const chat_member_ids = results.map(v => v.user_id);
+            if(chat_member_ids.length)
+            {
+                db.query('update users set good=good+1 where id in(?)', [chat_member_ids], (error, results) => 
+                {
+                    if(error) throw error;
+
+                    res.json(good);
+                });
+            }
+        });
+    }
+    else
+    {
+        db.query('update users set good=good+1 where id=?', [good.host_id], (error, results) => 
+        {
+            if(error) throw error;
+
+            res.json(good);
+        });
+    }
 });
 
 
@@ -41,25 +80,15 @@ router.ws('/', (ws, req) => {
             {
                 if(error) throw error;
         
-                const messages = results.map(v=>({user_id: v.user_id, number: v.number, message: v.message}));
-                
-                for(message of messages)
+                for(message of results)
                 {
                     ws.send(JSON.stringify(message));
                 }
             });
         }
-        if(msg.key == "submit")
+        else if(msg.key == "submit")
         {
-
-            const message = 
-            {
-                room_id: msg.room_id,
-                user_id: msg.user_id,
-                number: msg.number,
-                message: msg.message
-            };
-            db.query('insert into chat_messages set ?', [message], (error, results) => 
+            db.query('insert into chat_messages set ?', [msg], (error, results) => 
             {
                 if(error) throw error;
 
@@ -68,7 +97,28 @@ router.ws('/', (ws, req) => {
                     socket.send(JSON.stringify(msg));
                 };
             });
+        }
+        else if(msg.key == "request_location")
+        {
+            db.query('select * from users where id=?', [msg.user_id], (error, results) => 
+            {
+                if(error) throw error;
 
+                const user = results[0];
+
+                msg.message = `https://www.google.com/maps?q=${user.lat},${user.lng}`;
+                
+                db.query('insert into chat_messages set ?', [msg], (error, results) => 
+                {
+                    if(error) throw error;
+
+                    for(const socket of connects)
+                    {
+                        socket.send(JSON.stringify(msg));
+                    };
+                });
+                
+            });
         }
     });
   

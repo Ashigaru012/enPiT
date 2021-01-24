@@ -11,12 +11,13 @@ app.server = http.createServer(app);
 const ws = require('express-ws')(app, app.server);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const ajaxRouter = require('./routes/ajax'); 
 const databaseRouter = require('./routes/test-database');
+const usersTestRouter = require('./routes/test/users');
 const mapTestRouter = require('./routes/test/map');
 const map2TestRouter = require('./routes/test/map2');
 const map3TestRouter = require('./routes/test/map3');
+const map4TestRouter = require('./routes/test/map4');
 const chatTestRouter = require('./routes/test/chat');
 const chat2TestRouter = require('./routes/test/chat2');
 const roomsTestRouter = require('./routes/test/rooms');
@@ -35,18 +36,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/ajax', ajaxRouter);
 app.use('/test-database', databaseRouter);
 app.use('/test/map', mapTestRouter);
 app.use('/test/map2', map2TestRouter);
 app.use('/test/map3', map3TestRouter);
+app.use('/test/map4', map4TestRouter);
 app.use('/test/chat', chatTestRouter);
 app.use('/test/chat2', chat2TestRouter);
 app.use('/test/rooms', roomsTestRouter);
 app.use('/test/requests', requestsTestRouter);
 app.use('/test/request', requestTestRouter);
 app.use('/test/ranking', rankingTestRouter);
+app.use('/test/users', usersTestRouter);
 
 
 app.use(express.static('public'));

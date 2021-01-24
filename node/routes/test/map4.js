@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../my_modules/mydb');
 const axios = require('axios');
-const make_hf_links = require("../../my_modules/test/hf_link");
+const make_hf_links = require('../../my_modules/test/hf_link');
 
 
 const range_lng = 0.02, range_lat = 0.02;
@@ -20,19 +20,45 @@ router.get('/:user_id', function(req, res, next)
         const maptype = "terrain";
         const key = "AIzaSyA2RXleFbdbftt8uRjIDj41jbGdWZ3LlpI";
         
-        const instance = axios.create({
-            'responseType': 'arraybuffer',
-            'headers': {
-                'Content-Type': 'image/png'
-            }
-        });
-        instance.get(`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${w}x${h}&maptype=${maptype}&key=${key}`).then(response =>
+        db.query('select * from users_icon where user_id=?', user_id, (error, results) => 
         {
-            //console.log(response.data);
+            if(error) throw error;
             
-            const mapimg = "data:image/png;base64," + Buffer.from(response.data, 'binary').toString('base64');
-            
-            res.render('test/map3', {footer_links: make_hf_links(user_id), user_id: user_id, lat: lat, lng: lng, mapimg: mapimg, zoom: zoom, map_w: w, map_h: h});
+
+            const instance = axios.create({
+                'responseType': 'arraybuffer',
+                'headers': {
+                    'Content-Type': 'image/png'
+                }
+            });
+            instance.get(`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${w}x${h}&maptype=${maptype}&key=${key}`).then(response =>
+            {
+                //console.log(response.data);
+                
+                const mapimg = "data:image/png;base64," + Buffer.from(response.data, 'binary').toString('base64');
+                
+                res.render('test/map4', {footer_links: make_hf_links(user_id), user_id: user_id, user_icon_img: results[0].img, lat: lat, lng: lng, mapimg: mapimg, zoom: zoom, map_w: w, map_h: h});
+            })
+            .catch(function (error) 
+            {
+                if (error.response) 
+                {
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } 
+                else if (error.request) 
+                {
+                    console.log(error.request);
+                } 
+                else 
+                {
+                    console.log('Error', error.message);
+                }
+                console.log(error.config);
+                
+                throw error;
+            });
         });
     };
 
@@ -50,6 +76,8 @@ router.get('/:user_id', function(req, res, next)
     {
         db.query('select * from users where id=?', user_id, (error, results) => 
         {
+            if(error) throw error;
+
             const lat = results[0].lat;
             const lng = results[0].lng;
 
@@ -96,16 +124,23 @@ router.ws('/web-sock', (ws, req) =>
                 {
                     if(error) throw error;
 
+                    
                     for(const antenna of results)
                     {
-                        ws.send(JSON.stringify({
-                            key: "on_add_antenna",
-                            antenna: {
-                                user_id: antenna.user_id,
-                                lat: antenna.lat,
-                                lng: antenna.lng
-                            }
-                        }));
+                        db.query('select * from users_icon where user_id=?', antenna.user_id, (error, results) => 
+                        {
+                            if(error) throw error;
+                            
+                            ws.send(JSON.stringify({
+                                key: "on_add_antenna",
+                                antenna: {
+                                    user_id: antenna.user_id,
+                                    lat: antenna.lat,
+                                    lng: antenna.lng,
+                                    icon_img: results[0].img
+                                }
+                            }));
+                        });
                     }
 
                     db.query('select * from requests_test2 where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc', 
@@ -178,14 +213,21 @@ router.ws('/web-sock', (ws, req) =>
                     {
                         if(!id_lookup.has(host.user_id)) continue;
 
-                        id_lookup.get(host.user_id).send(JSON.stringify({
-                            key: "on_add_antenna",
-                            antenna: {
-                                user_id: event.user_id,
-                                lat: event.lat,
-                                lng: event.lng
-                            }
-                        }));
+                        
+                        db.query('select * from users_icon where user_id=?', event.user_id, (error, results) => 
+                        {
+                            if(error) throw error;
+                            
+                            id_lookup.get(host.user_id).send(JSON.stringify({
+                                key: "on_add_antenna",
+                                antenna: {
+                                    user_id: event.user_id,
+                                    lat: event.lat,
+                                    lng: event.lng,
+                                    icon_img: results[0].img
+                                }
+                            }));
+                        });
                     }
                 });
             });
@@ -291,44 +333,6 @@ const notify_request = (request) =>
         }
     });
 };
-
-
-/*
-    ・コネクション成立時
-    front -> back
-    {
-        user_id,
-        lat,
-        lng
-    }
-    back
-    {
-        データベースにホストの情報を記載
-    }
-
-    ・コネクション中
-    back -> front
-    {
-        新規で生成されたアンテナの情報をホストに流す
-    }
-
-    ・コネクション切断時
-    back
-    {
-        データベース上からホストの情報を削除
-    }
-    front -> back
-    {
-        user_id,
-        event_kind,
-        value,
-    }
-
-    back
-    user_idから座標取得できる
-    座標情報から、近くにいるホストを特定できる
-    特定したホストにイベントが発生したことをリアルタイムに伝える
-*/
 
 
 router.notify_request = notify_request;

@@ -237,6 +237,17 @@ footer{
     
 }
 
+.text_right .fas
+{
+    color:white;
+}
+.text_right a
+{
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
 .text_left
 {
     padding: 10 10 10 10;
@@ -249,8 +260,44 @@ footer{
     border-bottom-left-radius: 0px;
     color:black;
 }
+.text_left .fas
+{
+    color: #EE7836;
+}
+.text_left a
+{
+    background-color: transparent;
+    text-decoration: none;
+    color: #EE7836;
+}
+
+.location-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    height: 400px;
+}
+.location-wrapper .location-icon
+{
+    width: 100%;
+    height: 250px;
+    line-height: 280px;
+    font-size: 200px;
+    text-align: center;
+}
+.location-wrapper p
+{
+    width: 80%;
+    text-align: center;
+    font-size: 28px;
+    margin: auto;
+    padding: 0;       
+}
+
 
 .msg
 {
     margin: auto 10 auto 10;
+    word-break: break-all;
 }

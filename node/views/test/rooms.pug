@@ -74,10 +74,11 @@ block content
     .main
         #rooms-container
             .room-item-wrapper
-                each item in rooms
-                    a(href=item.href)
-                        .room-item
-                            .date
-                                p 2021/01/18
-                            .title
-                                p #{item.title}
+                if(rooms)
+                    each item in rooms
+                        a(href=item.href)
+                            .room-item
+                                .date
+                                    p 2021/01/18
+                                .title
+                                    p #{item.title}
