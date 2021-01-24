@@ -63,6 +63,8 @@ docker-compose down
 ```
 
 URL一覧<br>
+<!-- 
+
 マップ表示テスト<br>
 `http://localhost:3000/test/map?{パラメータ}`<br>
 例) `http://localhost:3000/test/map?addr=福島県大沼郡会津美里町瀬戸町甲`
@@ -87,4 +89,11 @@ Google Static Maps API を使用したマップ表示テスト<br>
 `http://localhost:3000/test/map3/1`<br>
 `http://localhost:3000/test/map3/2`
 
+
+
+
 現状では、マップにアンテナを立てる。リアルタイムでアンテナを取得する。依頼をする。リアルタイムで付近の依頼を取得する。チャットする。機能があります。
+-->
+
+`http://localhost:3000/test/map4/1`<br>
+`http://localhost:3000/test/map4/2`<br>
