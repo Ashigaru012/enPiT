@@ -1,0 +1,51 @@
+html
+    head
+        meta(charset="utf-8")
+        meta(name="google-signin-client_id" content=client_id)
+        title login
+
+        style(type="text/css").
+            /* css はここに書く */
+
+    body
+        div(class="g-signin2" data-onsuccess="on_sign_in")
+        a(href="/login" onclick="sign_out();") sign-out
+
+        
+        script(src="https://apis.google.com/js/platform.js")
+        script.
+            // called by google client
+            function on_sign_in(googleUser)
+            {
+                const id_token = googleUser.getAuthResponse().id_token;
+                console.log('id_token: ', id_token);
+                
+                const profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId());
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail());
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/login');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = () =>
+                {
+                    console.log('Server returned: ' + xhr.responseText);
+                    console.log(document.cookie);
+
+                    location.reload();
+                };
+
+                xhr.send('idtoken=' + id_token);
+            }
+            
+            // on sign out
+            function sign_out()
+            {
+                const auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(() =>
+                {
+                    console.log('User signed out.');
+                });
+            }

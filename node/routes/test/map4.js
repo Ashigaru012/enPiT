@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../../my_modules/mydb');
 const axios = require('axios');
 const make_hf_links = require('../../my_modules/test/hf_link');
+const logger = require('../../my_modules/mylog');
 
 
 const range_lng = 0.02, range_lat = 0.02;

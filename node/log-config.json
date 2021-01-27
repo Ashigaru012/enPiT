@@ -1,0 +1,12 @@
+{
+    "appenders": 
+    {
+        "console": { "type": "console", "level": "all" },
+        "file": { "type": "file", "filename": "app-log.log"}
+    },
+
+    "categories": 
+    {
+        "default": { "appenders": ["console", "file"], "level": "all" }
+    }
+  }
