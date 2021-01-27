@@ -47,7 +47,6 @@ docker-compose exec node /bin/sh
 yarn run dev
 ```
 サーバーを起動したら `http://localhost:3000` からアクセス可能。<br>
-テスト用のページURLの例) `http://localhost:3000/test/map?addr=福島県大沼郡会津美里町観音北甲`<br>
 コンテナから出る時は、Ctl を押したまま P と Q を順番に押すか、次のコマンドを入力する
 ```
 exit
@@ -63,37 +62,4 @@ docker-compose down
 ```
 
 URL一覧<br>
-<!-- 
-
-マップ表示テスト<br>
-`http://localhost:3000/test/map?{パラメータ}`<br>
-例) `http://localhost:3000/test/map?addr=福島県大沼郡会津美里町瀬戸町甲`
-<br>
-
-Google Static Maps API を使用したマップ表示テスト<br>
-`http://localhost:3000/test/map2?{パラメータ}`<br>
-例) `http://localhost:3000/test/map2?center=37.461618,139.839123`<br>
-
-リアルタイムでアンテナを表示できるマップテスト<br>
-`http://localhost:3000/test/map3/:user_id?{パラメータ}`<br>
-例）`http://localhost:3000/test/map3/1?center=37.461618,139.839123`
-
-チャットテスト<br>
-`http://localhost:3000/test/chat`<br>
-`http://localhost:3000/test/chat2`<br>
-
-依頼、請け負いテスト<br>
-`http://localhost:3000/test/requests`<br>
-
-フェーズ３デモ用URL<br>
-`http://localhost:3000/test/map3/1`<br>
-`http://localhost:3000/test/map3/2`
-
-
-
-
-現状では、マップにアンテナを立てる。リアルタイムでアンテナを取得する。依頼をする。リアルタイムで付近の依頼を取得する。チャットする。機能があります。
--->
-
-`http://localhost:3000/test/map4/1`<br>
-`http://localhost:3000/test/map4/2`<br>
+`http://localhost:3000`<br>
