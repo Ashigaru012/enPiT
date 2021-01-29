@@ -46,7 +46,7 @@ docker-compose exec node /bin/sh
 ```
 yarn run dev
 ```
-サーバーを起動したら `http://localhost:5001` からアクセス可能。<br>
+サーバーを起動したら `http://taskul.work:5001` からアクセス可能。<br>
 コンテナから出る時は、Ctl を押したまま P と Q を順番に押すか、次のコマンドを入力する
 ```
 exit
@@ -62,4 +62,4 @@ docker-compose down
 ```
 
 URL一覧<br>
-`http://localhost:5001`<br>
+`http://taskul.work:5001`<br>
