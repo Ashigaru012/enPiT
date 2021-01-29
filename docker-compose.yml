@@ -23,6 +23,7 @@ services:
       - ignore:/app/node_modules
     ports:
       - 80:3000
+      - 443:443 
     depends_on:
       - mysql
     networks:

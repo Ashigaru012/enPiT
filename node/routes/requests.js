@@ -49,7 +49,7 @@ router.post("/", async (req, res) =>
 
             indexRouter.notify_request(request);
             
-            res.json({url: `http://${config.host.ip_address}:${config.host.port}`});
+            res.json({url: `${config.host.protocol}://${config.host.ip_address}:${config.host.port}`});
         });
     }
     catch(err)

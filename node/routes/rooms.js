@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next)
 
             for(const room of rooms)
             {
-                room.href = `http://${config.host.ip_address}:${config.host.port}/rooms/${room.id}`;
+                room.href = `${config.host.protocol}://${config.host.ip_address}:${config.host.port}/rooms/${room.id}`;
             }
         }
 

@@ -12,7 +12,7 @@ const h = 736;
 const maptype = "terrain";
 const key = config.api.map.key;
 
-const range = 1;
+const range = 100;
 
 /*  */
 router.get("/", async function(req, res, next) 
@@ -237,7 +237,7 @@ const accept_request = async (event) =>
         id_lookup.get(event.user_id)?.send(JSON.stringify({
             key: "on_accepted_request",
             request_id: event.request_id,
-            url: `http://${config.host.ip_address}:${config.host.port}/rooms/${room.id}`
+            url: `${config.host.protocol}://${config.host.ip_address}:${config.host.port}/rooms/${room.id}`
         }));
     });
 }

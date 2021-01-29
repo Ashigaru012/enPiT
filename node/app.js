@@ -3,10 +3,17 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+var fs = require('fs');
 
 var app = express();
-var http = require('http');
-app.server = http.createServer(app);
+var https = require('https');
+
+var options = {
+  key:  fs.readFileSync('cert/privkey.pem'),
+  cert: fs.readFileSync('cert/fullchain.pem')
+};
+
+app.server = https.createServer(options, app);
 
 const ws = require('express-ws')(app, app.server);
 

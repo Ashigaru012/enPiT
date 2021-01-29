@@ -166,7 +166,7 @@ block js
                 is_finished: false
             };
 
-            axios.post(`http://${location.host}/requests/`, request).then(res => 
+            axios.post(`${location.protocol}//${location.host}/requests/`, request).then(res => 
             {
                 window.location.href = res.data.url;
             });

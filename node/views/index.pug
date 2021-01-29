@@ -275,7 +275,7 @@ block content
                         i.fas.fa-broadcast-tower
                         | アンテナを置く
                 .entry-btn-wrapper
-                    a#request-btn(href=`http://${common.host}/requests/create`)
+                    a#request-btn(href=`${common.protocol}://${common.host}/requests/create`)
                         .entry-btn 
                             i.fas.fa-bullhorn
                             | タスケを呼ぶ
@@ -335,7 +335,7 @@ block js
             for(const antenna of antennas)
             {
                 const link_wrapper = document.createElement("a");
-                link_wrapper.href = `http://${location.host}/test/users/${antenna.user_id}/${user_id}`;
+                link_wrapper.href = `${location.protocol}//${location.host}/test/users/${antenna.user_id}/${user_id}`;
 
                 const user_wrapper = document.createElement("div");
                 user_wrapper.className = "user-icon-wrapper antenna-wrapper";
@@ -427,7 +427,7 @@ block js
         });
         
         
-        const HOST = location.origin.replace(/^http/, 'ws') + '/web-sock';
+        const HOST = location.origin.replace(/^http|^https/, 'ws') + '/web-sock';
         const ws = new WebSocket(HOST);
 
         ws.onopen = (event) =>
