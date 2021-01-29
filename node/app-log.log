@@ -733,3 +733,24 @@
 [2021-01-29T06:17:07.417] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
 [2021-01-29T06:17:07.419] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '2' ]
 [2021-01-29T06:17:07.420] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-29T07:09:02.745] [INFO] default - listening on 3000
+[2021-01-29T07:09:12.202] [INFO] default - request from Taro enPiT to "/"
+[2021-01-29T07:09:12.212] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-29T07:09:12.213] [INFO] default - login request
+[2021-01-29T07:09:12.229] [INFO] default - request from Taro enPiT to "/login"
+[2021-01-29T07:09:12.231] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-29T07:09:13.049] [INFO] default - request from Taro enPiT to "/favicon.ico"
+[2021-01-29T07:09:13.050] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-29T07:09:13.051] [INFO] default - login request
+[2021-01-29T07:09:13.057] [INFO] default - request from Taro enPiT to "/login"
+[2021-01-29T07:09:13.058] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-29T07:11:11.221] [INFO] default - listening on 80
+[2021-01-29T07:11:18.951] [INFO] default - listening on 80
+[2021-01-29T07:13:15.240] [INFO] default - listening on 3000
+[2021-01-29T07:13:31.888] [INFO] default - request from Taro enPiT to "/login"
+[2021-01-29T07:13:31.891] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-29T07:13:32.506] [INFO] default - request from Taro enPiT to "/favicon.ico"
+[2021-01-29T07:13:32.507] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-29T07:13:32.508] [INFO] default - login request
+[2021-01-29T07:13:32.517] [INFO] default - request from Taro enPiT to "/login"
+[2021-01-29T07:13:32.518] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]

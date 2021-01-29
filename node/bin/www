@@ -16,7 +16,7 @@ var debug = require('debug')('app:server');
  */
 
 //var port = normalizePort(process.env.PORT || '3000');
-var port = normalizePort(config.host.port);
+var port = normalizePort(config.host.container_port);
 app.set('port', port);
 
 logger.info(`listening on ${port}`);
