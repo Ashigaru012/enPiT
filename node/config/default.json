@@ -1,7 +1,8 @@
 {
     "host": {
         "ip_address": "taskul.work",
-        "port": "3000"
+        "port": "80",
+        "container_port": "3000"
     },
 
     "api": {
