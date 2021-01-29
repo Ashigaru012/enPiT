@@ -2,8 +2,14 @@ const OAuth2Client = require('google-auth-library').OAuth2Client;
 const config = require('config');
 const logger = require("./mylog");
 
-const client_id = '25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com';
-const secret = 'mjJxtqgVLFHNU_g2LzQHcfSd';
+//const client_id = '25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com';
+//const secret = 'mjJxtqgVLFHNU_g2LzQHcfSd';
+//const client_id = '362716004128-4n48jhqt64vsm5go8t68m69voc4p0p2s.apps.googleusercontent.com';
+//const secret = 'UXLGGwt-Q2ZrieOSsJItPuHP';
+const client_id = config.api.auth.client_id;
+const secret = config.api.auth.secret;
+
+
 const callback_url = `${config.host.ip_address}:${config.host.port}`;
 
 const verify = async (token) => 

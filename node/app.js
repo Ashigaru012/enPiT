@@ -12,6 +12,11 @@ const ws = require('express-ws')(app, app.server);
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const rankingRouter = require('./routes/ranking');
+const usersRouter = require('./routes/users');
+const requestsRouter = require('./routes/requests');
+const roomsRouter = require('./routes/rooms');
+
 const usersTestRouter = require('./routes/test/users');
 const mapTestRouter = require('./routes/test/map');
 const map2TestRouter = require('./routes/test/map2');
@@ -34,8 +39,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(loginRouter);
-app.use('/', indexRouter);
+app.use('/', loginRouter.auth, indexRouter);
+app.use('/login', loginRouter);
+app.use('/ranking', rankingRouter);
+app.use('/users', usersRouter);
+app.use('/requests', requestsRouter);
+app.use('/rooms', roomsRouter);
+
 //app.use('/test/map', mapTestRouter);
 //app.use('/test/map2', map2TestRouter);
 //app.use('/test/map3', map3TestRouter);

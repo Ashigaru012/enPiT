@@ -5,6 +5,11 @@ block append head
     
 block append link
     style(type="text/css").
+        .map-icon
+        {
+            color: #44403E;
+        }
+
         .entry-btn-wrapper > a, a:visited, a:active
         {
             color: inherit;
@@ -270,7 +275,7 @@ block content
                         i.fas.fa-broadcast-tower
                         | アンテナを置く
                 .entry-btn-wrapper
-                    a#request-btn(href=`http://localhost:3000/test/request/${user_id}`)
+                    a#request-btn(href=`http://${common.host}/requests/create`)
                         .entry-btn 
                             i.fas.fa-bullhorn
                             | タスケを呼ぶ
@@ -285,9 +290,9 @@ block content
             #requests-container
 
 
+block js
     script(src="https://unpkg.com/axios/dist/axios.min.js")
     script.
-    //
         console.log(#{lat} + " " + #{lng});
 
         const req_container = document.querySelector("#requests-container");
@@ -319,7 +324,7 @@ block content
         const center_y = latToY(#{lat}, #{zoom});
         console.log("center:\n(" + lngToX(#{lng}, #{zoom}) + ", " + latToY(#{lat}, #{zoom}) + ")");
 
-
+        let antennas = [];
         const update_antennas = () =>
         {
             console.log("update antennas");
@@ -330,7 +335,7 @@ block content
             for(const antenna of antennas)
             {
                 const link_wrapper = document.createElement("a");
-                link_wrapper.href = `http://localhost:3000/test/users/${antenna.user_id}/${user_id}`;
+                link_wrapper.href = `http://${location.host}/test/users/${antenna.user_id}/${user_id}`;
 
                 const user_wrapper = document.createElement("div");
                 user_wrapper.className = "user-icon-wrapper antenna-wrapper";
@@ -386,6 +391,7 @@ block content
             update_antennas();
         };
         
+        
         //ポップアップ系
         const entry_popup_background = document.querySelector("#entry-popup-wrapper");
         const entry_btn = document.querySelector("#entry-btn");
@@ -420,10 +426,10 @@ block content
             }
         });
         
-        const HOST = location.origin.replace(/^http/, 'ws') + '/test/map4/web-sock';
+        
+        const HOST = location.origin.replace(/^http/, 'ws') + '/web-sock';
         const ws = new WebSocket(HOST);
 
-        let antennas = [];
         ws.onopen = (event) =>
         {
             console.log("on open");
@@ -481,6 +487,17 @@ block content
 
                     location.href = event.url;
                 }
+                else if(event.key == "on_map_update")
+                {
+                    const mapImg = new Image();
+                    mapImg.src = event.mapimg;
+                    mapImg.onload = () => 
+                    {
+                        map_ctx.drawImage(mapImg, 0, 0, canvas.width, canvas.height);
+
+                        update_antennas();
+                    };
+                }
 
                 console.log("antennas: ", antennas);
             }
@@ -489,14 +506,6 @@ block content
             {
                 console.log(error);
             }
-
-            ws.send(JSON.stringify({
-                key: "on_connect",
-                user_id: #{user_id},
-                range: 100,
-                lat: #{lat},
-                lng: #{lng}
-            }));
 
             const antenna_btn = document.querySelector("#antenna-btn");
 
@@ -526,5 +535,33 @@ block content
 
                 ++btn_cnt;
             });
+
+
+            navigator.geolocation.getCurrentPosition((pos) =>
+            {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                
+                console.log(`your location: ${lat}, ${lng}`);
+                
+                ws.send(JSON.stringify({
+                    key: "on_connect",
+                    user_id: #{user_id},
+                    lat: lat,
+                    lng: lng
+                }));
+            }, () =>
+            {
+                console.log("unable to retrieve your location");
+                
+                ws.send(JSON.stringify({
+                    key: "on_connect",
+                    user_id: #{user_id},
+                    lat: null,
+                    lng: null
+                }));
+            });
+            
         }
+        
 

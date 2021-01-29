@@ -1,0 +1,195 @@
+extends ../layout/header-footer
+
+block append head
+    meta(charset='utf-8')
+    title chat
+
+block append link
+    link(rel='stylesheet' href='/stylesheets/chat-style.css')
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt' crossorigin='anonymous')
+
+    style(type="text/css").
+        .chat-icon
+        {
+            color: #44403E;
+        }
+        
+
+block content
+    .main
+        #title_wrapper
+            // 戻るボタン
+            .return
+                a(href=`http://${common.host}/rooms`)
+                    i.fas.fa-reply
+            .msg_title #{room_title}
+
+        div(style='width:100%;height:70%;overflow:auto;')
+            #chat
+            // ここに下記のscriptで動的に要素を追加される
+
+        
+        .input-form-wrapper
+            // いいねボタン
+            .good
+                i.fas.fa-thumbs-up
+                
+            .submit-btn-wrapper
+                // 位置情報を相手に送るボタン
+                .pin
+                    i.fas.fa-map-marker-alt
+
+                // メッセージを入力し、送信する要素
+                .msg_submit
+                    form#form(action='' method='POST' name='form')
+                        textarea#input_field(cols='10' name='input' placeholder=' メッセージを入力')
+                        // デバック用(消してもOK)
+                        // <input type="hidden" name="flg" value="1"/>
+                        .send-btn
+                            i.fas.fa-paper-plane
+
+
+
+block js
+    script(src="https://unpkg.com/axios/dist/axios.min.js")
+    script.
+        //現在自分のチャットを見てるユーザーがuser1
+        let i = 1;
+        let data;
+        let msgArea;
+
+        //websocketの接続先URL
+        //const url = "ws://127.0.0.1:5001";
+        const url = "ws://localhost:3000/test/chat";
+        const HOST = location.origin.replace(/^http/, 'ws') + '/test/chat2';
+
+        //websocketオブジェクト
+        const ws = new WebSocket(HOST);
+        
+        const user = !{JSON.stringify(user)};
+        const host_id = #{host_id};
+        const user_id = #{user_id};
+        const room_id = #{room_id};
+
+        ws.onopen = event => 
+        {
+            const message = 
+            {
+                key: "on_connected",
+                room_id: room_id
+            };
+
+            ws.send(JSON.stringify(message));
+
+            //メッセージを送信する関数
+            const send_btn = document.querySelector(".send-btn");
+            send_btn.addEventListener("click", () =>
+            {
+                let msg = document.getElementById('input_field').value;
+                let data = { key: "submit", room_id: room_id, user_id: user_id, number: i, message: msg };
+
+                document.getElementById('input_field').value = "";
+                //websocketでサーバーに送信
+                ws.send(JSON.stringify(data));
+            });
+            
+            //相手に位置情報を送る
+            const pin_btn = document.querySelector(".pin");
+            pin_btn.addEventListener("click", () =>
+            {
+                console.log("pin");
+
+                const data = { key: "request_location", room_id: room_id, user_id: user_id, number: i};
+
+                ws.send(JSON.stringify(data));
+            });
+        };
+
+        //websocketでメッセージを受け取った時の処理
+        ws.onmessage = (msg) => 
+        {
+            data = JSON.parse(msg.data);
+            console.log(data);
+
+            if(data.key == "submit")
+            {
+                console.log("読み込んだ" + i + "回目です");
+                i = i + 1;
+                
+                //id名chatのdivを習得
+                let parent = document.getElementById('chat');
+                
+                //div要素を作成
+                let objD = document.createElement('div');
+                
+                //data.textに含まれる改行コードを改行タグに変換
+                data.message.replace(/\\n/g, '<br>');
+                
+                //送信元が自分か相手かでクラス名を変更
+                if(data.user_id == user_id)
+                {
+                    //クラス名をrightに
+                    objD.className = 'right';
+                    //子要素を追加(ユーザー画像いる？っていう案がでたので代わりに日付のっけるためのクラスに変えときます)
+                    objD.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                }
+                else
+                {
+                    //クラス名をleftに
+                    objD.className = 'left';
+                    //子要素を追加
+                    objD.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                }
+
+                //要素を追加
+                parent.appendChild(objD);
+
+                //常に下にスクロール
+                document.getElementById('chat').scrollIntoView(false);
+            }
+            else if(data.key == "request_location")
+            {
+                console.log("読み込んだ" + i + "回目です");
+                i = i + 1;
+                
+                const parent = document.getElementById('chat');
+                const element = document.createElement('div');
+                
+                if(data.user_id == user_id)
+                {
+                    element.className = 'right';
+
+                    element.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" 
+                        + `<a href="${data.message}" target="_blank" rel="noopener"><div class="location-wrapper"><i class="fas fa-map-marked-alt location-icon"></i><p>タップでGoogle Mapにジャンプします</p></div></a>` + "</div>";
+                }
+                else
+                {
+                    element.className = 'left';
+
+                    element.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" 
+                        + `<a href="${data.message}" target="_blank" rel="noopener"><div class="location-wrapper"><i class="fas fa-map-marked-alt location-icon"></i><p>タップでGoogle Mapにジャンプします</p></div></a>` + "</div>";
+                }
+
+                //要素を追加
+                parent.appendChild(element);
+                parent.scrollIntoView(false);
+            }
+        }
+
+        
+        const good_btn = document.querySelector(".good");
+        good_btn.addEventListener("click", () =>
+        {
+            console.log("good");
+            const good = 
+            {
+                host_id: host_id,
+                user_id: user_id,
+                room_id: room_id
+            }
+
+            axios.post('http://localhost:3000/test/chat2/good/', good).then(res => 
+            {
+            });
+        });
+

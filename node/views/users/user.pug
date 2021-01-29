@@ -1,0 +1,151 @@
+extends ../layout/header-footer
+
+block append head
+    title users
+    
+block append link
+    style(type="text/css").
+        #mypage
+        {
+            text-align: center;
+            height:100%;
+            width:100%;
+            padding-top: 40px;
+            background-image: url("/images/background-image.jpg");
+            background-size:270% 110%;
+            background-color: rgba(255, 255, 255, 0.5);
+            background-blend-mode: lighten;
+        }
+
+        .fas{
+            font-size:100px;
+            color:FFFFFF;
+        }
+
+        div#mypage h2
+        {
+            position: relative;
+            font-weight: bold;
+            width: 100%;
+            vertical-align: text-bottom;
+            font-family: Font Awesome 5 Free;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 64px;
+            text-align: center;
+            color: #000000;
+            margin: 0;
+        }
+
+        div#mypagetitle
+        {
+            text-align: center;
+            height:10%;
+        }
+        #mypagetitle h2
+        {
+            margin-top: 0;
+        }
+        #icon
+        {
+            text-align: center;
+            height:20%;
+        }
+
+        #icon-view
+        {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            border-radius: 50%;
+            background-position: center;
+            background-size: 120%;
+            border: solid 12px black;
+        }
+
+        div#iine
+        {
+            text-align: center;
+        }
+        
+        .iineCount
+        {
+            text-shadow: 4px  4px 0px #ffffff,-4px  4px 0px #ffffff,4px -4px 0px #ffffff,-4px -4px 0px #ffffff,4px  0px 0px #ffffff,0px  4px 0px #ffffff,-4px  0px 0px #ffffff,0px -4px 0px #ffffff;
+            color: #EE7836;
+            font-weight: 900;
+            font-size: 120px;
+            margin: 20px 0 0 0;
+        }
+        #good
+        {
+            color: #EE7836;
+            font-size: 120px;
+            line-height: 180px;
+        }
+        div#profile
+        {
+            text-align: center;
+            height:40%;
+            margin: auto;
+            width: 80%;
+        }
+
+        .prof
+        {
+            border-bottom: solid 2px black;
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .prof-title
+        {
+            display: block;
+            flex-basis: 25%;
+            margin: auto;
+            padding: 0;
+            font-weight: 900;
+            font-size: 24px;
+        }
+
+        .profnakami
+        {
+            flex-basis: 75%;
+            margin: 0 auto;
+            font-weight: 900;
+            font-size: 54px;
+        }
+
+block content
+    #mypage
+        #mypagetitle
+            if target_id == user_id
+                h2 マイページ
+            else
+                h2 プロフィール
+        // アイコン
+        #icon
+            #icon-view
+        // いいね数
+        #iine
+            h2 総いいね数
+            p.iineCount 5000 
+                i#good.fas.fa-thumbs-up
+        // プロフィール
+        #profile
+            .prof
+                p.prof-title ニックネーム:
+                p.profnakami えび
+            .prof
+                p.prof-title アンテナの距離:
+                p.profnakami 3km
+            .prof
+                p.prof-title ひとこと:
+                p.profnakami よろしくおねがいします。
+
+block js
+    script.
+        const icon_img = document.querySelector("#icon-view");
+
+        const buf = new Image();
+        buf.src = `#{icon_img}`;
+        icon_img.style.backgroundImage = `url("${buf.src}")`;

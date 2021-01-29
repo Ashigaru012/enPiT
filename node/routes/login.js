@@ -10,24 +10,17 @@ const my_auth = require('../my_modules/myauth');
 /*  */
 router.get('/', async function(req, res, next) 
 {
-    const sub = req.cookies.sub;
-    logger.info(`request from ${req.cookies.name} to "${req.url}"`);
-    if(sub)
+    try
     {
-        const results = await tr.query('select * from user where sub=?', [sub]);
-
-        if(results.length)
-        {
-            next();
-            return;
-        }
+        res.render("login", { client_id: my_auth.client_id});
     }
-
-    res.render("login", { client_id: my_auth.client_id});
+    catch(err)
+    {
+        logger.error(err);
+    }
 });
 
-
-router.post('/login', async function(req, res, next) 
+router.post('/', async function(req, res, next) 
 {
     try
     {
@@ -38,40 +31,32 @@ router.post('/login', async function(req, res, next)
 
             if(google_user.sub)
             {
-                try 
+                await tr.do(async () =>
                 {
-                    await tr.begin();
-                    const results = await tr.query('select * from user where sub=?', [google_user.sub]);
+                    let user = (await tr.query('select * from user where sub=?', [google_user.sub]))[0];
                     
-                    let user = results[0];
-                    if(!results.length)
+                    if(!user)
                     {
-                        const one = 
+                        user = 
                         {
                             sub: google_user.sub,
                             name: google_user.name,
-                            lat: 37.461618,
-                            lng: 139.839123
+                            lat: 37.523613, 
+                            lng: 139.937531,
+                            icon_id: Math.floor(Math.random() * 100) % 5 + 1
                         };
 
-                        await tr.query('insert into user set ?', [one]);
-                        
-                        user = one;
+                        const results = await tr.query('insert into user set ?', [user]);
+                        user.id = results.insertId;
                     }
 
-                    console.log(user);
+                    logger.info("login: ", user);
 
-                    await tr.commit();
-                    
                     res.cookie('sub', google_user.sub);
+                    res.cookie('user_id', user.id);
                     res.cookie('name', google_user.name);
                     res.send({status: "valid", url: `${config.host.ip_address}:${config.host.port}`});
-                }
-                catch(err)
-                {
-                    await tr.rollback(err);
-                    throw err;
-                }
+                });
             }
             else
             {
@@ -86,9 +71,37 @@ router.post('/login', async function(req, res, next)
     catch(ex)
     {
         logger.error(ex);
-        throw ex;
     }
 });
 
+router.auth = async (req, res, next) => 
+{
+    try
+    {
+        const sub = req.cookies.sub;
+        if(sub)
+        {
+            logger.info(`request from ${req.cookies.name} to "${req.url}"`);
+            const results = await tr.query('select * from user where sub=?', [sub]);
+
+            if(results.length)
+            {
+                next();
+                return;
+            }
+        }
+
+        if(req.url == "/login") next();
+        else
+        {
+            logger.info("login request");
+            res.redirect(302, "/login");
+        }
+    }
+    catch(err)
+    {
+        logger.error(err);
+    }
+};
 
 module.exports = router;

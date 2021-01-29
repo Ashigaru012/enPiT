@@ -1,0 +1,278 @@
+.main{
+    position: relative;
+    width:100%;
+    height:100%;
+    background-image: url("../../images/background-image.jpg");
+    background-size:270% 110%;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    display: flex;
+    flex-flow: column;
+    /*min-height: 100vh;*/
+    overflow-y: auto;
+}
+
+#title_wrapper
+{
+    position: relative;
+    width: 100%;
+    height:120px;
+
+}
+.msg_title{
+    height:70px;
+    width:85%;
+    font-size:50px;
+    text-align: center;
+    
+    position: absolute;
+    right:20px;
+    top:15px;
+
+
+    
+    background: #FFFFFF;
+    border: 6.5px #EE7836 solid;   /* 枠線を引く */
+    border-radius: 50px;      /* 角丸の指定 */
+
+}
+
+.return i{
+    font-size:70px;
+    position: absolute;
+    top:20px;
+    left:20px;
+    color:black;
+}
+
+.return a{
+    color:black;
+}
+
+
+.data{
+    font-size: 22px;
+    margin-left:20px;
+    
+    
+}
+
+.title{
+    font-size:25px;
+    text-align: center;
+    margin-left:20px;
+    margin-top:1px;
+}
+
+footer{
+    width:100%;
+    height:10%;
+    display:flex;
+    /*background-color: #EE7836;*/
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}
+
+.input-form-wrapper
+{
+    position: fixed;
+    bottom: 12%;
+    width: 100%;
+    height: 250px;
+}
+
+.good
+{
+    width: 100%;
+    height: 150px;
+    text-align: right;
+}
+
+.good i
+{
+    margin-right: 70;
+    font-size: 100px;
+    color:#EE7836;
+    text-shadow: 
+     2px  2px 0px white,
+     2px  0px 0px white,
+     0px  2px 0px white,
+    -2px -2px 0px white,
+    -2px -0px 0px white,
+    -0px -2px 0px white;
+}
+
+.submit-btn-wrapper
+{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.pin
+{
+    flex-grow: 1;
+}
+.pin i
+{
+    text-align: center;
+    font-size:80px;
+    width: 100%;
+    color:#EE7836;
+}
+
+.msg_submit
+{
+    flex-grow: 9;
+}
+
+#form
+{
+    position: relative;
+    margin-right: auto;
+    width:95%;
+}
+
+#input_field
+{
+    padding: 5;
+    height:85px;
+    width:100%;
+    border: 6.5px #EE7836 solid;   /* 枠線を引く */
+    border-radius: 50px;      /* 角丸の指定 */
+    font-size: 60px;
+    
+}
+.msg_submit i
+{
+    position: absolute;
+    font-size: 55px;
+    color:#EE7836;
+    right:25px;
+    top: 15px;
+}
+
+
+.msg_box{
+    margin-top:20px;
+    max-width: 100%;
+    font-size:16px;
+}
+
+.msg_content{
+    padding:20px;
+}
+
+.other{
+    float: left;
+}
+
+.other .msg_box{
+    height:40px;
+    width:450px;
+    zoom:180%;
+    background:white;
+    border: 3.5px #EE7836 solid;   /* 枠線を引く */
+    border-radius: 20px;      /* 角丸の指定 */
+}
+
+
+#chat
+{
+    margin-top: 100px;
+}
+
+.right
+{
+    width: 100%;
+    font-size: 40px;
+    
+}
+
+.left
+{
+    width: 100%;
+    font-size: 40px;
+}
+
+.text_right
+{
+    padding: 10 10 10 10;
+    max-width: 850px;
+    width:-moz-fit-content;
+    width: fit-content;
+    margin: 0 10 60 auto;
+    background-color: #EE7836;
+    border: 4.5px white solid;
+    border-radius: 40px; 
+    border-bottom-right-radius: 0px;
+    white-space: pre-wrap;
+    
+    color:white;
+    
+}
+
+.text_right .fas
+{
+    color:white;
+}
+.text_right a
+{
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.text_left
+{
+    padding: 10 10 10 10;
+    max-width: 850px;
+    width:-moz-fit-content;
+    width: fit-content;
+    margin: 0 auto 60 10;
+    background: white;
+    border: 3.5px #EE7836 solid;
+    border-radius: 40px; 
+    border-bottom-left-radius: 0px;
+    color:black;
+}
+.text_left .fas
+{
+    color: #EE7836;
+}
+.text_left a
+{
+    background-color: transparent;
+    text-decoration: none;
+    color: #EE7836;
+}
+
+.location-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    height: 400px;
+}
+.location-wrapper .location-icon
+{
+    width: 100%;
+    height: 250px;
+    line-height: 280px;
+    font-size: 200px;
+    text-align: center;
+}
+.location-wrapper p
+{
+    width: 80%;
+    text-align: center;
+    font-size: 28px;
+    margin: auto;
+    padding: 0;       
+}
+
+
+.msg
+{
+    margin: auto 10 auto 10;
+    word-break: break-all;
+}
