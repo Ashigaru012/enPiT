@@ -45,7 +45,7 @@ router.get('/:room_id', async function(req, res, next)
         
         const room = (await tr.query('select * from chat_room where id=?', [room_id]))[0];
 
-        const user = (await tr.query('select * from users where id=?', [user_id]))[0];
+        const user = (await tr.query('select * from user where id=?', [user_id]))[0];
 
         res.render('rooms/chat', {common: common, room_title: room.title, room_id: room.id, user_id: user.id, host_id: room.host_id, user: user});
     }

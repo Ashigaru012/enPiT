@@ -463,7 +463,7 @@ block js
                     element.className = 'request-item';
                     element.id = `request-item-${event.id}`;
                     
-                    element.innerHTML = "<div class='request-item-title'><p>" + event.title + "</p></div>" + 
+                    element.innerHTML = "<div class='request-item-title'><p></p></div>" + 
                         "<div class ='request-item-entry'><div class='request-item-line'></div><button class='request-item-entry-btn'><p>タスケる！</p></button></div>";
                     
                     element.addEventListener("click", () =>
@@ -476,6 +476,8 @@ block js
                     });
 
                     req_container.appendChild(element);
+
+                    element.firstChild.firstChild.textContent = event.title;
                 }
                 else if(event.key == "on_accepted_request")
                 {
