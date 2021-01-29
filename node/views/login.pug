@@ -34,7 +34,7 @@ html
                     console.log('Server returned: ' + xhr.responseText);
                     console.log(document.cookie);
 
-                    location.href = `http://${location.host}`;
+                    location.href = `${location.protocol}//${location.host}`;
                 };
 
                 xhr.send('idtoken=' + id_token);
