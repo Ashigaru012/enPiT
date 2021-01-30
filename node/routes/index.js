@@ -193,8 +193,7 @@ const retrieve_request = async (host) =>
 
         requests = requests.filter(v => !remove_ids.includes(v.id));
 
-        console.log(remove_ids);
-        console.log(requests);
+        logger.info(requests);
     }
 
     const websock = id_lookup.get(host.user_id);
@@ -214,15 +213,18 @@ const notify_request = async (request) =>
 
     const ids = antennas.map(v => v.user_id);
 
-    const results = await tr.query('select * from user where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and id!=? and id in(?)', [request.lat - range, request.lat + range, request.lng - range, request.lng + range, request.user_id, ids]);
-    
-    request.key = "on_add_request";
-
-    for(const user of results)
-    {
-        const websock = id_lookup.get(user.id);
+    if(ids.length)
+    {  
+        const results = await tr.query('select * from user where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and id!=? and id in(?)', [request.lat - range, request.lat + range, request.lng - range, request.lng + range, request.user_id, ids]);
         
-        websock?.send(JSON.stringify(request)); 
+        request.key = "on_add_request";
+    
+        for(const user of results)
+        {
+            const websock = id_lookup.get(user.id);
+            
+            websock?.send(JSON.stringify(request)); 
+        }
     }
 };
 

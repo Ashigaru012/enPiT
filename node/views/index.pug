@@ -541,6 +541,10 @@ block js
                         key: "on_remove_antenna",
                         user_id: #{user_id}
                     })); 
+                    while(req_container.firstChild)
+                    {
+                        req_container.removeChild(req_container.firstChild);
+                    }
                 }
 
                 entry_popup_background.style.visibility ="hidden";
