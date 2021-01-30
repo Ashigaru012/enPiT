@@ -5,11 +5,78 @@ html
         title login
 
         style(type="text/css").
+            body
+            {
+                background-image: url("../../images/background-image.jpg");
+                background-size:270% 110%;
+                background-color: rgba(255, 255, 255, 0.7);
+                background-blend-mode: lighten;
+            }
             /* css はここに書く */
+            header{
+                height:10%;
+                width:100%;
+                text-align:center;
+                
+            }
+            .g-signin2{
+                margin-top:400px;
+                margin-bottom:100px;
+                margin-left:75;
+                
+            }
+            h1{
+                text-align:center;
+                font-size:60px;
+                color:#EE7836;
+            }
+
+            h2{
+                font-size:34px;
+            }
+
+            h3{
+                font-size:40px;
+                color: white;
+            }
+            .policy{
+                margin-top:100px;
+                text-align:center;
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            .policy p{
+                text-align:left;
+                font-size:26px;
+                font-weight: bold;
+                margin: 90px 0 120px 0;
+                line-height: 42px;
+            }
+
+            .policy a{
+                font-size:30px;
+            }
+
+
+
+
+
+
 
     body
-        div(class="g-signin2" data-onsuccess="on_sign_in")
-        a(href="/login" onclick="sign_out();") sign-out
+        header
+        main
+            h1 ログイン
+            .policy
+                h2 以下をご確認の上ログインを行ってください
+                p ※「サービス利用規約」には本サービスのご利用に関する規約が定められています。<br><br>また利用者が本サービスを利用したことをもって、当該規約に同意したものとみなします。
+                a(href="#") サービス利用規約はこちら
+
+            div(class="g-signin2"  data-width="800" data-height="100" data-longtitle="true" data-theme="dark" data-onsuccess="on_sign_in")
+            //a(href="/login" onclick="sign_out();") sign-out
+
+            
 
         
         script(src="https://apis.google.com/js/platform.js")
@@ -49,3 +116,7 @@ html
                     console.log('User signed out.');
                 });
             }
+
+
+
+          
