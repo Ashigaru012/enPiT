@@ -754,3 +754,1044 @@
 [2021-01-29T07:13:32.508] [INFO] default - login request
 [2021-01-29T07:13:32.517] [INFO] default - request from Taro enPiT to "/login"
 [2021-01-29T07:13:32.518] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T00:47:21.822] [INFO] default - listening on 3000
+[2021-01-30T00:47:29.647] [INFO] default - login request
+[2021-01-30T00:47:30.462] [INFO] default - login request
+[2021-01-30T00:47:44.202] [INFO] default - payload {
+  "iss": "accounts.google.com",
+  "azp": "25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com",
+  "aud": "25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com",
+  "sub": "103782358065851471283",
+  "email": "rendou080@gmail.com",
+  "email_verified": true,
+  "at_hash": "lEp3JQINCbvfb3stNJGDUg",
+  "name": "q qqq",
+  "picture": "https://lh6.googleusercontent.com/-7EFOPo4EKpU/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclCrjhnfCvx-eNsPOqLZFa1f1LYFA/s96-c/photo.jpg",
+  "given_name": "q",
+  "family_name": "qqq",
+  "locale": "ja",
+  "iat": 1611967664,
+  "exp": 1611971264,
+  "jti": "c57ad7b8292615fe5f4b3c908352cb1ac2dd22e2"
+}
+[2021-01-30T00:47:44.205] [INFO] default - transaction begin: 
+[2021-01-30T00:47:44.214] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:44.216] [INFO] default - transaction query:  insert into user set ? [
+  {
+    sub: '103782358065851471283',
+    name: 'q qqq',
+    lat: 37.523613,
+    lng: 139.937531,
+    icon_id: 1
+  }
+]
+[2021-01-30T00:47:44.216] [INFO] default - login:  {
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.523613,
+  lng: 139.937531,
+  icon_id: 1,
+  id: 1
+}
+[2021-01-30T00:47:44.224] [INFO] default - transaction commit: 
+[2021-01-30T00:47:44.239] [INFO] default - request from q qqq to "/"
+[2021-01-30T00:47:44.241] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:44.241] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '0',
+  sub: '103782358065851471283',
+  user_id: '1',
+  name: 'q qqq'
+}
+[2021-01-30T00:47:44.242] [INFO] default - transaction query:  select * from user where sub=? 103782358065851471283
+[2021-01-30T00:47:44.243] [INFO] default - transaction begin: 
+[2021-01-30T00:47:44.244] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T00:47:44.246] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T00:47:45.069] [INFO] default - transaction commit: 
+[2021-01-30T00:47:45.225] [INFO] default - request from q qqq to "/web-sock/.websocket"
+[2021-01-30T00:47:45.227] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:45.301] [INFO] default - request from q qqq to "/favicon.ico"
+[2021-01-30T00:47:45.302] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:46.179] [INFO] default - Received -  {"key":"on_connect","user_id":1,"lat":37.5062528,"lng":139.9226368}
+[2021-01-30T00:47:46.179] [INFO] default - new host:  { user_id: 1, lat: 37.5062528, lng: 139.9226368 }
+[2021-01-30T00:47:46.180] [INFO] default - transaction begin: 
+[2021-01-30T00:47:46.181] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.5062528, 139.9226368, 1 ]
+[2021-01-30T00:47:46.185] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T00:47:46.185] [INFO] default - new connection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:46.186] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:46.195] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.5062528, 38.5062528, 138.9226368, 140.9226368 ]
+[2021-01-30T00:47:46.196] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:46.199] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.5062528, 38.5062528, 138.9226368, 140.9226368, 1 ]
+[2021-01-30T00:47:46.207] [INFO] default - transaction commit: 
+[2021-01-30T00:47:50.028] [INFO] default - request from q qqq to "/users/me"
+[2021-01-30T00:47:50.030] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:50.034] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T00:47:50.036] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T00:47:50.159] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T00:47:50.159] [INFO] default - disconnection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:50.160] [INFO] default - transaction begin: 
+[2021-01-30T00:47:50.161] [INFO] default - transaction query:  delete from antenna where user_id=? 1
+[2021-01-30T00:47:50.162] [INFO] default - transaction commit: 
+[2021-01-30T00:47:51.204] [INFO] default - request from q qqq to "/ranking/weekly"
+[2021-01-30T00:47:51.205] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:52.223] [INFO] default - request from q qqq to "/rooms"
+[2021-01-30T00:47:52.225] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:52.231] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '1' ]
+[2021-01-30T00:47:54.224] [INFO] default - request from q qqq to "/"
+[2021-01-30T00:47:54.227] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:54.228] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '0',
+  sub: '103782358065851471283',
+  user_id: '1',
+  name: 'q qqq'
+}
+[2021-01-30T00:47:54.231] [INFO] default - transaction query:  select * from user where sub=? 103782358065851471283
+[2021-01-30T00:47:54.232] [INFO] default - transaction begin: 
+[2021-01-30T00:47:54.234] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T00:47:54.237] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T00:47:54.759] [INFO] default - transaction commit: 
+[2021-01-30T00:47:54.873] [INFO] default - request from q qqq to "/web-sock/.websocket"
+[2021-01-30T00:47:54.875] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:54.908] [INFO] default - Received -  {"key":"on_connect","user_id":1,"lat":37.5062528,"lng":139.9226368}
+[2021-01-30T00:47:54.908] [INFO] default - new host:  { user_id: 1, lat: 37.5062528, lng: 139.9226368 }
+[2021-01-30T00:47:54.909] [INFO] default - transaction begin: 
+[2021-01-30T00:47:54.910] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.5062528, 139.9226368, 1 ]
+[2021-01-30T00:47:54.913] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T00:47:54.913] [INFO] default - new connection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:54.914] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:54.915] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.5062528, 38.5062528, 138.9226368, 140.9226368 ]
+[2021-01-30T00:47:54.915] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:54.916] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.5062528, 38.5062528, 138.9226368, 140.9226368, 1 ]
+[2021-01-30T00:47:54.917] [INFO] default - transaction commit: 
+[2021-01-30T00:47:56.690] [INFO] default - request from q qqq to "/requests/create"
+[2021-01-30T00:47:56.692] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:47:56.780] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T00:47:56.780] [INFO] default - disconnection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:47:56.781] [INFO] default - transaction begin: 
+[2021-01-30T00:47:56.782] [INFO] default - transaction query:  delete from antenna where user_id=? 1
+[2021-01-30T00:47:56.782] [INFO] default - transaction commit: 
+[2021-01-30T00:48:02.320] [INFO] default - request from q qqq to "/requests/"
+[2021-01-30T00:48:02.323] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:48:02.325] [INFO] default - task request:  {
+  user_id: 1,
+  title: 'eeee',
+  max_applicants: '1',
+  is_waiting: true,
+  is_finished: false
+}
+[2021-01-30T00:48:02.327] [INFO] default - transaction begin: 
+[2021-01-30T00:48:02.329] [INFO] default - transaction query:  select * from user 1
+[2021-01-30T00:48:02.330] [INFO] default - transaction query:  insert into request set ? {
+  user_id: 1,
+  title: 'eeee',
+  max_applicants: '1',
+  is_waiting: true,
+  is_finished: false,
+  lat: 37.5062528,
+  lng: 139.9226368
+}
+[2021-01-30T00:48:02.333] [INFO] default - transaction query:  insert into chat_room set ? [ { title: 'eeee', request_id: 1, host_id: 1, messages_num: 0 } ]
+[2021-01-30T00:48:02.334] [INFO] default - transaction query:  insert into chat_member set ? [ { room_id: 1, user_id: 1 } ]
+[2021-01-30T00:48:02.335] [INFO] default - notify_request {
+  user_id: 1,
+  title: 'eeee',
+  max_applicants: '1',
+  is_waiting: true,
+  is_finished: false,
+  lat: 37.5062528,
+  lng: 139.9226368,
+  id: 1,
+  room_id: 1
+}
+[2021-01-30T00:48:02.338] [INFO] default - transaction query:  select * from user where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and id!=? [ 36.5062528, 38.5062528, 138.9226368, 140.9226368, 1 ]
+[2021-01-30T00:48:02.345] [INFO] default - transaction commit: 
+[2021-01-30T00:48:02.358] [INFO] default - request from q qqq to "/"
+[2021-01-30T00:48:02.359] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:48:02.360] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '0',
+  sub: '103782358065851471283',
+  user_id: '1',
+  name: 'q qqq'
+}
+[2021-01-30T00:48:02.361] [INFO] default - transaction query:  select * from user where sub=? 103782358065851471283
+[2021-01-30T00:48:02.362] [INFO] default - transaction begin: 
+[2021-01-30T00:48:02.363] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T00:48:02.364] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T00:48:02.916] [INFO] default - transaction commit: 
+[2021-01-30T00:48:02.993] [INFO] default - request from q qqq to "/web-sock/.websocket"
+[2021-01-30T00:48:02.994] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:48:03.031] [INFO] default - Received -  {"key":"on_connect","user_id":1,"lat":37.5062528,"lng":139.9226368}
+[2021-01-30T00:48:03.031] [INFO] default - new host:  { user_id: 1, lat: 37.5062528, lng: 139.9226368 }
+[2021-01-30T00:48:03.032] [INFO] default - transaction begin: 
+[2021-01-30T00:48:03.033] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.5062528, 139.9226368, 1 ]
+[2021-01-30T00:48:03.038] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T00:48:03.038] [INFO] default - new connection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:48:03.039] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:48:03.040] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.5062528, 38.5062528, 138.9226368, 140.9226368 ]
+[2021-01-30T00:48:03.041] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:48:03.043] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.5062528, 38.5062528, 138.9226368, 140.9226368, 1 ]
+[2021-01-30T00:48:03.045] [INFO] default - transaction commit: 
+[2021-01-30T00:48:05.300] [INFO] default - request from q qqq to "/rooms"
+[2021-01-30T00:48:05.301] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:48:05.303] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '1' ]
+[2021-01-30T00:48:05.305] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T00:48:05.377] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T00:48:05.377] [INFO] default - disconnection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T00:48:05.377] [INFO] default - transaction begin: 
+[2021-01-30T00:48:05.378] [INFO] default - transaction query:  delete from antenna where user_id=? 1
+[2021-01-30T00:48:05.379] [INFO] default - transaction commit: 
+[2021-01-30T00:50:00.917] [INFO] default - request from q qqq to "/rooms/1"
+[2021-01-30T00:50:00.919] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T00:50:00.922] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T00:50:00.924] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T00:50:01.148] [INFO] default - request from q qqq to "/test/chat2/.websocket"
+[2021-01-30T00:50:01.149] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:05:14.065] [INFO] default - listening on 3000
+[2021-01-30T01:07:15.322] [INFO] default - login request
+[2021-01-30T01:07:16.252] [INFO] default - login request
+[2021-01-30T01:07:37.192] [INFO] default - login request
+[2021-01-30T01:07:43.269] [INFO] default - payload {
+  "iss": "accounts.google.com",
+  "azp": "25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com",
+  "aud": "25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com",
+  "sub": "113783427437727044505",
+  "email": "enpit2020imo@gmail.com",
+  "email_verified": true,
+  "at_hash": "jw-F7loM8DVymYw486bzrQ",
+  "name": "Taro enPiT",
+  "picture": "https://lh3.googleusercontent.com/-3sSJlwe99Rc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnRNLDCycRCLE7IX22FrEaZIy2lsA/s96-c/photo.jpg",
+  "given_name": "Taro",
+  "family_name": "enPiT",
+  "locale": "ja",
+  "iat": 1611968863,
+  "exp": 1611972463,
+  "jti": "17eeddd65cf41e685465802c87f4ff8ef6e9a772"
+}
+[2021-01-30T01:07:43.273] [INFO] default - transaction begin: 
+[2021-01-30T01:07:43.276] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:07:43.280] [INFO] default - transaction query:  insert into user set ? [
+  {
+    sub: '113783427437727044505',
+    name: 'Taro enPiT',
+    lat: 37.523613,
+    lng: 139.937531,
+    icon_id: 2
+  }
+]
+[2021-01-30T01:07:43.280] [INFO] default - login:  {
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.523613,
+  lng: 139.937531,
+  icon_id: 2,
+  id: 2
+}
+[2021-01-30T01:07:43.288] [INFO] default - transaction commit: 
+[2021-01-30T01:07:43.302] [INFO] default - request from Taro enPiT to "/"
+[2021-01-30T01:07:43.304] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:07:43.305] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '4',
+  sub: '113783427437727044505',
+  user_id: '2',
+  name: 'Taro enPiT'
+}
+[2021-01-30T01:07:43.306] [INFO] default - transaction query:  select * from user where sub=? 113783427437727044505
+[2021-01-30T01:07:43.308] [INFO] default - transaction begin: 
+[2021-01-30T01:07:43.310] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:07:43.313] [INFO] default - transaction query:  select * from sample_icon where id=? [ 2 ]
+[2021-01-30T01:07:44.219] [INFO] default - transaction commit: 
+[2021-01-30T01:07:44.325] [INFO] default - request from Taro enPiT to "/web-sock/.websocket"
+[2021-01-30T01:07:44.327] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:07:44.358] [INFO] default - Received -  {"key":"on_connect","user_id":2,"lat":37.5062528,"lng":139.9226368}
+[2021-01-30T01:07:44.359] [INFO] default - new host:  { user_id: 2, lat: 37.5062528, lng: 139.9226368 }
+[2021-01-30T01:07:44.360] [INFO] default - transaction begin: 
+[2021-01-30T01:07:44.361] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.5062528, 139.9226368, 2 ]
+[2021-01-30T01:07:44.364] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:07:44.364] [INFO] default - new connection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:07:44.365] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:07:44.366] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.5062528, 38.5062528, 138.9226368, 140.9226368 ]
+[2021-01-30T01:07:44.367] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:07:44.368] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.5062528, 38.5062528, 138.9226368, 140.9226368, 2 ]
+[2021-01-30T01:07:44.373] [INFO] default - transaction query:  select * from applicant where user_id=? and request_id in(?) order by request_id asc [ 2, [ 1 ] ]
+[2021-01-30T01:07:44.382] [INFO] default - transaction commit: 
+[2021-01-30T01:07:48.395] [INFO] default - payload {
+  "iss": "accounts.google.com",
+  "azp": "25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com",
+  "aud": "25935528938-pdch6ucs5og14rfi3o5s093bq33cbrsb.apps.googleusercontent.com",
+  "sub": "103782358065851471283",
+  "email": "rendou080@gmail.com",
+  "email_verified": true,
+  "at_hash": "ldqhfvWvkEAtC2C64AvMag",
+  "name": "q qqq",
+  "picture": "https://lh6.googleusercontent.com/-7EFOPo4EKpU/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclCrjhnfCvx-eNsPOqLZFa1f1LYFA/s96-c/photo.jpg",
+  "given_name": "q",
+  "family_name": "qqq",
+  "locale": "ja",
+  "iat": 1611968868,
+  "exp": 1611972468,
+  "jti": "31ddf64ba3f9f85d50aa61b6105266369fd37ef1"
+}
+[2021-01-30T01:07:48.398] [INFO] default - transaction begin: 
+[2021-01-30T01:07:48.403] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:07:48.404] [INFO] default - login:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:07:48.408] [INFO] default - transaction commit: 
+[2021-01-30T01:07:48.441] [INFO] default - request from q qqq to "/"
+[2021-01-30T01:07:48.442] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:07:48.443] [INFO] default - client cookies:  {
+  G_ENABLED_IDPS: 'google',
+  G_AUTHUSER_H: '0',
+  sub: '103782358065851471283',
+  user_id: '1',
+  name: 'q qqq'
+}
+[2021-01-30T01:07:48.445] [INFO] default - transaction query:  select * from user where sub=? 103782358065851471283
+[2021-01-30T01:07:48.446] [INFO] default - transaction begin: 
+[2021-01-30T01:07:48.447] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:07:48.449] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T01:07:48.924] [INFO] default - transaction commit: 
+[2021-01-30T01:07:49.547] [INFO] default - request from q qqq to "/web-sock/.websocket"
+[2021-01-30T01:07:49.549] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:07:49.723] [INFO] default - request from q qqq to "/login"
+[2021-01-30T01:07:49.724] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:07:53.319] [INFO] default - Received -  {"key":"on_connect","user_id":1,"lat":37.5075118,"lng":139.93607479999997}
+[2021-01-30T01:07:53.319] [INFO] default - new host:  { user_id: 1, lat: 37.5075118, lng: 139.93607479999997 }
+[2021-01-30T01:07:53.320] [INFO] default - transaction begin: 
+[2021-01-30T01:07:53.321] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.5075118, 139.93607479999997, 1 ]
+[2021-01-30T01:07:53.325] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:07:53.325] [INFO] default - new connection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5075118,
+  lng: 139.93607479999997,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:07:53.325] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5075118,
+  lng: 139.93607479999997,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:07:53.326] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.5075118, 38.5075118, 138.93607479999997, 140.93607479999997 ]
+[2021-01-30T01:07:53.327] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5075118,
+  lng: 139.93607479999997,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:07:53.328] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.5075118, 38.5075118, 138.93607479999997, 140.93607479999997, 1 ]
+[2021-01-30T01:07:53.333] [INFO] default - transaction commit: 
+[2021-01-30T01:08:02.727] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:08:02.728] [INFO] default - disconnection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.5075118,
+  lng: 139.93607479999997,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:08:02.731] [INFO] default - transaction begin: 
+[2021-01-30T01:08:02.733] [INFO] default - transaction query:  delete from antenna where user_id=? 1
+[2021-01-30T01:08:02.735] [INFO] default - transaction commit: 
+[2021-01-30T01:08:02.760] [INFO] default - request from q qqq to "/"
+[2021-01-30T01:08:02.761] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:08:02.761] [INFO] default - client cookies:  {
+  G_ENABLED_IDPS: 'google',
+  G_AUTHUSER_H: '0',
+  sub: '103782358065851471283',
+  user_id: '1',
+  name: 'q qqq'
+}
+[2021-01-30T01:08:02.763] [INFO] default - transaction query:  select * from user where sub=? 103782358065851471283
+[2021-01-30T01:08:02.765] [INFO] default - transaction begin: 
+[2021-01-30T01:08:02.766] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:08:02.767] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T01:08:03.359] [INFO] default - transaction commit: 
+[2021-01-30T01:08:03.507] [INFO] default - request from q qqq to "/web-sock/.websocket"
+[2021-01-30T01:08:03.508] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:08:03.570] [INFO] default - Received -  {"key":"on_connect","user_id":1,"lat":37.50769357142858,"lng":139.93575400000003}
+[2021-01-30T01:08:03.571] [INFO] default - new host:  { user_id: 1, lat: 37.50769357142858, lng: 139.93575400000003 }
+[2021-01-30T01:08:03.571] [INFO] default - transaction begin: 
+[2021-01-30T01:08:03.572] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.50769357142858, 139.93575400000003, 1 ]
+[2021-01-30T01:08:03.575] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:08:03.576] [INFO] default - new connection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50769357142858,
+  lng: 139.93575400000003,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:08:03.576] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50769357142858,
+  lng: 139.93575400000003,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:08:03.578] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [
+  36.50769357142858,
+  38.50769357142858,
+  138.93575400000003,
+  140.93575400000003
+]
+[2021-01-30T01:08:03.578] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50769357142858,
+  lng: 139.93575400000003,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:08:03.580] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [
+  36.50769357142858,
+  38.50769357142858,
+  138.93575400000003,
+  140.93575400000003,
+  1
+]
+[2021-01-30T01:08:03.585] [INFO] default - transaction commit: 
+[2021-01-30T01:08:14.480] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:08:14.481] [INFO] default - disconnection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50769357142858,
+  lng: 139.93575400000003,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:08:14.482] [INFO] default - transaction begin: 
+[2021-01-30T01:08:14.483] [INFO] default - transaction query:  delete from antenna where user_id=? 1
+[2021-01-30T01:08:14.484] [INFO] default - transaction commit: 
+[2021-01-30T01:08:14.500] [INFO] default - request from q qqq to "/rooms"
+[2021-01-30T01:08:14.502] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:08:14.504] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '1' ]
+[2021-01-30T01:08:14.506] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T01:08:15.996] [INFO] default - request from q qqq to "/rooms/1"
+[2021-01-30T01:08:15.997] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:08:16.000] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:08:16.001] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:08:16.360] [INFO] default - request from q qqq to "/test/chat2/.websocket"
+[2021-01-30T01:08:16.361] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:08:23.474] [INFO] default - Received -  {"key":"on_accept","user_id":2,"request_id":1}
+[2021-01-30T01:08:23.476] [INFO] default - transaction begin: 
+[2021-01-30T01:08:23.477] [INFO] default - accept_request { key: 'on_accept', user_id: 2, request_id: 1 }
+[2021-01-30T01:08:23.480] [INFO] default - transaction query:  insert into applicant set ? { request_id: 1, user_id: 2 }
+[2021-01-30T01:08:23.482] [INFO] default - transaction query:  select * from chat_room where request_id=? [ 1 ]
+[2021-01-30T01:08:23.485] [INFO] default - transaction query:  insert into chat_member set ? { room_id: 1, user_id: 2 }
+[2021-01-30T01:08:23.495] [INFO] default - transaction commit: 
+[2021-01-30T01:08:23.514] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:08:23.516] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:08:23.517] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:08:23.519] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:08:23.599] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:08:23.600] [INFO] default - disconnection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5062528,
+  lng: 139.9226368,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:08:23.600] [INFO] default - transaction begin: 
+[2021-01-30T01:08:23.601] [INFO] default - transaction query:  delete from antenna where user_id=? 2
+[2021-01-30T01:08:23.602] [INFO] default - transaction commit: 
+[2021-01-30T01:08:23.717] [INFO] default - request from Taro enPiT to "/test/chat2/.websocket"
+[2021-01-30T01:08:23.718] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:05.181] [INFO] default - request from Taro enPiT to "/"
+[2021-01-30T01:09:05.182] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:05.183] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '4',
+  sub: '113783427437727044505',
+  user_id: '2',
+  name: 'Taro enPiT'
+}
+[2021-01-30T01:09:05.187] [INFO] default - transaction query:  select * from user where sub=? 113783427437727044505
+[2021-01-30T01:09:05.189] [INFO] default - transaction begin: 
+[2021-01-30T01:09:05.191] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:09:05.193] [INFO] default - transaction query:  select * from sample_icon where id=? [ 2 ]
+[2021-01-30T01:09:05.833] [INFO] default - transaction commit: 
+[2021-01-30T01:09:05.973] [INFO] default - request from Taro enPiT to "/web-sock/.websocket"
+[2021-01-30T01:09:05.975] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:06.783] [INFO] default - Received -  {"key":"on_connect","user_id":2,"lat":37.5080911,"lng":139.93646809999998}
+[2021-01-30T01:09:06.784] [INFO] default - new host:  { user_id: 2, lat: 37.5080911, lng: 139.93646809999998 }
+[2021-01-30T01:09:06.784] [INFO] default - transaction begin: 
+[2021-01-30T01:09:06.785] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.5080911, 139.93646809999998, 2 ]
+[2021-01-30T01:09:06.788] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:09:06.788] [INFO] default - new connection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5080911,
+  lng: 139.93646809999998,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:06.789] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5080911,
+  lng: 139.93646809999998,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:06.790] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.5080911, 38.5080911, 138.93646809999998, 140.93646809999998 ]
+[2021-01-30T01:09:06.790] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5080911,
+  lng: 139.93646809999998,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:06.791] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.5080911, 38.5080911, 138.93646809999998, 140.93646809999998, 2 ]
+[2021-01-30T01:09:06.793] [INFO] default - transaction query:  select * from applicant where user_id=? and request_id in(?) order by request_id asc [ 2, [ 1 ] ]
+[2021-01-30T01:09:06.799] [INFO] default - transaction commit: 
+[2021-01-30T01:09:13.701] [INFO] default - request from Taro enPiT to "/rooms"
+[2021-01-30T01:09:13.703] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:13.705] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '2' ]
+[2021-01-30T01:09:13.707] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T01:09:13.769] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:09:13.769] [INFO] default - disconnection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.5080911,
+  lng: 139.93646809999998,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:13.770] [INFO] default - transaction begin: 
+[2021-01-30T01:09:13.771] [INFO] default - transaction query:  delete from antenna where user_id=? 2
+[2021-01-30T01:09:13.771] [INFO] default - transaction commit: 
+[2021-01-30T01:09:15.712] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:09:15.714] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:15.716] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:09:15.719] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:09:15.912] [INFO] default - request from Taro enPiT to "/test/chat2/.websocket"
+[2021-01-30T01:09:15.914] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:28.334] [INFO] default - request from Taro enPiT to "/"
+[2021-01-30T01:09:28.335] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:28.335] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '4',
+  sub: '113783427437727044505',
+  user_id: '2',
+  name: 'Taro enPiT'
+}
+[2021-01-30T01:09:28.337] [INFO] default - transaction query:  select * from user where sub=? 113783427437727044505
+[2021-01-30T01:09:28.337] [INFO] default - transaction begin: 
+[2021-01-30T01:09:28.338] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:09:28.339] [INFO] default - transaction query:  select * from sample_icon where id=? [ 2 ]
+[2021-01-30T01:09:28.686] [INFO] default - transaction commit: 
+[2021-01-30T01:09:28.808] [INFO] default - request from Taro enPiT to "/web-sock/.websocket"
+[2021-01-30T01:09:28.809] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:09:29.695] [INFO] default - Received -  {"key":"on_connect","user_id":2,"lat":37.508099099999995,"lng":139.936457}
+[2021-01-30T01:09:29.695] [INFO] default - new host:  { user_id: 2, lat: 37.508099099999995, lng: 139.936457 }
+[2021-01-30T01:09:29.696] [INFO] default - transaction begin: 
+[2021-01-30T01:09:29.697] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.508099099999995, 139.936457, 2 ]
+[2021-01-30T01:09:29.699] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:09:29.700] [INFO] default - new connection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508099099999995,
+  lng: 139.936457,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:29.700] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508099099999995,
+  lng: 139.936457,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:29.701] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.508099099999995, 38.508099099999995, 138.936457, 140.936457 ]
+[2021-01-30T01:09:29.702] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508099099999995,
+  lng: 139.936457,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:09:29.704] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.508099099999995, 38.508099099999995, 138.936457, 140.936457, 2 ]
+[2021-01-30T01:09:29.705] [INFO] default - transaction query:  select * from applicant where user_id=? and request_id in(?) order by request_id asc [ 2, [ 1 ] ]
+[2021-01-30T01:09:29.713] [INFO] default - transaction commit: 
+[2021-01-30T01:11:00.476] [INFO] default - listening on 3000
+[2021-01-30T01:11:05.044] [INFO] default - request from Taro enPiT to "/rooms"
+[2021-01-30T01:11:05.049] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:05.053] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '2' ]
+[2021-01-30T01:11:05.056] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T01:11:06.661] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:11:06.663] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:06.668] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:11:06.671] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:11:06.982] [INFO] default - request from Taro enPiT to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:11:06.985] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:06.987] [INFO] default - new connection - chat
+[2021-01-30T01:11:07.011] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:11:09.547] [INFO] default - request from q qqq to "/"
+[2021-01-30T01:11:09.548] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:11:09.550] [INFO] default - client cookies:  {
+  G_ENABLED_IDPS: 'google',
+  G_AUTHUSER_H: '0',
+  sub: '103782358065851471283',
+  user_id: '1',
+  name: 'q qqq'
+}
+[2021-01-30T01:11:09.552] [INFO] default - transaction query:  select * from user where sub=? 103782358065851471283
+[2021-01-30T01:11:09.554] [INFO] default - transaction begin: 
+[2021-01-30T01:11:09.556] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:11:09.558] [INFO] default - transaction query:  select * from sample_icon where id=? [ 1 ]
+[2021-01-30T01:11:10.032] [INFO] default - transaction commit: 
+[2021-01-30T01:11:10.347] [INFO] default - request from q qqq to "/web-sock/.websocket"
+[2021-01-30T01:11:10.348] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:11:10.406] [INFO] default - Received -  {"key":"on_connect","user_id":1,"lat":37.50818442420003,"lng":139.9364399700137}
+[2021-01-30T01:11:10.406] [INFO] default - new host:  { user_id: 1, lat: 37.50818442420003, lng: 139.9364399700137 }
+[2021-01-30T01:11:10.407] [INFO] default - transaction begin: 
+[2021-01-30T01:11:10.410] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.50818442420003, 139.9364399700137, 1 ]
+[2021-01-30T01:11:10.414] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:11:10.416] [INFO] default - new connection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50818442420003,
+  lng: 139.9364399700137,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:11:10.417] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50818442420003,
+  lng: 139.9364399700137,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:11:10.419] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [
+  36.50818442420003,
+  38.50818442420003,
+  138.9364399700137,
+  140.9364399700137
+]
+[2021-01-30T01:11:10.419] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50818442420003,
+  lng: 139.9364399700137,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:11:10.421] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [
+  36.50818442420003,
+  38.50818442420003,
+  138.9364399700137,
+  140.9364399700137,
+  1
+]
+[2021-01-30T01:11:10.430] [INFO] default - transaction commit: 
+[2021-01-30T01:11:11.054] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:11:11.054] [INFO] default - disconnection:  RowDataPacket {
+  id: 1,
+  sub: '103782358065851471283',
+  name: 'q qqq',
+  lat: 37.50818442420003,
+  lng: 139.9364399700137,
+  good: 0,
+  icon_id: 1
+}
+[2021-01-30T01:11:11.055] [INFO] default - transaction begin: 
+[2021-01-30T01:11:11.056] [INFO] default - transaction query:  delete from antenna where user_id=? 1
+[2021-01-30T01:11:11.057] [INFO] default - transaction commit: 
+[2021-01-30T01:11:11.065] [INFO] default - request from q qqq to "/rooms"
+[2021-01-30T01:11:11.066] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:11:11.068] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '1' ]
+[2021-01-30T01:11:11.069] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T01:11:12.282] [INFO] default - request from q qqq to "/rooms/1"
+[2021-01-30T01:11:12.283] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:11:12.285] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:11:12.286] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:11:12.431] [INFO] default - request from q qqq to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:11:12.433] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:11:12.434] [INFO] default - new connection - chat
+[2021-01-30T01:11:12.454] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:11:14.642] [INFO] default - transaction query:  insert into chat_message set ? [
+  { key: 'submit', room_id: 1, user_id: 1, number: 1, message: 'aaa' }
+]
+[2021-01-30T01:11:17.649] [INFO] default - transaction query:  insert into chat_message set ? [
+  { key: 'submit', room_id: 1, user_id: 1, number: 2, message: 'eee' }
+]
+[2021-01-30T01:11:20.693] [INFO] default - transaction query:  insert into chat_message set ? [
+  { key: 'submit', room_id: 1, user_id: 2, number: 3, message: 'uuu' }
+]
+[2021-01-30T01:11:22.767] [INFO] default - request from Taro enPiT to "/rooms"
+[2021-01-30T01:11:22.769] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:22.772] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '2' ]
+[2021-01-30T01:11:22.774] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T01:11:23.971] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:11:23.974] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:23.979] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:11:23.983] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:11:24.397] [INFO] default - request from Taro enPiT to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:11:24.398] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:24.399] [INFO] default - new connection - chat
+[2021-01-30T01:11:24.416] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:11:26.300] [INFO] default - request from Taro enPiT to "/"
+[2021-01-30T01:11:26.301] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:26.302] [INFO] default - client cookies:  {
+  _ga: 'GA1.1.280485311.1595384601',
+  G_AUTHUSER_H: '4',
+  sub: '113783427437727044505',
+  user_id: '2',
+  name: 'Taro enPiT'
+}
+[2021-01-30T01:11:26.303] [INFO] default - transaction query:  select * from user where sub=? 113783427437727044505
+[2021-01-30T01:11:26.304] [INFO] default - transaction begin: 
+[2021-01-30T01:11:26.306] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:11:26.308] [INFO] default - transaction query:  select * from sample_icon where id=? [ 2 ]
+[2021-01-30T01:11:26.695] [INFO] default - transaction commit: 
+[2021-01-30T01:11:26.774] [INFO] default - request from Taro enPiT to "/web-sock/.websocket"
+[2021-01-30T01:11:26.775] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:27.596] [INFO] default - Received -  {"key":"on_connect","user_id":2,"lat":37.508117999999996,"lng":139.9364795}
+[2021-01-30T01:11:27.596] [INFO] default - new host:  { user_id: 2, lat: 37.508117999999996, lng: 139.9364795 }
+[2021-01-30T01:11:27.597] [INFO] default - transaction begin: 
+[2021-01-30T01:11:27.598] [INFO] default - transaction query:  update user set lat=?, lng=? where id=? [ 37.508117999999996, 139.9364795, 2 ]
+[2021-01-30T01:11:27.602] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:11:27.603] [INFO] default - new connection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508117999999996,
+  lng: 139.9364795,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:11:27.603] [INFO] default - retrieve_antenna:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508117999999996,
+  lng: 139.9364795,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:11:27.605] [INFO] default - transaction query:  select * from antenna where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) [ 36.508117999999996, 38.508117999999996, 138.9364795, 140.9364795 ]
+[2021-01-30T01:11:27.605] [INFO] default - retrieve_request:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508117999999996,
+  lng: 139.9364795,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:11:27.608] [INFO] default - transaction query:  select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc [ 36.508117999999996, 38.508117999999996, 138.9364795, 140.9364795, 2 ]
+[2021-01-30T01:11:27.611] [INFO] default - request from Taro enPiT to "/rooms"
+[2021-01-30T01:11:27.612] [INFO] default - transaction query:  select * from applicant where user_id=? and request_id in(?) order by request_id asc [ 2, [ 1 ] ]
+[2021-01-30T01:11:27.614] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:27.622] [INFO] default - transaction commit: 
+[2021-01-30T01:11:27.623] [INFO] default - transaction query:  select * from chat_member where user_id=? [ '2' ]
+[2021-01-30T01:11:27.625] [INFO] default - transaction query:  select * from chat_room where id in(?) [ [ 1 ] ]
+[2021-01-30T01:11:27.687] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:11:27.688] [INFO] default - disconnection:  RowDataPacket {
+  id: 2,
+  sub: '113783427437727044505',
+  name: 'Taro enPiT',
+  lat: 37.508117999999996,
+  lng: 139.9364795,
+  good: 0,
+  icon_id: 2
+}
+[2021-01-30T01:11:27.688] [INFO] default - transaction begin: 
+[2021-01-30T01:11:27.689] [INFO] default - transaction query:  delete from antenna where user_id=? 2
+[2021-01-30T01:11:27.690] [INFO] default - transaction commit: 
+[2021-01-30T01:11:28.647] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:11:28.650] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:28.653] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:11:28.656] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:11:28.805] [INFO] default - request from Taro enPiT to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:11:28.806] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:28.807] [INFO] default - new connection - chat
+[2021-01-30T01:11:28.827] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:11:30.344] [INFO] default - transaction query:  select * from user where id=? [ 2 ]
+[2021-01-30T01:11:30.366] [INFO] default - transaction query:  insert into chat_message set ? [
+  {
+    key: 'request_location',
+    room_id: 1,
+    user_id: 2,
+    number: 4,
+    message: 'https://www.google.com/maps?q=37.508117999999996,139.9364795'
+  }
+]
+[2021-01-30T01:11:40.450] [INFO] default - transaction query:  select * from user where id=? [ 1 ]
+[2021-01-30T01:11:40.476] [INFO] default - transaction query:  insert into chat_message set ? [
+  {
+    key: 'request_location',
+    room_id: 1,
+    user_id: 1,
+    number: 5,
+    message: 'https://www.google.com/maps?q=37.50818442420003,139.9364399700137'
+  }
+]
+[2021-01-30T01:11:52.955] [INFO] default - request from Taro enPiT to "/test/chat2/good/"
+[2021-01-30T01:11:52.957] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:59.105] [INFO] default - request from Taro enPiT to "/test/chat2/good/"
+[2021-01-30T01:11:59.108] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:11:59.639] [INFO] default - request from Taro enPiT to "/test/chat2/good/"
+[2021-01-30T01:11:59.641] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:12:00.476] [INFO] default - request from Taro enPiT to "/test/chat2/good/"
+[2021-01-30T01:12:00.480] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:12:03.647] [INFO] default - request from q qqq to "/test/chat2/good/"
+[2021-01-30T01:12:03.651] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:12:05.475] [INFO] default - request from q qqq to "/test/chat2/good/"
+[2021-01-30T01:12:05.476] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:12:37.709] [INFO] default - listening on 3000
+[2021-01-30T01:12:40.130] [INFO] default - request from q qqq to "/rooms/1"
+[2021-01-30T01:12:40.133] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:12:40.136] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:12:40.137] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:12:40.636] [INFO] default - request from q qqq to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:12:40.638] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:12:40.640] [INFO] default - new connection - chat
+[2021-01-30T01:12:40.663] [INFO] default - Received - chat:  {"key":"on_connected","room_id":1}
+[2021-01-30T01:12:40.665] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:12:41.680] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:12:41.681] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:12:41.683] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:12:41.684] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:12:41.956] [INFO] default - request from Taro enPiT to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:12:41.957] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:12:41.958] [INFO] default - new connection - chat
+[2021-01-30T01:12:41.978] [INFO] default - Received - chat:  {"key":"on_connected","room_id":1}
+[2021-01-30T01:12:41.980] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:12:44.531] [INFO] default - request from q qqq to "/test/chat2/good/"
+[2021-01-30T01:12:44.537] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:02.549] [INFO] default - listening on 3000
+[2021-01-30T01:14:04.885] [INFO] default - request from q qqq to "/rooms/1"
+[2021-01-30T01:14:04.888] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:04.891] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:14:04.892] [INFO] default - transaction query:  select * from user where id=? [ '1' ]
+[2021-01-30T01:14:05.423] [INFO] default - request from q qqq to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:14:05.424] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:05.426] [INFO] default - new connection - chat
+[2021-01-30T01:14:05.437] [INFO] default - Received - chat:  {"key":"on_connected","room_id":1}
+[2021-01-30T01:14:05.438] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:14:09.253] [INFO] default - request from Taro enPiT to "/rooms/1"
+[2021-01-30T01:14:09.256] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:09.258] [INFO] default - transaction query:  select * from chat_room where id=? [ '1' ]
+[2021-01-30T01:14:09.260] [INFO] default - transaction query:  select * from user where id=? [ '2' ]
+[2021-01-30T01:14:09.511] [INFO] default - request from Taro enPiT to "/rooms/chat-web-sock/.websocket"
+[2021-01-30T01:14:09.513] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:09.514] [INFO] default - new connection - chat
+[2021-01-30T01:14:09.531] [INFO] default - Received - chat:  {"key":"on_connected","room_id":1}
+[2021-01-30T01:14:09.532] [INFO] default - transaction query:  select * from chat_message where room_id=? [ 1 ]
+[2021-01-30T01:14:14.067] [INFO] default - request from Taro enPiT to "/rooms/chat/good"
+[2021-01-30T01:14:14.069] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:14.070] [INFO] default - good -  { host_id: 1, user_id: 2, room_id: 1 }
+[2021-01-30T01:14:14.080] [INFO] default - transaction query:  update user set good=good+1 where id=? [ 1 ]
+[2021-01-30T01:14:19.834] [INFO] default - request from Taro enPiT to "/rooms/chat/good"
+[2021-01-30T01:14:19.837] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:19.838] [INFO] default - good -  { host_id: 1, user_id: 2, room_id: 1 }
+[2021-01-30T01:14:19.848] [INFO] default - transaction query:  update user set good=good+1 where id=? [ 1 ]
+[2021-01-30T01:14:21.303] [INFO] default - request from Taro enPiT to "/rooms/chat/good"
+[2021-01-30T01:14:21.306] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:21.308] [INFO] default - good -  { host_id: 1, user_id: 2, room_id: 1 }
+[2021-01-30T01:14:21.323] [INFO] default - transaction query:  update user set good=good+1 where id=? [ 1 ]
+[2021-01-30T01:14:23.340] [INFO] default - request from Taro enPiT to "/rooms/chat/good"
+[2021-01-30T01:14:23.344] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:23.346] [INFO] default - good -  { host_id: 1, user_id: 2, room_id: 1 }
+[2021-01-30T01:14:23.363] [INFO] default - transaction query:  update user set good=good+1 where id=? [ 1 ]
+[2021-01-30T01:14:26.489] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:26.491] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:26.492] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:26.494] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:26.508] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:27.432] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:27.433] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:27.434] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:27.435] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:27.450] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:28.442] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:28.443] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:28.444] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:28.445] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:28.458] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:32.350] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:32.351] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:32.351] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:32.352] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:32.358] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:46.614] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:46.615] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:46.616] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:46.617] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:46.642] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:48.115] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:48.116] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:48.117] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:48.118] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:48.125] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:51.652] [INFO] default - request from q qqq to "/rooms/chat/good"
+[2021-01-30T01:14:51.654] [INFO] default - transaction query:  select * from user where sub=? [ '103782358065851471283' ]
+[2021-01-30T01:14:51.654] [INFO] default - good -  { host_id: 1, user_id: 1, room_id: 1 }
+[2021-01-30T01:14:51.655] [INFO] default - transaction query:  select * from chat_member where room_id=? and user_id!=? [ 1, 1 ]
+[2021-01-30T01:14:51.666] [INFO] default - transaction query:  update user set good=good+1 where id in(?) [ [ 2 ] ]
+[2021-01-30T01:14:53.219] [INFO] default - request from Taro enPiT to "/rooms/chat/good"
+[2021-01-30T01:14:53.220] [INFO] default - transaction query:  select * from user where sub=? [ '113783427437727044505' ]
+[2021-01-30T01:14:53.221] [INFO] default - good -  { host_id: 1, user_id: 2, room_id: 1 }
+[2021-01-30T01:14:53.226] [INFO] default - transaction query:  update user set good=good+1 where id=? [ 1 ]
