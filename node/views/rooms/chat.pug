@@ -128,15 +128,17 @@ block js
                     //クラス名をrightに
                     objD.className = 'right';
                     //子要素を追加(ユーザー画像いる？っていう案がでたので代わりに日付のっけるためのクラスに変えときます)
-                    objD.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                    objD.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" + "<p class='msg'></p>" + "</div>";
                 }
                 else
                 {
                     //クラス名をleftに
                     objD.className = 'left';
                     //子要素を追加
-                    objD.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" + "<p class='msg'>" + data.message + "</p>" + "</div>";
+                    objD.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" + "<p class='msg'></p>" + "</div>";
                 }
+
+                objD.lastChild.firstChild.textContent = data.message;
 
                 //要素を追加
                 parent.appendChild(objD);
