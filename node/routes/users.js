@@ -15,7 +15,7 @@ router.get('/me', async function(req, res, next)
     res.render("users/me", {common: common, user_id: user_id, icon_img: icon[0].img});
 });
 
-router.get('/:id/', function(req, res, next) 
+router.get('/:id/', async function(req, res, next) 
 {
     const user_id = req.cookies.user_id;
     const target_id = req.params.id;
