@@ -529,6 +529,7 @@ block js
             {
                 if(btn_cnt % 2 == 0)
                 {
+                    antenna_btn.innerHTML = '<i class="fas fa-broadcast-tower"></i> アンテナを回収';
                     console.log("put up antenna");
                     ws.send(JSON.stringify({
                         key: "on_add_antenna",
@@ -539,11 +540,14 @@ block js
                 }
                 else
                 {
+                    antenna_btn.innerHTML = '<i class="fas fa-broadcast-tower"></i> アンテナを設置';
                     console.log("put down antenna");
                     ws.send(JSON.stringify({
                         key: "on_remove_antenna",
                         user_id: #{user_id}
                     })); 
+
+                    notification_circle.style.visibility = "hidden";
                     while(req_container.firstChild)
                     {
                         req_container.removeChild(req_container.firstChild);
