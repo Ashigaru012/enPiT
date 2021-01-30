@@ -89,6 +89,7 @@ block append link
             border: 15px solid #EE7836;
             border-radius: 50%;
             box-sizing: border-box;
+            z-index: 100
         }
         
         #entry-icon i
@@ -366,7 +367,7 @@ block js
                     antenna.draw_y = antenna.y - style.height.substring(0, style.height.length-2) / 2;
                     
                     antenna.draw_x = Math.random() * canvas.width - style.width.substring(0, style.width.length-2) / 2;
-                    antenna.draw_y = Math.random() * canvas.height - style.height.substring(0, style.height.length-2) / 2;
+                    antenna.draw_y = (Math.random() * 0.7) * canvas.height - style.height.substring(0, style.height.length-2) / 2;
                 }
 
                 user_wrapper.style.left = `${antenna.draw_x}px`;
