@@ -336,7 +336,7 @@ block js
             for(const antenna of antennas)
             {
                 const link_wrapper = document.createElement("a");
-                link_wrapper.href = `http://${location.host}/test/users/${antenna.user_id}/${user_id}`;
+                link_wrapper.href = `${location.protocol}//${location.host}/users/${antenna.user_id}`;
 
                 const user_wrapper = document.createElement("div");
                 user_wrapper.className = "user-icon-wrapper antenna-wrapper";

@@ -15,17 +15,15 @@ router.get('/me', async function(req, res, next)
     res.render("users/me", {common: common, user_id: user_id, icon_img: icon[0].img});
 });
 
-router.get('/:id/', function(req, res, next) 
+router.get('/:id/', async function(req, res, next) 
 {
-//   const user_id = req.params.user_id;
-//   const target_id = req.params.id;
+    const user_id = req.cookies.user_id;
+    const target_id = req.params.id;
 
-//   db.query('select * from users_icon where user_id=?', target_id, (error, results) => 
-//   {
-//     if(error) throw error;
-      
-//     res.render("test/user", {footer_links: make_hf_links(user_id), user_id: user_id, target_id: target_id, icon_img: results[0].img});
-//   });
+    const target = (await tr.query('select * from user where id=?', [target_id]))[0];
+    const icon = (await tr.query('select * from sample_icon where id=?', [target.icon_id]))[0];
+
+    res.render("users/user", {common: common, user_id: user_id, icon_img: icon.img});
 });
 
 
