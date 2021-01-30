@@ -5,6 +5,7 @@ const config = require('config');
 const tr = require('../my_modules/transaction');
 const logger = require('../my_modules/mylog');
 const my_auth = require('../my_modules/myauth');
+const common = require("../my_modules/common");
 
 
 /*  */
@@ -12,7 +13,33 @@ router.get('/', async function(req, res, next)
 {
     try
     {
-        res.render("login", { client_id: my_auth.client_id});
+        res.render("login", {common: common, client_id: my_auth.client_id});
+    }
+    catch(err)
+    {
+        logger.error(err);
+    }
+});
+
+/*  */
+router.get('/terms', async function(req, res, next) 
+{
+    try
+    {
+        res.render("login/terms", {common: common});
+    }
+    catch(err)
+    {
+        logger.error(err);
+    }
+});
+
+/*  */
+router.get('/privacy', async function(req, res, next) 
+{
+    try
+    {
+        res.render("login/privacy", {common: common});
     }
     catch(err)
     {
