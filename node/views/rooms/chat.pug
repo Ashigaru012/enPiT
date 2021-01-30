@@ -20,7 +20,7 @@ block content
         #title_wrapper
             // 戻るボタン
             .return
-                a(href=`http://${common.host}/rooms`)
+                a(href=`${common.protocol}://${common.host}/rooms`)
                     i.fas.fa-reply
             .msg_title #{room_title}
 
