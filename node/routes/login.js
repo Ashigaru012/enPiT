@@ -118,7 +118,7 @@ router.auth = async (req, res, next) =>
             }
         }
 
-        if(req.url.indexOf("/login")) next();
+        if(req.url.indexOf("/login") == 0) next();
         else
         {
             logger.info("login request");
