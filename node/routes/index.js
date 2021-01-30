@@ -181,13 +181,13 @@ const retrieve_request = async (host) =>
 {
     logger.info("retrieve_request: ", host);
 
-    let requests = await tr.query('select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc', [host.lat - range, host.lat + range, host.lng - range, host.lng + range, host.id]);
+    let requests = await tr.query('select * from request where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and user_id!=? order by id asc', [host.lat - range, host.lat + range, host.lng - range, host.lng + range, host.user_id]);
     
     if(requests.length)
     {
         const request_ids = requests.map(v=>v.id);
 
-        const remove_requests = await tr.query('select * from applicant where user_id=? and request_id in(?) order by request_id asc', [host.id, request_ids]);
+        const remove_requests = await tr.query('select * from applicant where user_id=? and request_id in(?) order by request_id asc', [host.user_id, request_ids]);
 
         const remove_ids = remove_requests.map(v => v.request_id);
 
@@ -197,7 +197,7 @@ const retrieve_request = async (host) =>
         console.log(requests);
     }
 
-    const websock = id_lookup.get(host.id);
+    const websock = id_lookup.get(host.user_id);
 
     for(const req of requests)
     {
@@ -210,7 +210,11 @@ const notify_request = async (request) =>
 {
     logger.info("notify_request", request);
 
-    const results = await tr.query('select * from user where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and id!=?', [request.lat - range, request.lat + range, request.lng - range, request.lng + range, request.user_id]);
+    const antennas = await tr.query('select * from antenna');
+
+    const ids = antennas.map(v => v.user_id);
+
+    const results = await tr.query('select * from user where ((lat >= ?) and (lat <= ?)) and ((lng >= ?) and (lng <= ?)) and id!=? and id in(?)', [request.lat - range, request.lat + range, request.lng - range, request.lng + range, request.user_id, ids]);
     
     request.key = "on_add_request";
 
@@ -294,13 +298,13 @@ router.ws('/web-sock', async (ws, req) =>
                     logger.info("new connection: ", user);
 
                     await retrieve_antenna(user);
-
-                    await retrieve_request(user);
                 });
             }
             else if(event.key == 'on_add_antenna')
             {
                 await add_antenna(event.user_id);
+                
+                await retrieve_request(event);
             }
             else if(event.key == 'on_remove_antenna')
             {
