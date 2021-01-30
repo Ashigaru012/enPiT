@@ -40,6 +40,7 @@ block append link
             width: 100%;
             height: 100%;
             background: transparent;
+            overflow: hidden;
         }
         
         .user-icon-wrapper
@@ -358,8 +359,18 @@ block js
                 link_wrapper.appendChild(user_wrapper);
                 parent.appendChild(link_wrapper);
                 const style = window.getComputedStyle(user_wrapper);
-                user_wrapper.style.left = `${antenna.x - style.width.substring(0, style.width.length-2) / 2}px`;
-                user_wrapper.style.top = `${antenna.y - style.height.substring(0, style.height.length-2) / 2}px`;
+
+                if(!antenna.draw_x || !antenna.draw_y)
+                {
+                    antenna.draw_x = antenna.x - style.width.substring(0, style.width.length-2) / 2;
+                    antenna.draw_y = antenna.y - style.height.substring(0, style.height.length-2) / 2;
+                    
+                    antenna.draw_x = Math.random() * canvas.width - style.width.substring(0, style.width.length-2) / 2;
+                    antenna.draw_y = Math.random() * canvas.height - style.height.substring(0, style.height.length-2) / 2;
+                }
+
+                user_wrapper.style.left = `${antenna.draw_x}px`;
+                user_wrapper.style.top = `${antenna.draw_y}px`;
                 user_wrapper.style.visibility = "visible";
             }
             
