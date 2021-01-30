@@ -20,14 +20,13 @@ block content
         #title_wrapper
             // 戻るボタン
             .return
-                a(href=`${common.protocol}://${common.host}/rooms`)
+                a(href=`http://${common.host}/rooms`)
                     i.fas.fa-reply
             .msg_title #{room_title}
 
-        div(style='width:100%;height:70%;overflow:auto;')
+        div(style='width:100%;height:70%;overflow-y:auto;overflow-x:hidden;')
             #chat
             // ここに下記のscriptで動的に要素を追加される
-
         
         .input-form-wrapper
             // いいねボタン
@@ -47,6 +46,9 @@ block content
                         // <input type="hidden" name="flg" value="1"/>
                         .send-btn
                             i.fas.fa-paper-plane
+            //依頼完了ボタン
+            #task_complete_btn
+                i.fas.fa-check-circle(style="color:#cccccc; font-size: 110px;")
 
 
 
@@ -67,6 +69,19 @@ block js
         const host_id = #{host_id};
         const user_id = #{user_id};
         const room_id = #{room_id};
+
+        //依頼完了ボタン押した後処理する関数 
+        let flag=true;    
+        document.querySelector("#task_complete_btn").addEventListener("click", ()=>{
+            let msg = "依頼を完了しますか？\nこの動作を取り消すことはできません";
+            let text = document.querySelector('i.fas.fa-check-circle');
+            if(flag){
+                if(confirm(msg)){
+                    text.style.color ="77DC53";
+                    flag = false;
+                }
+            }
+        });
 
         ws.onopen = event => 
         {
@@ -110,9 +125,6 @@ block js
 
             if(data.key == "submit")
             {
-                console.log("読み込んだ" + i + "回目です");
-                i = i + 1;
-                
                 //id名chatのdivを習得
                 let parent = document.getElementById('chat');
                 
@@ -129,6 +141,18 @@ block js
                     objD.className = 'right';
                     //子要素を追加(ユーザー画像いる？っていう案がでたので代わりに日付のっけるためのクラスに変えときます)
                     objD.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" + "<p class='msg'></p>" + "</div>";
+
+                    objD.lastChild.firstChild.textContent = data.message;
+                
+                    const user_icon = document.createElement("div");
+                    user_icon.className = "image_right";
+
+                    const buf = new Image();
+                    buf.src = data.icon_img;
+                    user_icon.style.backgroundImage = `url("${buf.src}")`;
+
+                    objD.append(user_icon);
+                    
                 }
                 else
                 {
@@ -136,9 +160,19 @@ block js
                     objD.className = 'left';
                     //子要素を追加
                     objD.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" + "<p class='msg'></p>" + "</div>";
+                    
+                    objD.lastChild.firstChild.textContent = data.message;
+                    
+                    const user_icon = document.createElement("div");
+                    user_icon.className = "image_left";
+
+                    const buf = new Image();
+                    buf.src = data.icon_img;
+                    user_icon.style.backgroundImage = `url("${buf.src}")`;
+
+                    objD.prepend(user_icon);
                 }
 
-                objD.lastChild.firstChild.textContent = data.message;
 
                 //要素を追加
                 parent.appendChild(objD);
@@ -148,9 +182,6 @@ block js
             }
             else if(data.key == "request_location")
             {
-                console.log("読み込んだ" + i + "回目です");
-                i = i + 1;
-                
                 const parent = document.getElementById('chat');
                 const element = document.createElement('div');
                 
@@ -160,6 +191,16 @@ block js
 
                     element.innerHTML = "<div class='SendTime_right'></div>" + "<div class ='text_right'>" 
                         + `<a href="${data.message}" target="_blank" rel="noopener"><div class="location-wrapper"><i class="fas fa-map-marked-alt location-icon"></i><p>タップでGoogle Mapにジャンプします</p></div></a>` + "</div>";
+                
+                
+                    const user_icon = document.createElement("div");
+                    user_icon.className = "image_right";
+
+                    const buf = new Image();
+                    buf.src = data.icon_img;
+                    user_icon.style.backgroundImage = `url("${buf.src}")`;
+
+                    element.append(user_icon);
                 }
                 else
                 {
@@ -167,6 +208,15 @@ block js
 
                     element.innerHTML = "<div class='SendTime_left'></div>" + "<div class ='text_left'>" 
                         + `<a href="${data.message}" target="_blank" rel="noopener"><div class="location-wrapper"><i class="fas fa-map-marked-alt location-icon"></i><p>タップでGoogle Mapにジャンプします</p></div></a>` + "</div>";
+                    
+                    const user_icon = document.createElement("div");
+                    user_icon.className = "image_left";
+
+                    const buf = new Image();
+                    buf.src = data.icon_img;
+                    user_icon.style.backgroundImage = `url("${buf.src}")`;
+
+                    element.prepend(user_icon);
                 }
 
                 //要素を追加
@@ -179,6 +229,9 @@ block js
         const good_btn = document.querySelector(".good");
         good_btn.addEventListener("click", () =>
         {
+            //いいねボタンが押されたら200ミリ秒間スマホが振動します(safariは未対応らしいので今回はあくまでおまけ要素です+自分の方では未検証なので動くかわかりません)
+            window.navigator.vibrate(200);
+
             console.log("good");
             const good = 
             {
@@ -192,4 +245,15 @@ block js
                 console.log(res.data);
             });
         });
+        
+
+        /* ダブルタップによる拡大を禁止 */
+        var t = 0;
+        document.documentElement.addEventListener('touchend', function (e) {
+            var now = new Date().getTime();
+            if ((now - t) < 350){
+                e.preventDefault();
+            }
+            t = now;
+        }, false);
 
