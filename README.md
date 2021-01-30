@@ -42,7 +42,12 @@ docker-compose ps
 docker-compose exec node /bin/sh
 ```
 
-3.サーバーを起動する
+3.モジュールをインストールする
+```
+yarn install
+```
+
+4.サーバーを起動する
 ```
 yarn run dev
 ```
