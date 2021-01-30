@@ -109,6 +109,12 @@ router.ws('/chat-web-sock', (ws, req) => {
 
                 for(const message of results)
                 {
+                    const results = (await tr.query('select * from user where id=?', [message.user_id]))[0];
+
+                    const icon = (await tr.query('select * from sample_icon where id=?', [results.icon_id]))[0];
+
+                    message.icon_img = icon.img
+
                     ws.send(JSON.stringify(message));
                 }
             }
@@ -116,6 +122,12 @@ router.ws('/chat-web-sock', (ws, req) => {
             {
                 await tr.query('insert into chat_message set ?', [msg]);
                 
+                const results = (await tr.query('select * from user where id=?', [msg.user_id]))[0];
+
+                const icon = (await tr.query('select * from sample_icon where id=?', [results.icon_id]))[0];
+
+                msg.icon_img = icon.img
+
                 for(const socket of connects)
                 {
                     socket.send(JSON.stringify(msg));
@@ -128,6 +140,12 @@ router.ws('/chat-web-sock', (ws, req) => {
                 msg.message = `https://www.google.com/maps?q=${user.lat},${user.lng}`;
                 
                 await tr.query('insert into chat_message set ?', [msg]);
+
+                const results = (await tr.query('select * from user where id=?', [msg.user_id]))[0];
+
+                const icon = (await tr.query('select * from sample_icon where id=?', [results.icon_id]))[0];
+
+                msg.icon_img = icon.img
 
                 for(const socket of connects)
                 {

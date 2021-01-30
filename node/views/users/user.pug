@@ -125,13 +125,13 @@ block content
         // いいね数
         #iine
             h2 総いいね数
-            p.iineCount 5000 
+            p.iineCount #{user.good} 
                 i#good.fas.fa-thumbs-up
         // プロフィール
         #profile
             .prof
                 p.prof-title ニックネーム:
-                p.profnakami えび
+                p.profnakami #{user.name}
             .prof
                 p.prof-title アンテナの距離:
                 p.profnakami 3km
