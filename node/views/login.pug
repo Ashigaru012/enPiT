@@ -70,7 +70,7 @@ html
             .policy
                 h2 以下をご確認の上ログインを行ってください
                 p ※「サービス利用規約」には本サービスのご利用に関する規約が定められています。<br><br>また利用者が本サービスを利用したことをもって、当該規約に同意したものとみなします。
-                a(href="#") サービス利用規約はこちら
+                a(href=`${common.protocol}://${common.host}/login/terms`) サービス利用規約はこちら
 
             div(class="g-signin2"  data-width="800" data-height="100" data-longtitle="true" data-theme="dark" data-onsuccess="on_sign_in")
             //a(href="/login" onclick="sign_out();") sign-out
