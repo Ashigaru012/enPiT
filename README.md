@@ -62,4 +62,4 @@ docker-compose down
 ```
 
 URL一覧<br>
-`https://taskul.work:3000`<br>
+`https://taskul.work`<br>
