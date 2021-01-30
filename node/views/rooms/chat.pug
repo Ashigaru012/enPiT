@@ -59,9 +59,7 @@ block js
         let msgArea;
 
         //websocketの接続先URL
-        //const url = "ws://127.0.0.1:5001";
-        const url = "ws://localhost:3000/test/chat";
-        const HOST = location.origin.replace(/^http/, 'ws') + '/test/chat2';
+        const HOST = location.origin.replace(/^https/, 'ws') + '/rooms/chat-web-sock';
 
         //websocketオブジェクト
         const ws = new WebSocket(HOST);
@@ -188,9 +186,9 @@ block js
                 room_id: room_id
             }
 
-            /*axios.post(`${location.protocol}//${location.host}/rooms/good/`, good).then(res => 
+            axios.post(`${location.protocol}//${location.host}/rooms/chat/good`, good).then(res => 
             {
+                console.log(res.data);
             });
-            */
         });
 
