@@ -389,6 +389,8 @@ block js
 
             parent.appendChild(user_wrapper);
             const style = window.getComputedStyle(user_wrapper);
+            user_wrapper.style.left = `${canvas.width / 2 - style.width.substring(0, style.width.length-2) / 2}px`;
+            user_wrapper.style.top = `${canvas.height / 2 - style.height.substring(0, style.height.length-2) / 2}px`;
             user_wrapper.style.visibility = "visible";
         }
 
