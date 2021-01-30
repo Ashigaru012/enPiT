@@ -274,7 +274,7 @@ block content
                 .entry-btn-wrapper
                     button#antenna-btn.entry-btn 
                         i.fas.fa-broadcast-tower
-                        | アンテナを置く
+                        | アンテナを設置
                 .entry-btn-wrapper
                     a#request-btn(href=`http://${common.host}/requests/create`)
                         .entry-btn 
@@ -366,7 +366,7 @@ block js
                     antenna.draw_y = antenna.y - style.height.substring(0, style.height.length-2) / 2;
                     
                     antenna.draw_x = Math.random() * canvas.width - style.width.substring(0, style.width.length-2) / 2;
-                    antenna.draw_y = Math.random() * canvas.height - style.height.substring(0, style.height.length-2) / 2;
+                    antenna.draw_y = Math.random() * 0.7 * canvas.height - style.height.substring(0, style.height.length-2) / 2;
                 }
 
                 user_wrapper.style.left = `${antenna.draw_x}px`;
@@ -525,6 +525,7 @@ block js
             {
                 if(btn_cnt % 2 == 0)
                 {
+                    antenna_btn.innerHTML = '<i class="fas fa-broadcast-tower"></i> アンテナを回収';
                     console.log("put up antenna");
                     ws.send(JSON.stringify({
                         key: "on_add_antenna",
@@ -535,12 +536,14 @@ block js
                 }
                 else
                 {
+                    antenna_btn.innerHTML = '<i class="fas fa-broadcast-tower"></i> アンテナを設置';
                     console.log("put down antenna");
                     ws.send(JSON.stringify({
                         key: "on_remove_antenna",
                         user_id: #{user_id}
                     })); 
 
+                    notification_circle.style.visibility = "hidden";
                     while(req_container.firstChild)
                     {
                         req_container.removeChild(req_container.firstChild);
