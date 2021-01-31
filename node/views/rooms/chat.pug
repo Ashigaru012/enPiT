@@ -78,6 +78,8 @@ block js
             }
         }
 
+        omit_title();
+
         //websocketの接続先URL
         const HOST = location.origin.replace(/^http|^https/, 'ws') + '/rooms/chat-web-sock';
 
