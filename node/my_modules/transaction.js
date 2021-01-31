@@ -1,23 +1,76 @@
-const db = require("./mydb");
 const logger = require('../my_modules/mylog');
+const mysql = require('mysql');
+
+
+let connection;
+
+const init_db = () =>
+{
+    logger.info("init db");
+
+    connection = mysql.createConnection({
+        host: '172.27.0.2',
+        user: 'user',
+        password: 'user',
+        port: 3306,
+        database: 'taskul_db'
+    });
+    
+    connection.on('error', (err) => 
+    {
+        logger.error('db error: ', err);
+        if(err.code === 'PROTOCOL_CONNECTION_LOST')
+        {
+            logger.error('re-make db connection... ');
+            init_db();
+        }
+        else
+        {
+            throw err;
+        }
+    });
+    
+    connection.connect(err => 
+    {
+        if(err)
+        {
+            logger.error('error db connection: ', err.stack);
+            setTimeout(init_db, 1000);
+            return;
+        }
+        logger.info('db connection success');
+    });
+}
+
+init_db();
+
 
 const transaction = class 
 {
-    constructor(connection)
-    {
-      this.connection = connection;
-    }
-
     begin()
     {
         return new Promise((resolve, reject) =>
         {
-            this.connection.beginTransaction((err) => 
+            const proc = () =>
             {
-                logger.info("transaction begin: ");
-                if(err)reject(err);
-                else resolve();
-            })
+                connection.beginTransaction((err) => 
+                {
+                    logger.info("transaction begin: ");
+                    
+                    if(err)
+                    {
+                        if(err.code === 'PROTOCOL_CONNECTION_LOST')
+                        {
+                            proc();
+                            return;
+                        }
+                        reject(err);
+                    }
+                    else resolve();
+                })
+            }
+
+            proc();
         });
     }
 
@@ -25,12 +78,26 @@ const transaction = class
     {
         return new Promise((resolve, reject) => 
         {
-            this.connection.query(statement, params, (err, results, fields) => 
+            const proc = () =>
             {
-                logger.info("transaction query: ", statement, params);
-                if(err) reject(err);
-                else resolve(results, fields);
-            });
+                connection.query(statement, params, (err, results, fields) => 
+                {
+                    logger.info("transaction query: ", statement, params);
+    
+                    if(err)
+                    {
+                        if(err.code === 'PROTOCOL_CONNECTION_LOST')
+                        {
+                            proc();
+                            return;
+                        }
+                        reject(err);
+                    }
+                    else resolve(results, fields);
+                });
+            }
+
+            proc();
         });
     }
 
@@ -38,12 +105,26 @@ const transaction = class
     {
         return new Promise((resolve, reject) => 
         {
-            this.connection.commit((err) => 
+            const proc = () =>
             {
-                logger.info("transaction commit: ");
-                if(err) reject(err);
-                else resolve(err);
-            });
+                connection.commit((err) => 
+                {
+                    logger.info("transaction commit: ");
+                    
+                    if(err)
+                    {
+                        if(err.code === 'PROTOCOL_CONNECTION_LOST')
+                        {
+                            proc();
+                            return;
+                        }
+                        reject(err);
+                    }
+                    else resolve(err);
+                });
+            }
+
+            proc();
         });
     }
 
@@ -51,7 +132,7 @@ const transaction = class
     {
         return new Promise((resolve, reject) => 
         {
-            this.connection.rollback(() => 
+            connection.rollback(() => 
             {
                 logger.error("transaction rollback: ", err);
                 reject(err); 
@@ -77,4 +158,4 @@ const transaction = class
 }
 
   
-module.exports = new transaction(db);
+module.exports = new transaction();

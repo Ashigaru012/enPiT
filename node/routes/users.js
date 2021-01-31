@@ -23,7 +23,7 @@ router.get('/:id/', async function(req, res, next)
     const target = (await tr.query('select * from user where id=?', [target_id]))[0];
     const icon = (await tr.query('select * from sample_icon where id=?', [target.icon_id]))[0];
 
-    res.render("users/user", {common: common, user_id: user_id, icon_img: icon.img, user: user[0]});
+    res.render("users/user", {common: common, user_id: user_id, icon_img: icon.img, user: target});
 });
 
 

@@ -7,6 +7,7 @@ const connection = mysql.createConnection({
     database: 'taskul_db'
     });
 
+/*
 connection.connect((err) => {
     if (err) {
         console.log('error connecting: ' + err.stack);
@@ -14,6 +15,7 @@ connection.connect((err) => {
     }
     console.log('success');
 });
+*/
 
 
 module.exports = connection;
