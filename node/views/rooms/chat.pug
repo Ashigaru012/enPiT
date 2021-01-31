@@ -60,6 +60,24 @@ block js
         let data;
         let msgArea;
 
+        
+        //スライス開始位置
+        const omit_title = () =>
+        {
+            const title_div = document.querySelector(".msg_title");
+            const title = title_div.textContent;
+            let n = 12;
+            if(title.length > n){
+                //n文字目以降をスライス
+                let target_str = title.substring(0, n);
+
+                //スライスした文字列の部分を"..."に置き換える
+                const new_title = target_str + "...";
+            
+                title_div.textContent = new_title;
+            }
+        }
+
         //websocketの接続先URL
         const HOST = location.origin.replace(/^http|^https/, 'ws') + '/rooms/chat-web-sock';
 

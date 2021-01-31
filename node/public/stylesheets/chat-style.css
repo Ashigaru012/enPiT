@@ -48,7 +48,7 @@
     left:100px;
     top:15px;
 
-
+	line-height: 70px;
     
     background: #FFFFFF;
     border: 6.5px #EE7836 solid;   /* 枠線を引く */
@@ -241,7 +241,7 @@ footer{
     margin-top:30px;
     background-color: #EE7836;
     border: 4.5px white solid;
-    border-radius: 30px; 
+    border-radius: 40px; 
     white-space: pre-wrap;
     color:white;
     margin-left: auto;
@@ -254,7 +254,7 @@ footer{
     position: absolute;
     content: "";
     top: -5px;
-    right: -20px;
+    right: -18px;
     margin-left: -15px;
     border: 15px solid transparent;
     border-top: 25px solid #EE7836;
