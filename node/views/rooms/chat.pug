@@ -101,6 +101,8 @@ block js
                 let msg = document.getElementById('input_field').value;
                 let data = { key: "submit", room_id: room_id, user_id: user_id, number: i, message: msg };
 
+                if(!msg || msg == "") break;
+
                 document.getElementById('input_field').value = "";
                 //websocketでサーバーに送信
                 ws.send(JSON.stringify(data));
