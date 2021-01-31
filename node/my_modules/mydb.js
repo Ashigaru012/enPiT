@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+
 const connection = mysql.createConnection({
     host: '172.27.0.2',
     user: 'user',
@@ -7,13 +8,13 @@ const connection = mysql.createConnection({
     database: 'taskul_db'
     });
 
-connection.connect((err) => {
+/*connection.connect((err) => {
     if (err) {
         console.log('error connecting: ' + err.stack);
         throw err;
     }
     console.log('success');
 });
-
+*/
 
 module.exports = connection;
