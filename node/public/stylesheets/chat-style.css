@@ -69,6 +69,17 @@
 }
 
 
+#task_complete_btn i{
+    font-size: 100px;
+    
+    border: 3.5px #FFFFFF solid;
+    border-radius: 50%; 
+    background-color: #FFFFFF;
+    position: absolute;
+    top:10px;
+    right:20px;
+}
+
 .data{
     font-size: 22px;
     margin-left:20px;
@@ -297,17 +308,6 @@ footer{
 {
     margin: auto 10 auto 10;
     word-break: break-all;
-}
-
-#task_complete_btn i{
-    font-size: 110px;
-    
-    border: 3.5px #FFFFFF solid;
-    border-radius: 90px; 
-    background-color: #FFFFFF;
-    position: absolute;
-    bottom:1225px;
-    left:840px;
 }
 
 .image_left
