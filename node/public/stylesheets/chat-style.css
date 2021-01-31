@@ -1,19 +1,19 @@
 
 @keyframes shake{
     0%{
-        transform: translateX(0);
+        transform: translateY(0);
     }
 
     40%{
-        transform: translateX(-13%);
+        transform: translateY(-13%);
     }
 
     80%{
-        transform: translateX(13%);
+        transform: translateY(13%);
     }
 
     100%{
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
 
