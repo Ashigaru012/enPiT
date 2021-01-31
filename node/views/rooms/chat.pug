@@ -24,6 +24,10 @@ block content
                     i.fas.fa-reply
             .msg_title #{room_title}
 
+            //依頼完了ボタン
+            #task_complete_btn
+                i.fas.fa-check-circle(style="color:#cccccc")
+
         div(style='width:100%;height:70%;overflow-y:auto;overflow-x:hidden;')
             #chat
             // ここに下記のscriptで動的に要素を追加される
@@ -46,9 +50,6 @@ block content
                         // <input type="hidden" name="flg" value="1"/>
                         .send-btn
                             i.fas.fa-paper-plane
-            //依頼完了ボタン
-            #task_complete_btn
-                i.fas.fa-check-circle(style="color:#cccccc; font-size: 110px;")
 
 
 
